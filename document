@@ -1,0 +1,126 @@
+SALES MANAGEMENT
+
+USERS
+	- Manager
+	- Seller
+
+USER FUNCTIONALITY
+	1.MANAGER
+		- add,edit,delete product inventory
+		- suggest product selling price
+		- manage product loss
+		- add,edit,delete expenses category
+        - Manager can choose discount method per prodcut (by rate/ amount)
+		- view income statement
+		- view report per specific time period
+		- manager system users (add,edit/delete)
+        - Manager can choose seeling algorithm (FIFO/LIFO)
+        - add,edit.delete role
+        - assign permissions to role
+
+	2.SELLER
+		- sell product
+		- add,edit,update,delete customer
+
+SYSTEM FUNCTIONALITY
+	- generate transaction/receipt number for each sale
+	- update sales product table after each sale
+	- can generate barcode for particular product
+
+MODELS
+	1.USER
+		-id
+		-fname
+		-lname
+		-email
+		-password
+		-role_id
+		-active(bool)
+		-softDelete
+
+	2.ROLE
+		-id
+		-name
+
+	3.CUSTOMER
+		-id
+		-name
+
+	4.PRODUCT
+		-id
+		-name
+		-hasSize(boolean)
+        -softDelete
+
+    5.INVENTORY (has many products)
+        -id
+        -issuer
+        -totalCost
+        -expectedAmount
+        -description
+        -issuer
+        -finished(boolean)
+
+	6.INVENTORYPRODUCT
+		-id
+		-product_id
+        -inventory_id
+		-quantity
+		-cost
+		-sellingPrice
+        -discounts(json) eg. [10:1000,20:10%,30:2000]
+        -discount_type_id
+
+	7.LOSS
+		-id
+        -inventory_product_id
+		-quantity
+		-amount //can manually be typed
+        -description
+
+	8.EXPENSETYPE
+		-id
+		-name
+		-description
+        -role // required role to issue this type of expense
+
+	9.EXPENSE
+		-id
+		-type
+		-amount
+		-description //optional
+		-issuer
+
+	10.PAYMENTTYPE
+		-id
+		-name
+		-description
+
+	11.SALE
+		-id
+        -inventory_product_id
+		-quantity
+		-sellingPrice	//before discount
+		-buyingPrice
+		-discount	//discount amount(per item)/can be manually typed
+		-receipt_id
+
+	12.RECEIPT
+		-id
+		-number
+		-paymentType
+		-customer_id	//nullable
+        -issuer //user
+
+    13.DISCOUNTTYPE
+        -id
+        -type (rate/amount)
+
+    14.PERMISSION  //initialized
+        -id
+        -name
+
+    15.ROLEPERMISSION
+        -id
+        -role_id
+        -permission_id
