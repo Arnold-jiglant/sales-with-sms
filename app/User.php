@@ -25,6 +25,16 @@ class User extends Authenticatable
     {
         return ucfirst($this->fname) . ' ' . ucfirst($this->lname);
     }
+
     //SCOPE
+    public function getIsManagerAttribute($q)
+    {
+        return $this->role->name == 'Manager';
+    }
+
     //RELATION
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

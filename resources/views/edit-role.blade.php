@@ -2,6 +2,9 @@
 @section('title')
     Role
 @stop
+@section('configure')
+    active
+@stop
 @section('content')
     <div class="container mt-2">
         <div class="row">
@@ -51,7 +54,8 @@
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input user" type="checkbox" id="viewUser"
-                                           name="permissions[]" value="1" {{$permissions->contains(1)?'checked':''}}>
+                                           name="permissions[]"
+                                           value="US1" {{$permissions->contains('US1')?'checked':''}}>
                                     <label class="custom-control-label" for="viewUser">View Users</label>
                                 </div>
                             </td>
@@ -60,7 +64,8 @@
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input user" type="checkbox" id="addUser"
-                                           name="permissions[]" value="2" {{$permissions->contains(2)?'checked':''}}>
+                                           name="permissions[]"
+                                           value="US2" {{$permissions->contains('US2')?'checked':''}}>
                                     <label class="custom-control-label" for="addUser">Add Users</label>
                                 </div>
                             </td>
@@ -69,7 +74,8 @@
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input user" type="checkbox" id="editUser"
-                                           name="permissions[]" value="3" {{$permissions->contains(3)?'checked':''}}>
+                                           name="permissions[]"
+                                           value="US3" {{$permissions->contains('US3')?'checked':''}}>
                                     <label class="custom-control-label" for="editUser">Edit Users</label>
                                 </div>
                             </td>
@@ -78,9 +84,9 @@
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input user" type="checkbox" name="permissions[]"
-                                           value="4" {{$permissions->contains(4)?'checked':''}}
-                                           id="deleteUser"><label
-                                        class="custom-control-label" for="deleteUser">Delete Users</label></div>
+                                           value="US4" id="deleteUser" {{$permissions->contains('US4')?'checked':''}}>
+                                    <label class="custom-control-label" for="deleteUser">Delete Users</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -89,36 +95,37 @@
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input customer" type="checkbox" name="permissions[]"
-                                           value="5" {{$permissions->contains(5)?'checked':''}}
-                                           id="viewCustomer"><label
-                                        class="custom-control-label" for="viewCustomer">View Customers</label></div>
+                                           value="CU1" id="viewCustomer" {{$permissions->contains('CU1')?'checked':''}}>
+                                    <label class="custom-control-label" for="viewCustomer">View Customers</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input customer" type="checkbox" name="permissions[]"
-                                           value="6" {{$permissions->contains(6)?'checked':''}}
-                                           id="addCustomer"><label
-                                        class="custom-control-label" for="addCustomer">Add Customers</label></div>
+                                           value="CU2" id="addCustomer" {{$permissions->contains('CU2')?'checked':''}}>
+                                    <label class="custom-control-label" for="addCustomer">Add Customers</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input customer" type="checkbox" name="permissions[]"
-                                           value="7" {{$permissions->contains(7)?'checked':''}}
-                                           id="editCustomer"><label
-                                        class="custom-control-label" for="editCustomer">Edit Customers</label></div>
+                                           value="CU3" id="editCustomer" {{$permissions->contains('CU3')?'checked':''}}>
+                                    <label class="custom-control-label" for="editCustomer">Edit Customers</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input customer" type="checkbox" name="permissions[]"
-                                           value="8" {{$permissions->contains(8)?'checked':''}}
-                                           id="deleteCustomer"><label
-                                        class="custom-control-label" for="deleteCustomer">Delete Customers</label></div>
+                                           value="CU4"
+                                           id="deleteCustomer" {{$permissions->contains('CU4')?'checked':''}}>
+                                    <label class="custom-control-label" for="deleteCustomer">Delete Customers</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -127,36 +134,37 @@
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input expense" type="checkbox" name="permissions[]"
-                                           value="9" {{$permissions->contains(9)?'checked':''}}
-                                           id="viewExpense"><label
-                                        class="custom-control-label" for="viewExpense">View Expenses</label></div>
+                                           value="EX1" {{$permissions->contains('EX1')?'checked':''}}
+                                           id="viewExpense">
+                                    <label class="custom-control-label" for="viewExpense">View Expenses</label></div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input expense" type="checkbox" name="permissions[]"
-                                           value="10" {{$permissions->contains(10)?'checked':''}}
-                                           id="addExpense"><label
-                                        class="custom-control-label" for="addExpense">Add Expenses</label></div>
+                                           value="EX2" id="addExpense" {{$permissions->contains('EX2')?'checked':''}}>
+                                    <label class="custom-control-label" for="addExpense">Add Expenses</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input expense" type="checkbox" name="permissions[]"
-                                           value="11" {{$permissions->contains(11)?'checked':''}}
-                                           id="editExpense"><label
-                                        class="custom-control-label" for="editExpense">Edit Expenses</label></div>
+                                           value="EX3" id="editExpense" {{$permissions->contains('EX3')?'checked':''}}>
+                                    <label class="custom-control-label" for="editExpense">Edit Expenses</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input expense" type="checkbox" name="permissions[]"
-                                           value="12" {{$permissions->contains(12)?'checked':''}}
-                                           id="deleteExpense"><label
-                                        class="custom-control-label" for="deleteExpense">Delete Expenses</label></div>
+                                           value="EX4"
+                                           id="deleteExpense" {{$permissions->contains('EX4')?'checked':''}}>
+                                    <label class="custom-control-label" for="deleteExpense">Delete Expenses</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -164,37 +172,38 @@
                             <td rowspan="4" class="align-middle font-weight-bold">INVENTORY</td>
                             <td>
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input expense" type="checkbox" name="permissions[]"
-                                           value="13" {{$permissions->contains(13)?'checked':''}}
-                                           id="viewInventory"><label
-                                        class="custom-control-label" for="viewInventory">View Inventory</label></div>
+                                    <input class="custom-control-input inventory" type="checkbox" name="permissions[]"
+                                           value="IN1"
+                                           id="viewInventory" {{$permissions->contains('IN1')?'checked':''}}>
+                                    <label class="custom-control-label" for="viewInventory">View Inventory</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input expense" type="checkbox" name="permissions[]"
-                                           value="14" {{$permissions->contains(14)?'checked':''}}
-                                           id="addInventory"><label
-                                        class="custom-control-label" for="addInventory">Add Inventory</label></div>
+                                    <input class="custom-control-input inventory" type="checkbox" name="permissions[]"
+                                           value="IN2" id="addInventory" {{$permissions->contains('IN2')?'checked':''}}>
+                                    <label class="custom-control-label" for="addInventory">Add Inventory</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input expense" type="checkbox" name="permissions[]"
-                                           value="15" {{$permissions->contains(15)?'checked':''}}
-                                           id="editInventory"><label
-                                        class="custom-control-label" for="editInventory">Edit Inventory</label></div>
+                                    <input class="custom-control-input inventory" type="checkbox" name="permissions[]"
+                                           value="IN3"
+                                           id="editInventory" {{$permissions->contains('IN3')?'checked':''}}>
+                                    <label class="custom-control-label" for="editInventory">Edit Inventory</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input expense" type="checkbox" name="permissions[]"
-                                           value="16" {{$permissions->contains(16)?'checked':''}}
-                                           id="deleteInventory"><label
-                                        class="custom-control-label" for="deleteInventory">Delete Inventory</label>
+                                    <input class="custom-control-input inventory" type="checkbox" name="permissions[]"
+                                           value="IN4" id="deleteInventory" {{$permissions->contains('IN4')?'checked':''}}>
+                                    <label class="custom-control-label" for="deleteInventory">Delete Inventory</label>
                                 </div>
                             </td>
                         </tr>
@@ -202,10 +211,10 @@
                             <td class="align-middle">5</td>
                             <td class="align-middle font-weight-bold">SALE</td>
                             <td>
-                                <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input sale" type="checkbox" name="permissions[]"
-                                           value="17" {{$permissions->contains(17)?'checked':''}}
-                                           id="sellProduct"><label
+                                <div class="custom-control custom-checkbox"><input class="custom-control-input sale"
+                                                                                   type="checkbox" name="permissions[]"
+                                                                                   value="SE1" {{$permissions->contains('SE1')?'checked':''}}
+                                                                                   id="sellProduct"><label
                                         class="custom-control-label" for="sellProduct">Sell Products</label></div>
                             </td>
                         </tr>
@@ -213,10 +222,10 @@
                             <td class="align-middle">6</td>
                             <td class="align-middle font-weight-bold">REPORT</td>
                             <td>
-                                <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input report" type="checkbox" name="permissions[]"
-                                           value="18" {{$permissions->contains(18)?'checked':''}}
-                                           id="viewReport"><label
+                                <div class="custom-control custom-checkbox"><input class="custom-control-input report"
+                                                                                   type="checkbox" name="permissions[]"
+                                                                                   value="RE1" {{$permissions->contains('RE1')?'checked':''}}
+                                                                                   id="viewReport"><label
                                         class="custom-control-label" for="viewReport">View Report</label></div>
                             </td>
                         </tr>
@@ -224,7 +233,7 @@
                     </table>
                 </div>
                 <div class="d-block text-center">
-                    <button class="btn btn-primary custom-btn mt-3" type="submit">Add New Role</button>
+                    <button class="btn btn-primary custom-btn mt-3" type="submit">Update Role</button>
                 </div>
             </form>
         </div>
@@ -237,14 +246,31 @@
             //check all
             $('#checkAllBtn').click(function () {
                 $('#edit-role-form input[type="checkbox"]').each(function (i, item) {
-                    $(this).attr('checked', true);
+                    $(this).prop('checked', true).attr('checked', true);
                 });
             });
             //uncheck all
             $('#unCheckAllBtn').click(function () {
                 $('#edit-role-form input[type="checkbox"]').each(function (i, item) {
-                    $(this).attr('checked', false);
+                    $(this).prop('checked', false).attr('checked', false);
                 });
+            });
+            //check first item
+            $("input[type='checkbox']").change(function (e) {
+                let cla = $(this).attr('class').split(' ').pop();
+                let classItem = $("input[type='checkbox']." + cla);
+                let firstItem = classItem.first();
+                if ($(this).is(':checked')) {
+                    firstItem.prop('checked', true).attr('checked', true);
+                } else {
+                    if ($(this).attr('id') === firstItem.attr('id')) {
+                        classItem.each(function (i, item) {
+                            if ($(this).is(':checked')) {
+                                $(this).prop('checked', false).attr('checked', false);
+                            }
+                        });
+                    }
+                }
             });
 
             //submit form

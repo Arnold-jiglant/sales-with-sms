@@ -2,6 +2,9 @@
 @section('title')
     Role
 @stop
+@section('configure')
+    active
+@stop
 @section('content')
     <div class="container mt-2">
         <div class="row">
@@ -50,7 +53,7 @@
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input user" type="checkbox" id="viewUser"
-                                           name="permissions[]" value="1">
+                                           name="permissions[]" value="US1">
                                     <label class="custom-control-label" for="viewUser">View Users</label>
                                 </div>
                             </td>
@@ -59,7 +62,7 @@
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input user" type="checkbox" id="addUser"
-                                           name="permissions[]" value="2">
+                                           name="permissions[]" value="US2">
                                     <label class="custom-control-label" for="addUser">Add Users</label>
                                 </div>
                             </td>
@@ -68,56 +71,56 @@
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input user" type="checkbox" id="editUser"
-                                           name="permissions[]" value="3">
+                                           name="permissions[]" value="US3">
                                     <label class="custom-control-label" for="editUser">Edit Users</label>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input user"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="4"
-                                                                                   id="deleteUser"><label
-                                        class="custom-control-label" for="deleteUser">Delete Users</label></div>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input user" type="checkbox" name="permissions[]"
+                                           value="US4" id="deleteUser">
+                                    <label class="custom-control-label" for="deleteUser">Delete Users</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td rowspan="4" class="align-middle">2</td>
                             <td rowspan="4" class="align-middle font-weight-bold">CUSTOMER</td>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input customer"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="5"
-                                                                                   id="viewCustomer"><label
-                                        class="custom-control-label" for="viewCustomer">View Customers</label></div>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input customer" type="checkbox" name="permissions[]"
+                                           value="CU1" id="viewCustomer">
+                                    <label class="custom-control-label" for="viewCustomer">View Customers</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input customer"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="6"
-                                                                                   id="addCustomer"><label
-                                        class="custom-control-label" for="addCustomer">Add Customers</label></div>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input customer" type="checkbox" name="permissions[]"
+                                           value="CU2" id="addCustomer">
+                                    <label class="custom-control-label" for="addCustomer">Add Customers</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input customer"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="7"
-                                                                                   id="editCustomer"><label
-                                        class="custom-control-label" for="editCustomer">Edit Customers</label></div>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input customer" type="checkbox" name="permissions[]"
+                                           value="CU3" id="editCustomer">
+                                    <label class="custom-control-label" for="editCustomer">Edit Customers</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input customer"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="8"
-                                                                                   id="deleteCustomer"><label
-                                        class="custom-control-label" for="deleteCustomer">Delete Customers</label></div>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input customer" type="checkbox" name="permissions[]"
+                                           value="CU4" id="deleteCustomer">
+                                    <label class="custom-control-label" for="deleteCustomer">Delete Customers</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -126,7 +129,7 @@
                             <td>
                                 <div class="custom-control custom-checkbox"><input class="custom-control-input expense"
                                                                                    type="checkbox" name="permissions[]"
-                                                                                   value="9"
+                                                                                   value="EX1"
                                                                                    id="viewExpense"><label
                                         class="custom-control-label" for="viewExpense">View Expenses</label></div>
                             </td>
@@ -135,7 +138,7 @@
                             <td>
                                 <div class="custom-control custom-checkbox"><input class="custom-control-input expense"
                                                                                    type="checkbox" name="permissions[]"
-                                                                                   value="10"
+                                                                                   value="EX2"
                                                                                    id="addExpense"><label
                                         class="custom-control-label" for="addExpense">Add Expenses</label></div>
                             </td>
@@ -144,7 +147,7 @@
                             <td>
                                 <div class="custom-control custom-checkbox"><input class="custom-control-input expense"
                                                                                    type="checkbox" name="permissions[]"
-                                                                                   value="11"
+                                                                                   value="EX3"
                                                                                    id="editExpense"><label
                                         class="custom-control-label" for="editExpense">Edit Expenses</label></div>
                             </td>
@@ -153,7 +156,7 @@
                             <td>
                                 <div class="custom-control custom-checkbox"><input class="custom-control-input expense"
                                                                                    type="checkbox" name="permissions[]"
-                                                                                   value="12"
+                                                                                   value="EX4"
                                                                                    id="deleteExpense"><label
                                         class="custom-control-label" for="deleteExpense">Delete Expenses</label></div>
                             </td>
@@ -162,37 +165,41 @@
                             <td rowspan="4" class="align-middle">4</td>
                             <td rowspan="4" class="align-middle font-weight-bold">INVENTORY</td>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input expense"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="13"
-                                                                                   id="viewInventory"><label
+                                <div class="custom-control custom-checkbox"><input
+                                        class="custom-control-input inventory"
+                                        type="checkbox" name="permissions[]"
+                                        value="IN1"
+                                        id="viewInventory"><label
                                         class="custom-control-label" for="viewInventory">View Inventory</label></div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input expense"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="14"
-                                                                                   id="addInventory"><label
+                                <div class="custom-control custom-checkbox"><input
+                                        class="custom-control-input inventory"
+                                        type="checkbox" name="permissions[]"
+                                        value="IN2"
+                                        id="addInventory"><label
                                         class="custom-control-label" for="addInventory">Add Inventory</label></div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input expense"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="15"
-                                                                                   id="editInventory"><label
+                                <div class="custom-control custom-checkbox"><input
+                                        class="custom-control-input inventory"
+                                        type="checkbox" name="permissions[]"
+                                        value="IN3"
+                                        id="editInventory"><label
                                         class="custom-control-label" for="editInventory">Edit Inventory</label></div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input expense"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="16"
-                                                                                   id="deleteInventory"><label
+                                <div class="custom-control custom-checkbox"><input
+                                        class="custom-control-input inventory"
+                                        type="checkbox" name="permissions[]"
+                                        value="IN4"
+                                        id="deleteInventory"><label
                                         class="custom-control-label" for="deleteInventory">Delete Inventory</label>
                                 </div>
                             </td>
@@ -203,7 +210,7 @@
                             <td>
                                 <div class="custom-control custom-checkbox"><input class="custom-control-input sale"
                                                                                    type="checkbox" name="permissions[]"
-                                                                                   value="17"
+                                                                                   value="SE1"
                                                                                    id="sellProduct"><label
                                         class="custom-control-label" for="sellProduct">Sell Products</label></div>
                             </td>
@@ -214,7 +221,7 @@
                             <td>
                                 <div class="custom-control custom-checkbox"><input class="custom-control-input report"
                                                                                    type="checkbox" name="permissions[]"
-                                                                                   value="18"
+                                                                                   value="RE1"
                                                                                    id="viewReport"><label
                                         class="custom-control-label" for="viewReport">View Report</label></div>
                             </td>
@@ -236,27 +243,31 @@
             //check all
             $('#checkAllBtn').click(function () {
                 $('#add-role-form input[type="checkbox"]').each(function (i, item) {
-                    $(this).attr('checked', true);
+                    $(this).prop('checked', true).attr('checked', true);
                 });
             });
             //uncheck all
             $('#unCheckAllBtn').click(function () {
                 $('#add-role-form input[type="checkbox"]').each(function (i, item) {
-                    $(this).attr('checked', false);
+                    $(this).prop('checked', false).attr('checked', false);
                 });
             });
             //check first item
-
-            //TODO check first item first
             $("input[type='checkbox']").change(function (e) {
-                let cla = $(this)[0].classList[1];
-                $("input[type='checkbox']." + cla).each(function (i) {
-                    if (i === 0) {
-                        $(this).attr('checked', true);
+                let cla = $(this).attr('class').split(' ').pop();
+                let classItem = $("input[type='checkbox']." + cla);
+                let firstItem = classItem.first();
+                if ($(this).is(':checked')) {
+                    firstItem.prop('checked', true).attr('checked', true);
+                } else {
+                    if ($(this).attr('id') === firstItem.attr('id')) {
+                        classItem.each(function (i, item) {
+                            if ($(this).is(':checked')) {
+                                $(this).prop('checked', false).attr('checked', false);
+                            }
+                        });
                     }
-
-                });
-                // $('.'+cla)[0].attr('checked',true);
+                }
             });
 
             //submit form

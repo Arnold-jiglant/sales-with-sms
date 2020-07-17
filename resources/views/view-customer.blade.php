@@ -2,6 +2,9 @@
 @section('title')
     Customers
 @stop
+@section('customer')
+    active
+@stop
 @section('content')
     <div class="container mt-3">
         <div class="row">

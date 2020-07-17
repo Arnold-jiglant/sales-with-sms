@@ -2,6 +2,9 @@
 @section('title')
     Configure
 @stop
+@section('configure')
+    active
+@stop
 @section('content')
     <div class="container mt-3">
         <h3 class="mt-1"><i class="fa fa-gears"></i>&nbsp;System Configuration</h3>
@@ -72,9 +75,6 @@
                         <tbody>
                         @php($num=1)
                         @foreach($roles as $role)
-                            @if($role->id==1)
-                                @continue
-                            @endif
                             <tr>
                                 <td>{{$num}}</td>
                                 <td>{{$role->name}}</td>

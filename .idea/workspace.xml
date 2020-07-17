@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="" />
+    <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConfigurationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConfigurationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Permission.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Permission.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/RolePermission.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/RolePermission.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_15_101639_create_permissions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_15_101639_create_permissions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_15_101746_create_role_permissions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_15_101746_create_role_permissions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/PermissionsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/PermissionsTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/add-inventory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/add-inventory.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/add-role.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/add-role.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/configure.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/configure.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/edit-role.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/edit-role.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/expense.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/expense.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/inventory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sell.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sell.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/view.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +58,9 @@
         <option value="Blade" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
@@ -129,6 +157,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1eVfzukl6McRvppDfLjDeLO0lHF" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -136,22 +167,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="settings.editor.splitter.proportion" value="0.21245831" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/product" />
       <recent name="$PROJECT_DIR$/resources/views/sale" />
       <recent name="$PROJECT_DIR$/resources/views/customer" />
       <recent name="$PROJECT_DIR$/public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -190,6 +222,9 @@
       <workItem from="1594637068860" duration="163000" />
       <workItem from="1594637735111" duration="12000" />
       <workItem from="1594804782711" duration="31717000" />
+      <workItem from="1594902609695" duration="5461000" />
+      <workItem from="1594925805291" duration="719000" />
+      <workItem from="1594986199506" duration="12835000" />
     </task>
     <servers />
   </component>
@@ -201,13 +236,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="315" y="136" width="726" height="454" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.0.1366.728@0.0.1366.728" timestamp="1594813901254" />
-    <state x="466" y="0" width="900" height="728" key="SettingsEditor" timestamp="1594416064457">
+    <state x="466" y="0" width="900" height="728" key="SettingsEditor" timestamp="1594986378082">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="466" y="0" width="900" height="728" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1594416064457" />
-    <state x="4" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1594834658483">
+    <state x="466" y="0" width="900" height="728" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1594986378082" />
+    <state x="347" y="159" key="run.anything.popup" timestamp="1594906575493">
+      <screen x="0" y="0" width="1366" height="741" />
+    </state>
+    <state x="347" y="159" key="run.anything.popup/0.0.1366.741@0.0.1366.741" timestamp="1594906575493" />
+    <state x="4" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1595019805035">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="4" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1594834658483" />
+    <state x="4" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1595019805035" />
+    <state x="4" y="50" width="672" height="691" key="search.everywhere.popup/0.0.1366.741@0.0.1366.741" timestamp="1594906571046" />
   </component>
 </project>

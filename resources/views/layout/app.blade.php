@@ -15,22 +15,24 @@
 <section id="side-menu">
     <div id="logo-container"></div>
     <ul class="menu">
-        <li class="menu-item"><a href="#"><i class="fa fa-dashboard icon mr-3"></i><span
+        <li class="menu-item @yield('Dashboard')"><a href="#"><i class="fa fa-dashboard icon mr-3"></i><span
                     class="text">Dashboard</span></a></li>
-        <li class="menu-item active"><a href="#"><i class="fa fa-list icon mr-3"></i><span class="text">Products</span></a>
+        <li class="menu-item @yield('product')"><a href="#"><i class="fa fa-list icon mr-3"></i><span class="text">Products</span></a>
         </li>
-        <li class="menu-item"><a href="#"><i class="fa fa-shopping-cart icon mr-3"></i><span
+        <li class="menu-item @yield('sale')"><a href="#"><i class="fa fa-shopping-cart icon mr-3"></i><span
                     class="text">Sale</span></a></li>
-        <li class="menu-item"><a href="#"><i class="fa fa-users icon mr-3"></i><span class="text">Customers</span></a>
+        <li class="menu-item @yield('customer')"><a href="#"><i class="fa fa-users icon mr-3"></i><span class="text">Customers</span></a>
         </li>
-        <li class="menu-item"><a href="#"><i class="fa fa-home icon mr-3"></i><span class="text">Inventory</span></a>
+        <li class="menu-item @yield('inventory')"><a href="#"><i class="fa fa-home icon mr-3"></i><span class="text">Inventory</span></a>
         </li>
-        <li class="menu-item"><a href="#"><i class="fa fa-dollar icon mr-3"></i><span class="text">Expenses</span></a>
+        <li class="menu-item @yield('expense')"><a href="#"><i class="fa fa-dollar icon mr-3"></i><span class="text">Expenses</span></a>
         </li>
-        <li class="menu-item"><a href="#"><i class="fa fa-user icon mr-3"></i><span class="text">Users</span></a></li>
-        <li class="menu-item"><a href="#"><i class="fa fa-area-chart icon mr-3"></i><span class="text">Report</span></a>
+        <li class="menu-item @yield('user')"><a href="{{route('users')}}"><i class="fa fa-user icon mr-3"></i><span
+                    class="text">Users</span></a></li>
+        <li class="menu-item @yield('report')"><a href="#"><i class="fa fa-area-chart icon mr-3"></i><span class="text">Report</span></a>
         </li>
-        <li class="menu-item"><a href="{{route('configure')}}"><i class="fa fa-gears icon mr-3"></i><span class="text">Configure</span></a>
+        <li class="menu-item @yield('configure')"><a href="{{route('configure')}}"><i class="fa fa-gears icon mr-3"></i><span
+                    class="text">Configure</span></a>
         </li>
         <li class="menu-item"><a href="{{route('logout')}}"><i class="icon ion-power icon mr-3"></i><span class="text">Log Out</span></a>
         </li>
@@ -50,9 +52,11 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Customers</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Inventory</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Expenses</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Users</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('users')}}">Users</a>
+                    </li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Report</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('configure')}}">Configure</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                href="{{route('configure')}}">Configure</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('logout')}}"><i
                                 class="fa fa-power-off mr-2"></i><span>Log Out</span></a></li>
                 </ul>
@@ -60,10 +64,20 @@
         </div>
     </nav>
     <div class="row">
-        <div class="col">
-            <div class="dropdown float-right m-3"><button class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">{{auth()->user()->name}}</button>
-                <div role="menu" class="dropdown-menu dropdown-menu-right"><a role="presentation" href="#change-password-modal" class="dropdown-item" data-toggle="modal"><i class="icon ion-locked"></i>  Change Password</a></div>
+        <div class="col text-right">
+            <div class="dropdown m-3">
+                <button class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                        type="button">{{auth()->user()->name}} (<strong>{{auth()->user()->role->name}}</strong>)</button>
+                <div role="menu" class="dropdown-menu dropdown-menu-right"><a role="presentation"
+                                                                              href="#change-password-modal"
+                                                                              class="dropdown-item" data-toggle="modal"><i
+                            class="icon ion-locked"></i>  Change Password</a></div>
             </div>
+            @error('password')
+            <div class="d-block">
+                <p class="text-danger">{{$message}}</p>
+            </div>
+            @enderror
         </div>
     </div>
     @yield('content')
@@ -72,17 +86,34 @@
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-locked"></i> Change Password</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <h5 class="modal-title"><i class="icon ion-locked"></i> Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
                 <div class="modal-body">
-                    <form id="change-password-form" class="pt-3 pb-3 mb-3">
-                        <div class="form-group"><label>New Password</label><input type="password" name="password" class="form-control form-control-sm" /></div>
-                        <div class="form-group"><label>Confirm Password</label><input type="password" name="confirm_password" class="form-control form-control-sm" /></div>
-                        <div class="float-right m-4"><button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary btn-sm custom-btn" type="button">Confirm</button></div>
+                    <form id="change-password-form" class="pt-3 pb-3 mb-3" method="POST"
+                          action="{{route('user.change.password')}}">
+                        <input type="hidden" name="_method" value="PUT">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <label for="password">New Password</label>
+                            <input id="password" type="password" name="password" class="form-control form-control-sm"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input id="confirm_password" type="password" name="confirm_password"
+                                   class="form-control form-control-sm"/>
+                        </div>
+                        <div class="float-right m-4">
+                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close</button>
+                            <button class="btn btn-primary btn-sm custom-btn" type="submit">Confirm</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div></section>
+    </div>
+</section>
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/script.js')}}"></script>

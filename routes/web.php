@@ -23,6 +23,14 @@ Route::middleware('auth')->group(function (){
     Route::get('edit/role/{id}','ConfigurationController@editRole')->name('editRole');
     Route::put('edit/role/{id}','ConfigurationController@updateRole')->name('editRole');
     Route::delete('delete/role/{id}','ConfigurationController@deleteRole')->name('deleteRole');
+
+    //User
+    Route::get('users','UserController@index')->name('users');
+    Route::post('user/add','UserController@add')->name('user.add');
+    Route::put('user/update/{id}','UserController@update')->name('user.update');
+    Route::put('user/reset/{id}','UserController@reset')->name('user.reset');
+    Route::put('user/change/password','UserController@changePassword')->name('user.change.password');
+    Route::delete('user/delete/{id}','UserController@delete')->name('user.delete');
 });
 
 

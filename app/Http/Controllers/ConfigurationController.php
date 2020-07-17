@@ -14,7 +14,7 @@ class ConfigurationController extends Controller
     public function index()
     {
         $sellMethods = SellMethod::all();
-        $roles = Role::all();
+        $roles = Role::all()->except([1]);
         $expenseCategories = ExpenseType::all();
         return view('configure', compact('sellMethods', 'roles', 'expenseCategories'));
     }
@@ -90,7 +90,7 @@ class ConfigurationController extends Controller
         $role = Role::create(['name' => $request->get('name')]);
         $permissions = [];
         foreach ($request->get('permissions') as $item) {
-            $permissions[] = new RolePermission(['permission_id' => $item]);
+            $permissions[] = new RolePermission(['permission_code' => $item]);
         }
         $role->permissions()->saveMany($permissions);
         return redirect()->route('configure')->with('success', 'New Role Added');
@@ -103,7 +103,7 @@ class ConfigurationController extends Controller
         if ($role == null) {
             return $this->redirectWithError('Role Not Found');
         }
-       $permissions = $role->permissions()->pluck('id');
+       $permissions = $role->permissions()->pluck('permission_code');
         return view('edit-role',compact('role','permissions'));
     }
 
@@ -118,7 +118,7 @@ class ConfigurationController extends Controller
         $role->permissions()->delete();
         $permissions = [];
         foreach ($request->get('permissions') as $item) {
-            $permissions[] = new RolePermission(['permission_id' => $item]);
+            $permissions[] = new RolePermission(['permission_code' => $item]);
         }
         $role->permissions()->saveMany($permissions);
         return redirect()->route('configure')->with('success','Role Updated');
@@ -131,6 +131,7 @@ class ConfigurationController extends Controller
         if ($role == null) {
             return $this->redirectWithError('Role Not Found');
         }
+        $role->permissions()->delete();
         $role->delete();
         return $this->redirectWithSuccess('Role deleted!');
     }
