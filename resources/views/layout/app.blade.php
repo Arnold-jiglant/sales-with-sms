@@ -37,7 +37,7 @@
             </li>
         @endcan
         @can('view-expenses')
-            <li class="menu-item @yield('expense')"><a href="#"><i class="fa fa-dollar icon mr-3"></i><span
+            <li class="menu-item @yield('expense')"><a href="{{route('expenses')}}"><i class="fa fa-dollar icon mr-3"></i><span
                         class="text">Expenses</span></a>
             </li>
         @endcan
@@ -83,7 +83,7 @@
                         <li class="nav-item" role="presentation"><a class="nav-link" href="#">Inventory</a></li>
                     @endcan
                     @can('view-expenses')
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Expenses</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('expenses')}}">Expenses</a></li>
                     @endcan
                     @can('view-users')
                         <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('users')}}">Users</a>

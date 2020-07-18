@@ -7,6 +7,8 @@ Route::get('/', function () {
     return redirect('login');
 });
 
+
+
 Route::middleware('auth')->group(function (){
     Route::get('home',function (){
         return view('layout.app');
@@ -43,6 +45,11 @@ Route::middleware('auth')->group(function (){
     Route::put('customer/view/{id}','CustomerController@view')->name('customer.view');
     Route::put('customer/update/{id}','CustomerController@update')->name('customer.update');
     Route::delete('customer/delete/{id}','CustomerController@delete')->name('customer.delete');
+    //Expense
+    Route::get('expenses','ExpenseController@index')->name('expenses');
+    Route::post('expense/add','ExpenseController@add')->name('expense.add');
+    Route::put('expense/update/{id}','ExpenseController@update')->name('expense.update');
+    Route::delete('expense/delete/{id}','ExpenseController@delete')->name('expense.delete');
 });
 
 
