@@ -264,12 +264,14 @@
                                 aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="POST">
+                            {{csrf_field()}}
+                            <input type="hidden" name="_method" value="DELETE">
                             <p>Are you sure you want to delete this user?</p>
                             <div class="float-right">
                                 <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="button">Delete</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Delete</button>
                             </div>
                         </form>
                     </div>
@@ -281,6 +283,7 @@
 @section('script')
     <script>
         $(document).ready(function () {
+            @can('edit-user')
             //edit user
             $('#edit-user-modal').on('show.bs.modal', function (e) {
                 let id = $(e.relatedTarget).data('id');
@@ -305,6 +308,16 @@
                 let action = '{{route('user.reset','')}}/' + id;
                 form.attr('action', action);
             });
+            @endcan
+            @can('delete-user')
+            //delete user
+            $('#delete-user-modal').on('show.bs.modal', function (e) {
+                let id = $(e.relatedTarget).data('id');
+                let form = $(this).find('form');
+                let action = '{{route('user.delete','')}}/' + id;
+                form.attr('action', action);
+            });
+            @endcan
         });
     </script>
 @stop

@@ -135,12 +135,12 @@ body {
   }
 }
 
-#search-form input[type='text'] {
+.search-form input[type='text'] {
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 
-#search-form input[type='text']:focus {
+.search-form input[type='text']:focus {
   box-shadow: 0 0 2px #00bacc;
 }
 

@@ -37,71 +37,71 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('add-user', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$ADD_USERS);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$ADD_USERS);
         });
 
         Gate::define('edit-user', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$EDIT_USERS);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$EDIT_USERS);
         });
 
         Gate::define('delete-user', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_USERS);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_USERS);
         });
 
         Gate::define('view-customers', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_CUSTOMERS);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_CUSTOMERS);
         });
 
         Gate::define('add-customer', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$ADD_CUSTOMERS);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$ADD_CUSTOMERS);
         });
 
         Gate::define('edit-customer', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$EDIT_CUSTOMERS);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$EDIT_CUSTOMERS);
         });
 
         Gate::define('delete-customer', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_CUSTOMERS);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_CUSTOMERS);
         });
 
         Gate::define('view-expenses', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_EXPENSES);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_EXPENSES);
         });
 
         Gate::define('add-expense', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$ADD_EXPENSES);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$ADD_EXPENSES);
         });
 
         Gate::define('edit-expense', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$EDIT_EXPENSES);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$EDIT_EXPENSES);
         });
 
         Gate::define('delete-expense', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_EXPENSES);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_EXPENSES);
         });
 
         Gate::define('view-inventory', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_INVENTORY);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_INVENTORY);
         });
 
         Gate::define('add-inventory', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$ADD_INVENTORY);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$ADD_INVENTORY);
         });
 
         Gate::define('edit-inventory', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$EDIT_INVENTORY);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$EDIT_INVENTORY);
         });
 
         Gate::define('delete-inventory', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_INVENTORY);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_INVENTORY);
         });
 
         Gate::define('sell-product', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$SELL_PRODUCT);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$SELL_PRODUCT);
         });
 
         Gate::define('view-report', function ($user) {
-            return $user->isManager || $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_REPORT);
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_REPORT);
         });
     }
 }

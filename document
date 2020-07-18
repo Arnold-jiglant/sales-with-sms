@@ -6,25 +6,24 @@ USERS
 
 USER FUNCTIONALITY
 	1.MANAGER
-		- add,edit,delete product inventory
+		- add,edit,delete product   ........
+		- add,edit,delete inventory
 		- suggest product selling price
 		- manage product loss
-		- add,edit,delete expenses category
-        - Manager can choose discount method per prodcut (by rate/ amount)
+		- add,edit,delete expenses category ......
+        - Manager can choose discount method per inventory (by rate/ amount)
 		- view income statement
 		- view report per specific time period
-		- manager system users (add,edit/delete)
-        - Manager can choose seeling algorithm (FIFO/LIFO)
-        - add,edit.delete role
-        - assign permissions to role
-
-	2.SELLER
+		- manage system users (add,edit/delete) .......
+        - Manager can choose selling algorithm (FIFO/LIFO)  ........
+        - add,edit.delete role  .......
+        - assign permissions to role    ..........
 		- sell product
-		- add,edit,update,delete customer
+		- add,edit,update,delete customer   .........
 
 SYSTEM FUNCTIONALITY
 	- generate transaction/receipt number for each sale
-	- update sales product table after each sale
+	- update sales product table after each sale///
 	- can generate barcode for particular product
 
 MODELS

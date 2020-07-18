@@ -31,6 +31,18 @@ Route::middleware('auth')->group(function (){
     Route::put('user/reset/{id}','UserController@reset')->name('user.reset');
     Route::put('user/change/password','UserController@changePassword')->name('user.change.password');
     Route::delete('user/delete/{id}','UserController@delete')->name('user.delete');
+
+    //Product
+    Route::get('products','ProductController@index')->name('products');
+    Route::post('product/add','ProductController@add')->name('product.add');
+    Route::put('product/update/{id}','ProductController@update')->name('product.update');
+    Route::delete('product/delete/{id}','ProductController@delete')->name('product.delete');
+    //Customer
+    Route::get('customers','CustomerController@index')->name('customers');
+    Route::post('customer/add','CustomerController@add')->name('customer.add');
+    Route::put('customer/view/{id}','CustomerController@view')->name('customer.view');
+    Route::put('customer/update/{id}','CustomerController@update')->name('customer.update');
+    Route::delete('customer/delete/{id}','CustomerController@delete')->name('customer.delete');
 });
 
 

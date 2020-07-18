@@ -86,4 +86,16 @@ class UserController extends Controller
         auth()->user()->save();
         return redirect()->back()->with('success', 'Password changed successfully!');
     }
+
+    //delete user
+    public function delete($id)
+    {
+        Gate::authorize('delete-user');
+        $user = User::find($id);
+        if ($user == null) {
+            return redirect(back('users'))->with('error', 'User Not Found');
+        }
+        abort(404);
+        //TODO delete user
+    }
 }

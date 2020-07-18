@@ -34,7 +34,7 @@
         </div>
         <div class="row mt-4">
             <div class="col-md-8 col-xl-6 offset-md-2">
-                <form id="search-form">
+                <form class="search-form">
                     <div class="form-group">
                         <div class="input-group input-group-sm"><input class="form-control" type="text" placeholder="search product">
                             <div class="input-group-append"><button class="btn btn-primary custom-btn" type="button">Search</button></div>

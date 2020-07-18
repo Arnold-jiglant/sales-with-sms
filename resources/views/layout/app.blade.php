@@ -15,25 +15,47 @@
 <section id="side-menu">
     <div id="logo-container"></div>
     <ul class="menu">
-        <li class="menu-item @yield('Dashboard')"><a href="#"><i class="fa fa-dashboard icon mr-3"></i><span
-                    class="text">Dashboard</span></a></li>
-        <li class="menu-item @yield('product')"><a href="#"><i class="fa fa-list icon mr-3"></i><span class="text">Products</span></a>
-        </li>
-        <li class="menu-item @yield('sale')"><a href="#"><i class="fa fa-shopping-cart icon mr-3"></i><span
-                    class="text">Sale</span></a></li>
-        <li class="menu-item @yield('customer')"><a href="#"><i class="fa fa-users icon mr-3"></i><span class="text">Customers</span></a>
-        </li>
-        <li class="menu-item @yield('inventory')"><a href="#"><i class="fa fa-home icon mr-3"></i><span class="text">Inventory</span></a>
-        </li>
-        <li class="menu-item @yield('expense')"><a href="#"><i class="fa fa-dollar icon mr-3"></i><span class="text">Expenses</span></a>
-        </li>
-        <li class="menu-item @yield('user')"><a href="{{route('users')}}"><i class="fa fa-user icon mr-3"></i><span
-                    class="text">Users</span></a></li>
-        <li class="menu-item @yield('report')"><a href="#"><i class="fa fa-area-chart icon mr-3"></i><span class="text">Report</span></a>
-        </li>
-        <li class="menu-item @yield('configure')"><a href="{{route('configure')}}"><i class="fa fa-gears icon mr-3"></i><span
-                    class="text">Configure</span></a>
-        </li>
+        @if(auth()->user()->isManager)
+            <li class="menu-item @yield('Dashboard')"><a href="#"><i class="fa fa-dashboard icon mr-3"></i><span
+                        class="text">Dashboard</span></a></li>
+        @endif
+        @can('sell-product')
+            <li class="menu-item @yield('sale')"><a href="#"><i class="fa fa-shopping-cart icon mr-3"></i><span
+                        class="text">Sale</span></a></li>
+        @endcan
+        @can('view-customers')
+            <li class="menu-item @yield('customer')"><a href="{{route('customers')}}"><i class="fa fa-users icon mr-3"></i><span
+                        class="text">Customers</span></a>
+            </li>
+        @endcan
+        @can('view-inventory')
+            <li class="menu-item @yield('product')"><a href="{{route('products')}}"><i class="fa fa-list icon mr-3"></i><span
+                        class="text">Products</span></a>
+            </li>
+            <li class="menu-item @yield('inventory')"><a href="#"><i class="fa fa-home icon mr-3"></i><span
+                        class="text">Inventory</span></a>
+            </li>
+        @endcan
+        @can('view-expenses')
+            <li class="menu-item @yield('expense')"><a href="#"><i class="fa fa-dollar icon mr-3"></i><span
+                        class="text">Expenses</span></a>
+            </li>
+        @endcan
+        @can('view-users')
+            <li class="menu-item @yield('user')"><a href="{{route('users')}}"><i class="fa fa-user icon mr-3"></i><span
+                        class="text">Users</span></a></li>
+        @endcan
+        @can('view-report')
+            <li class="menu-item @yield('report')"><a href="#"><i class="fa fa-area-chart icon mr-3"></i><span
+                        class="text">Report</span></a>
+            </li>
+        @endcan
+        @if(auth()->user()->isManager)
+            <li class="menu-item @yield('configure')"><a href="{{route('configure')}}"><i
+                        class="fa fa-gears icon mr-3"></i><span
+                        class="text">Configure</span></a>
+            </li>
+        @endif
         <li class="menu-item"><a href="{{route('logout')}}"><i class="icon ion-power icon mr-3"></i><span class="text">Log Out</span></a>
         </li>
     </ul>
@@ -46,17 +68,34 @@
             <div class="collapse navbar-collapse"
                  id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Dashboard</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Products</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Sale</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Customers</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Inventory</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Expenses</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('users')}}">Users</a>
-                    </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Report</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="{{route('configure')}}">Configure</a></li>
+                    @if(auth()->user()->isManager)
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Dashboard</a></li>
+                    @endif
+                    @can('sell-product')
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Sale</a></li>
+                    @endcan
+                    @can('view-customers')
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('customers')}}">Customers</a></li>
+                    @endcan
+                    @can('view-inventory')
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('products')}}">Products</a>
+                        </li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Inventory</a></li>
+                    @endcan
+                    @can('view-expenses')
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Expenses</a></li>
+                    @endcan
+                    @can('view-users')
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('users')}}">Users</a>
+                        </li>
+                    @endcan
+                    @can('view-report')
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Report</a></li>
+                    @endcan
+                    @if(auth()->user()->isManager)
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('configure')}}">Configure</a>
+                        </li>
+                    @endif
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('logout')}}"><i
                                 class="fa fa-power-off mr-2"></i><span>Log Out</span></a></li>
                 </ul>
@@ -67,7 +106,8 @@
         <div class="col text-right">
             <div class="dropdown m-3">
                 <button class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
-                        type="button">{{auth()->user()->name}} (<strong>{{auth()->user()->role->name}}</strong>)</button>
+                        type="button">{{auth()->user()->name}} (<strong>{{auth()->user()->role->name}}</strong>)
+                </button>
                 <div role="menu" class="dropdown-menu dropdown-menu-right"><a role="presentation"
                                                                               href="#change-password-modal"
                                                                               class="dropdown-item" data-toggle="modal"><i

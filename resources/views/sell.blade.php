@@ -18,7 +18,7 @@
         <h4 class="mt-1">Sell Product</h4>
         <div class="row mt-1">
             <div class="col-md-11 col-lg-5">
-                <form id="search-form">
+                <form class="search-form">
                     <div class="form-group">
                         <div class="input-group"><input class="form-control" type="text" placeholder="search product">
                             <div class="input-group-append"><button class="btn btn-primary custom-btn" type="button">Search</button></div>

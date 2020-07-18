@@ -13,6 +13,5 @@ class Product extends Model
     ];
     protected $casts = [
         'hasSize'=>'boolean',
-        'discounts'=>'json',
     ];
 }
