@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             PermissionsTableSeeder::class,
             RolesTableSeeder::class,
             SellMethodsTableSeeder::class,
+            ProductsTableSeeder::class,
+            ExpenseTypesTableSeeder::class,
         ]);
     }
 }

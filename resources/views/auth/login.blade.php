@@ -18,16 +18,24 @@
         <form id="login-form" action="{{url('login')}}" method="POST">
             {{csrf_field()}}
             <h5 class="text-center value">Login</h5>
-            <small class="text-danger">Invalid email/Password</small>
+            @if($errors->any())
+                <small class="text-danger">Invalid email/Password</small>
+            @endif
             <div class="form-group">
                 <div class="input-group input-group-sm">
-                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-user-o"></i></span></div><input class="form-control" type="email" name="email" placeholder="email"></div>
+                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-user-o"></i></span>
+                    </div>
+                    <input class="form-control" type="email" name="email" placeholder="email"></div>
             </div>
             <div class="form-group">
                 <div class="input-group input-group-sm">
-                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-lock"></i></span></div><input class="form-control" type="password" name="password" placeholder="password"></div>
+                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    </div>
+                    <input class="form-control" type="password" name="password" placeholder="password"></div>
             </div>
-            <div class="text-center"><button class="btn btn-primary btn-sm custom-btn" type="submit">Login</button></div>
+            <div class="text-center">
+                <button class="btn btn-primary btn-sm custom-btn" type="submit">Login</button>
+            </div>
         </form>
     </div>
 </div>

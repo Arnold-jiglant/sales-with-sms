@@ -20,8 +20,8 @@ class CreateInventoryProductsTable extends Migration
             $table->double('quantity');
             $table->double('cost');
             $table->double('sellingPrice');
-            $table->json('discountRates');
-            $table->integer('discount_type_id');
+            $table->json('discountRates')->nullable();
+            $table->integer('discount_type_id')->nullable();
             $table->timestamps();
         });
     }

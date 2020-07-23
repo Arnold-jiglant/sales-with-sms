@@ -75,13 +75,13 @@
                 @endif
             </div>
         </div>
-        <div class="table-responsive table-bordered text-center" id="products-table">
+        <div class="table-responsive table-bordered" id="products-table">
             <table class="table table-bordered table-hover table-sm">
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Has Small Sizes</th>
+                    <th class="text-center">Has Small Sizes</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -90,9 +90,9 @@
                     @php($num=$products->firstItem())
                     @foreach($products as $product)
                         <tr>
-                            <td>{{$num}}</td>
+                            <td>{{$num}}.</td>
                             <td>{{$product->name}}</td>
-                            <td>{{$product->hasSize?'Yes':'No'}}</td>
+                            <td class="text-center">{{$product->hasSize?'Yes':'No'}}</td>
                             <td>
                                 <div class="options">
                                     <a href="#" class="option-link edit" data-toggle="modal"

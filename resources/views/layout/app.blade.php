@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{env('APP_NAME')}} |@yield('title')</title>
     <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
@@ -32,7 +33,7 @@
             <li class="menu-item @yield('product')"><a href="{{route('products')}}"><i class="fa fa-list icon mr-3"></i><span
                         class="text">Products</span></a>
             </li>
-            <li class="menu-item @yield('inventory')"><a href="#"><i class="fa fa-home icon mr-3"></i><span
+            <li class="menu-item @yield('inventory')"><a href="{{route('inventories')}}"><i class="fa fa-home icon mr-3"></i><span
                         class="text">Inventory</span></a>
             </li>
         @endcan
@@ -80,7 +81,7 @@
                     @can('view-inventory')
                         <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('products')}}">Products</a>
                         </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Inventory</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('inventories')}}">Inventory</a></li>
                     @endcan
                     @can('view-expenses')
                         <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('expenses')}}">Expenses</a></li>

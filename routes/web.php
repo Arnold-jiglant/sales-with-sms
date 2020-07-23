@@ -50,6 +50,25 @@ Route::middleware('auth')->group(function (){
     Route::post('expense/add','ExpenseController@add')->name('expense.add');
     Route::put('expense/update/{id}','ExpenseController@update')->name('expense.update');
     Route::delete('expense/delete/{id}','ExpenseController@delete')->name('expense.delete');
+    //Inventory
+    Route::get('inventories','InventoryController@index')->name('inventories');
+    Route::get('inventory/add','InventoryController@showAddInventoryForm')->name('inventory.add');
+    Route::post('inventory/add','InventoryController@add')->name('inventory.add');
+    Route::post('inventory/confirm','InventoryController@confirm')->name('inventory.confirm');
+    Route::post('inventory/cancel','InventoryController@cancel')->name('inventory.cancel');
+    Route::put('inventory/{invID}/add/product','InventoryController@addProduct')->name('inventory.add.product');
+    Route::get('delete/inventory/product/{id}','InventoryController@deleteProduct')->name('delete.collection.product');
+    Route::get('inventory/view/{id}','InventoryController@view')->name('inventory.view');
+    Route::put('inventory/update/description/{id}','InventoryController@updateDescription')->name('inventory.update.desc');
+    Route::get('inventory/get/discounts/{id}','InventoryController@getDiscounts')->name('inventory.get.discounts');
+    Route::put('inventory/update/{id}','InventoryController@update')->name('inventory.update');
+    Route::delete('inventory/delete/{id}','InventoryController@delete')->name('inventory.delete');
+
+    //loss
+    Route::get('loss/{id}','LossController@getLosses')->name('loss.get');
+    Route::post('loss/add/{id}','LossController@addLoss')->name('loss.add');
+    Route::post('loss/update/{id}','LossController@update')->name('loss.update');
+    Route::post('loss/delete/{id}','LossController@delete')->name('loss.delete');
 });
 
 

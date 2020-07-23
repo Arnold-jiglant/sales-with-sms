@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvetoriesTable extends Migration
+class CreateInventoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateInvetoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invetories', function (Blueprint $table) {
+        Schema::create('inventories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->double('totalCost');
             $table->double('expectedAmount');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->integer('issuer');
             $table->boolean('finished')->default(false);
             $table->timestamps();
@@ -31,6 +31,6 @@ class CreateInvetoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invetories');
+        Schema::dropIfExists('inventories');
     }
 }

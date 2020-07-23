@@ -20,9 +20,17 @@
     <div class="col-lg-11 col-xl-10 offset-lg-1 offset-xl-1">
         <div class="row">
             <div class="col-6">
-                <p>Total 200 showing 20-30</p>
+                <p>Total {{$inventories->total()}} showing {{$inventories->firstItem()}}
+                    -{{$inventories->lastItem()}}</p>
             </div>
-            <div class="col order-sm-1"><a class="btn btn-primary btn-sm custom-btn float-right" role="button" href="#"><i class="icon ion-android-add"></i>Add Inventory</a></div>
+            <div class="col order-sm-1">
+                @can('ad-inventory')
+                    <div class="text-right">
+                        <a class="btn btn-primary btn-sm custom-btn" role="button" href="{{route('inventory.add')}}">
+                            <i class="icon ion-android-add"></i>Add Inventory</a>
+                    </div>
+                @endcan
+            </div>
         </div>
         <div class="table-responsive table-bordered text-center" id="products-table">
             <table class="table table-bordered table-hover table-sm">
@@ -38,21 +46,44 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>12/4/2018</td>
-                    <td>3,000,000</td>
-                    <td>61,350,000</td>
-                    <td>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
-                        </div>
-                    </td>
-                    <td>User</td>
-                    <td>
-                        <div class="options"><a href="#" class="option-link edit"><i class="icon ion-eye"></i>&nbsp;<span class="link-text">view</span></a><a href="#" class="option-link delete" data-toggle="modal" data-target="#delete-expense-modal"><i class="icon ion-android-delete"></i>&nbsp;<span class="link-text">delete</span></a></div>
-                    </td>
-                </tr>
+                @if($inventories->count()>0)
+                    @php($num=$inventories->firstItem())
+                    @foreach($inventories as $inventory)
+                        <tr>
+                            <td>{{$num}}</td>
+                            <td>{{$inventory->created_at->format('D d M Y')}}</td>
+                            <td>{{number_format($inventory->totalCost)}}/=</td>
+                            <td>{{number_format($inventory->expectedAmount)}}/=</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                         aria-valuenow="{{$inventory->progress}}"
+                                         aria-valuemin="0" aria-valuemax="100" style="width: {{$inventory->progress}}%;">{{$inventory->progress}}%
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{$inventory->user->name}}</td>
+                            <td>
+                                <div class="options">
+                                    <a href="{{route('inventory.view',$inventory->id)}}" class="option-link edit">
+                                        <i class="icon ion-eye"></i>&nbsp;
+                                        <span class="link-text">view</span>
+                                    </a>
+                                    <a href="#" class="option-link delete" data-toggle="modal"
+                                       data-target="#delete-expense-modal">
+                                        <i class="icon ion-android-delete"></i>&nbsp;
+                                        <span class="link-text">delete</span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        @php($num++)
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="7">No Inventory added Yet</td>
+                    </tr>
+                @endif
                 </tbody>
             </table>
         </div>
@@ -60,32 +91,32 @@
     <div class="row mt-2">
         <div class="col-11 col-md-10 col-lg-7 offset-1 offset-md-1 offset-lg-3">
             <nav>
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                </ul>
+                {{$inventories->links()}}
             </nav>
         </div>
     </div>
 @stop
 @section('modal')
-    <div class="modal fade" role="dialog" tabindex="-1" id="delete-expense-modal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Inventory</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                <div class="modal-body">
-                    <form>
-                        <p>Are you sure&nbsp;want to delete this Inventory?</p>
-                    </form>
+    @can('delete-inventory')
+        <div class="modal fade" role="dialog" tabindex="-1" id="delete-expense-modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Inventory</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <p>Are you sure&nbsp;want to delete this Inventory?</p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-light btn-sm" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary btn-sm custom-btn" type="button">Confirm</button>
+                    </div>
                 </div>
-                <div class="modal-footer"><button class="btn btn-light btn-sm" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary btn-sm custom-btn" type="button">Confirm</button></div>
             </div>
         </div>
-    </div>
+    @endcan
 @stop
