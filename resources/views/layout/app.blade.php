@@ -21,7 +21,7 @@
                         class="text">Dashboard</span></a></li>
         @endif
         @can('sell-product')
-            <li class="menu-item @yield('sale')"><a href="#"><i class="fa fa-shopping-cart icon mr-3"></i><span
+            <li class="menu-item @yield('sale')"><a href="{{route('sale')}}"><i class="fa fa-shopping-cart icon mr-3"></i><span
                         class="text">Sale</span></a></li>
         @endcan
         @can('view-customers')
@@ -73,7 +73,7 @@
                         <li class="nav-item" role="presentation"><a class="nav-link" href="#">Dashboard</a></li>
                     @endif
                     @can('sell-product')
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Sale</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('sale')}}">Sale</a></li>
                     @endcan
                     @can('view-customers')
                         <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('customers')}}">Customers</a></li>

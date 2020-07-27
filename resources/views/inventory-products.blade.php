@@ -128,7 +128,7 @@
                         <td>{{$invProduct->quantity}}</td>
                         <td>{{$invProduct->remainingQty}}</td>
                         <td>{{number_format($invProduct->cost)}}</td>
-                        <td>{{number_format($invProduct->buyingPrice)}}</td>
+                        <td>{{$invProduct->buyingPrice}}</td>
                         <td>{{number_format($invProduct->sellingPrice)}}</td>
                         <td>{{$invProduct->created_at->format('d/m/Y')}}</td>
                         <td>{{$invProduct->totalLossQuantity}}</td>
@@ -847,7 +847,7 @@
             function calculateLossAmount() {
                 let buyingPrice = $('#buyingPriceLabelLoss').text();
                 let qty = $('#lossQuantity').val();
-                let lossAmount = Math.round(qty * buyingPrice);
+                let lossAmount = (qty * buyingPrice).toFixed(4);
                 if (isNaN(lossAmount)) {
                     $('#lossAmount').val('');
                 } else {

@@ -103,7 +103,7 @@
                             <td>{{$inv->quantity}}</td>
                             <td>{{number_format($inv->cost)}}/=</td>
                             <td>{{number_format($inv->sellingPrice)}}/=</td>
-                            <td>{{$inv->discountType->type}}</td>
+                            <td>{{$inv->discountType->type??''}}</td>
                             <td class="text-left">
                                 @if($inv->discountRates!=null)
                                     @foreach($inv->discountRates as $discount)

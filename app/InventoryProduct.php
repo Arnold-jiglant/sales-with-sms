@@ -37,15 +37,25 @@ class InventoryProduct extends Model
         return $this->hasMany(Loss::class);
     }
 
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
+
     //ATTRIBUTES
     public function getNameAttribute()
     {
         return $this->product->name;
     }
 
+    public function getNameFormatedAttribute()
+    {
+        return substr($this->product->name, 0, 16) . ' (' . $this->inventory->created_at->format('d-M-Y').')';
+    }
+
     public function getHasSizeAttribute()
     {
-        return $this->product->hasSize;
+        return $this->product->hasSize ? true : false;
     }
 
     public function getHasDiscountAttribute()
@@ -55,7 +65,7 @@ class InventoryProduct extends Model
 
     public function getBuyingPriceAttribute()
     {
-        return floor($this->cost / $this->quantity);
+        return round($this->cost / $this->quantity, 4);
     }
 
     public function getTotalLossQuantityAttribute()
@@ -68,9 +78,19 @@ class InventoryProduct extends Model
         return $this->losses()->sum('amount');
     }
 
+    public function getTotalSaleQuantityAttribute()
+    {
+        return $this->sales()->sum('quantity');
+    }
+
+    public function getTotalSaleAmountAttribute()
+    {
+        return 0;  //TODO Calculate sale amount
+    }
+
     public function getRemainingQtyAttribute()
     {
-        return 0;//TODO calculate remain qty from sales
+        return $this->quantity - ($this->totalSaleQuantity + $this->totalLossQuantity);
     }
 
 }

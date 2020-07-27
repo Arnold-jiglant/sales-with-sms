@@ -16,7 +16,7 @@ class InventoryController extends Controller
     public function index()
     {
         Gate::authorize('view-inventory');
-        $inventories = Inventory::paginate(10);
+        $inventories = Inventory::orderByDesc('created_at')->paginate(10);
         return view('inventory', compact('inventories'));
     }
 
@@ -24,7 +24,7 @@ class InventoryController extends Controller
     public function showAddInventoryForm()
     {
         Gate::authorize('add-inventory');
-        $products = Product::all();
+        $products = Product::orderBy('name')->get();
         $discountTypes = DiscountType::all();
         return view('add-inventory', compact('products', 'discountTypes'));
     }
@@ -45,7 +45,7 @@ class InventoryController extends Controller
             for ($i = 0; $i < sizeof($request->get('discountQuantity')); $i++) {
                 $discounts->add(['qty' => (float)$request->get('discountQuantity')[$i], 'amount' => (float)$request->get('discountAmount')[$i]]);
             }
-            $discounts = $discounts->sortBy(function ($discount, $index) {
+            $discounts = $discounts->sortByDesc(function ($discount, $index) {
                 return $discount['qty'];
             })->values()->all();
         }
@@ -57,7 +57,7 @@ class InventoryController extends Controller
             'cost' => $request->get('cost'),
             'sellingPrice' => $request->get('sellingPrice'),
             'discountRates' => $discounts,
-            'discount_type_id' => $request->has('discount') ? $request->get('discountType') : null,
+            'discount_type_id' =>$request->get('discountType'),
         ]);
 
         if (Session::has('products')) {
@@ -137,7 +137,7 @@ class InventoryController extends Controller
             return redirect()->back()->with('error', 'Inventory Not Found');
         }
         $invProducts = $inventory->inventoryProducts()->paginate(10);
-        $products = Product::all();
+        $products = Product::orderBy('name')->get();
         return view('inventory-products', compact('inventory', 'invProducts', 'products'));
     }
 
@@ -180,7 +180,7 @@ class InventoryController extends Controller
             for ($i = 0; $i < sizeof($request->get('discountQuantity')); $i++) {
                 $discounts->add(['qty' => (float)$request->get('discountQuantity')[$i], 'amount' => (float)$request->get('discountAmount')[$i]]);
             }
-            $discounts = $discounts->sortBy(function ($discount, $index) {
+            $discounts = $discounts->sortByDesc(function ($discount, $index) {
                 return $discount['qty'];
             })->values()->all();
         }
@@ -190,7 +190,7 @@ class InventoryController extends Controller
             'cost' => $request->get('cost'),
             'sellingPrice' => $request->get('sellingPrice'),
             'discountRates' => $discounts,
-            'discount_type_id' => $request->has('discount') ? $request->get('discountType') : null,
+            'discount_type_id' =>$request->get('discountType'),
         ]);
         $invProducts->save($newProduct);
         event(new InventoryChanged($inventory));
@@ -232,7 +232,7 @@ class InventoryController extends Controller
             for ($i = 0; $i < sizeof($request->get('discountQuantity')); $i++) {
                 $discounts->add(['qty' => (double)$request->get('discountQuantity')[$i], 'amount' => (double)$request->get('discountAmount')[$i]]);
             }
-            $discounts = $discounts->sortBy(function ($discount, $index) {
+            $discounts = $discounts->sortByDesc(function ($discount, $index) {
                 return $discount['qty'];
             })->values()->all();
         }
@@ -241,7 +241,7 @@ class InventoryController extends Controller
         $invProduct->cost = $request->get('newCost');
         $invProduct->sellingPrice = $request->get('newSellingPrice');
         $invProduct->discountRates = $discounts;
-        $invProduct->discount_type_id = $request->has('hasDiscount') ? $request->get('discountType') : null;
+        $invProduct->discount_type_id =$request->get('discountType');
         $invProduct->save();
         event(new InventoryChanged($invProduct->inventory));
         return redirect()->back()->with('success', 'Inventory Product Updated');

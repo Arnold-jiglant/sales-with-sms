@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Gate;
 
 class LossController extends Controller
 {
+
+    //TODO Add extra expenses and income source
     public function getLosses($invProductID)
     {
         Gate::authorize('edit-inventory');

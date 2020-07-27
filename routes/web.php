@@ -69,6 +69,12 @@ Route::middleware('auth')->group(function (){
     Route::post('loss/add/{id}','LossController@addLoss')->name('loss.add');
     Route::post('loss/update/{id}','LossController@update')->name('loss.update');
     Route::post('loss/delete/{id}','LossController@delete')->name('loss.delete');
+
+    //Sale
+    Route::get('sale','SaleController@index')->name('sale');
+    Route::post('sale/add/{invProdId}','SaleController@add')->name('sale.add');
+    Route::post('sale/confirm','SaleController@confirm')->name('sale.confirm');
+    Route::post('sale/cancel','SaleController@cancel')->name('sale.cancel');
 });
 
 

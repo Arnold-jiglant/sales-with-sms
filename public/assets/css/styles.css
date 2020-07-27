@@ -29,6 +29,8 @@ body {
     border: none;
     border-bottom: 1px solid #eee;
     border-radius: 0px;
+    color: #fff3cd;
+    font-size: 10pt;
 }
 
 #login-form .form-control:focus {

@@ -16,6 +16,12 @@ class Inventory extends Model
         'progress',
     ];
 
+    //SCOPE
+    public function scopeUnfinished($query)
+    {
+        return Inventory::where('finished', false);
+    }
+
     //RELATION
     public function inventoryProducts()
     {
@@ -33,7 +39,8 @@ class Inventory extends Model
     }
 
     //ATTRIBUTE
-    public function getProgressAttribute(){
+    public function getProgressAttribute()
+    {
         return 20;  //TODO calculate progress from sales
     }
 }

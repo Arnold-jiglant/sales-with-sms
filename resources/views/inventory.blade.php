@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-    Users
+    Inventories
 @stop
 @section('inventory')
     active
