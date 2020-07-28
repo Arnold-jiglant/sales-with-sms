@@ -84,95 +84,78 @@
                 </nav>
             </div>
             <div class="col-md-11 col-lg-7">
-                <form style="border: 1px dashed #1c1c1c;border-radius: 10px;">
-                    <div class="form-group"><label>Customer:</label><input class="form-control form-control-sm"
-                                                                           type="text" readonly=""></div>
-                    <p>Selected Products</p>
-                    <div class="table-responsive table-bordered text-center" id="products-table">
-                        <table class="table table-bordered table-sm">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Qty</th>
-                                <th>Price@</th>
-                                <th>Discount@</th>
-                                <th>Amount</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td class="text-center">Product 1 including products</td>
-                                <td>10</td>
-                                <td>5000</td>
-                                <td>500</td>
-                                <td>45,000</td>
-                                <td><span class="close" style="cursor: pointer;color: red;" title="remove"><i
-                                            class="icon ion-close-round"></i></span></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td class="text-center">Product 1 including products</td>
-                                <td>10</td>
-                                <td>5000</td>
-                                <td>500</td>
-                                <td>45,000</td>
-                                <td><span class="close" style="cursor: pointer;color: red;" title="remove"><i
-                                            class="icon ion-close-round"></i></span></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td class="text-center">Product 1 including products</td>
-                                <td>10</td>
-                                <td>5000</td>
-                                <td>500</td>
-                                <td>45,000</td>
-                                <td><span class="close" style="cursor: pointer;color: red;" title="remove"><i
-                                            class="icon ion-close-round"></i></span></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td class="text-center">Product 1 including products</td>
-                                <td>10</td>
-                                <td>5000</td>
-                                <td>500</td>
-                                <td>45,000</td>
-                                <td><span class="close" style="cursor: pointer;color: red;" title="remove"><i
-                                            class="icon ion-close-round"></i></span></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">Payment Type</td>
-                                <td colspan="4">
-                                    <div>
-                                        <div class="custom-control custom-control-inline custom-radio"><input
-                                                class="custom-control-input" type="radio" name="payment" checked=""
-                                                id="cash"><label class="custom-control-label" for="cash">Cash</label>
+                @if(Session('sales'))
+                    <form style="border: 1px dashed #1c1c1c;border-radius: 10px;">
+                        <div class="form-group">
+                            <label>Customer:</label>
+                            <input class="form-control form-control-sm" type="text" readonly="">
+                        </div>
+                        <p>Selected Products</p>
+                        <div class="table-responsive table-bordered text-center" id="products-table">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Qty</th>
+                                    <th>Price@</th>
+                                    <th>Discount@</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @php($num=1)
+                                @foreach(Session('sales') as $sale)
+                                    <tr>
+                                        <td>{{$num}}</td>
+                                        <td class="text-center">{{$sale->name}}</td>
+                                        <td>{{$sale->quantity}}</td>
+                                        <td>{{$sale->sellingPrice}}</td>
+                                        <td>{{$sale->discount}}</td>
+                                        <td>{{$sale->total}}</td>
+                                        <td>
+                                        <a class="close" style="cursor: pointer;color: red;" title="remove">
+                                            <i class="icon ion-close-round"></i></a>
+                                        </td>
+                                    </tr>
+                                    @php($num++)
+                                @endforeach
+                                <tr>
+                                    <td colspan="3">Payment Type</td>
+                                    <td colspan="4">
+                                        <div>
+                                            <div class="custom-control custom-control-inline custom-radio"><input
+                                                    class="custom-control-input" type="radio" name="payment" checked=""
+                                                    id="cash"><label class="custom-control-label"
+                                                                     for="cash">Cash</label>
+                                            </div>
+                                            <div class="custom-control custom-control-inline custom-radio"><input
+                                                    class="custom-control-input" type="radio" name="payment"
+                                                    id="credit"><label class="custom-control-label"
+                                                                       for="credit">Credit</label></div>
+                                            <div class="custom-control custom-control-inline custom-radio"><input
+                                                    class="custom-control-input" type="radio" name="payment"
+                                                    id="debit"><label class="custom-control-label"
+                                                                      for="debit">Debit</label>
+                                            </div>
                                         </div>
-                                        <div class="custom-control custom-control-inline custom-radio"><input
-                                                class="custom-control-input" type="radio" name="payment"
-                                                id="credit"><label class="custom-control-label"
-                                                                   for="credit">Credit</label></div>
-                                        <div class="custom-control custom-control-inline custom-radio"><input
-                                                class="custom-control-input" type="radio" name="payment"
-                                                id="debit"><label class="custom-control-label" for="debit">Debit</label>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">TOTAL AMOUNT</td>
-                                <td colspan="4" class="font-weight-bold value" style="font-size: 13pt;">180,000/=</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="m-3 text-center">
-                        <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary btn-sm custom-btn" type="button">Confirm</button>
-                    </div>
-                </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">TOTAL AMOUNT</td>
+                                    <td colspan="4" class="font-weight-bold value" style="font-size: 13pt;">180,000/=
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="m-3 text-center">
+                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary btn-sm custom-btn" type="button">Confirm</button>
+                        </div>
+                    </form>
+                @endif
             </div>
         </div>
     </div>
@@ -187,8 +170,12 @@
                             aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST">
+                    <form method="POST" action="{{route('sale.add')}}">
                         {{csrf_field()}}
+                        <input id="name" type="hidden" name="name">
+                        <input id="price" type="hidden" name="sellingPrice">
+                        <input id="buying" type="hidden" name="buyingPrice">
+                        <input id="invProdId" type="hidden" name="inventory_product_id">
                         <div class="form-row">
                             <div class="col-sm-6">
                                 <p><span>Product Name:</span><span id="productName" class="ml-1 value">Text</span></p>
@@ -212,7 +199,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="total">Total</label>
-                                    <input class="form-control form-control-sm" type="number" value="0" name="total"
+                                    <input class="form-control form-control-sm" type="number" value="0"
                                            readonly="" placeholder="quantity" min="0" id="total">
                                 </div>
                             </div>
@@ -222,7 +209,7 @@
                                 <div id="include-discount-container" style="display: none;">
                                     <label>Include discount?</label>
                                     <div class="custom-control custom-switch">
-                                        <input class="custom-control-input" type="checkbox" id="includeDiscount" name="includeDiscount">
+                                        <input class="custom-control-input" type="checkbox" id="includeDiscount">
                                         <label class="custom-control-label" for="includeDiscount"></label>
                                     </div>
                                 </div>
@@ -240,14 +227,14 @@
                                 <div class="form-group">
                                     <label for="totalDiscount">Total&nbsp;Discount</label>
                                     <input class="form-control form-control-sm" type="number" value="0" readonly=""
-                                           id="totalDiscount" name="totalDiscount">
+                                           id="totalDiscount">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="dueAmount"><strong>DUE&nbsp;AMOUNT</strong></label>
                                     <input class="form-control value" type="number" value="0" readonly=""
-                                           id="dueAmount" name="dueAmount">
+                                           id="dueAmount" name="total">
                                 </div>
                             </div>
                         </div>
@@ -397,6 +384,10 @@
                 console.log(discounts);
                 isPercent = $(e.relatedTarget).data('discounttype') === 2;
                 let hasSize = $(e.relatedTarget).data('hassize') === 1;
+                $('#invProdId').val(id);
+                $('#name').val(name);
+                $('#price').val(sellingPrice);
+                $('#buying').val(buyingPrice);
                 $('#sellingPrice').text(sellingPrice);
                 $('#buyingPrice').text(buyingPrice);
                 $('#productName').text(name);
@@ -415,9 +406,6 @@
                     quantity.attr('step', '1');
                     quantity.attr('min', '1');
                 }
-                let form = $(this).find('form');
-                let action = '{{route('sale.add','')}}/' + id;
-                form.attr('action', action);
             });
 
             //calculate total

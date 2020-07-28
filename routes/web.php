@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function (){
 
     //Sale
     Route::get('sale','SaleController@index')->name('sale');
-    Route::post('sale/add/{invProdId}','SaleController@add')->name('sale.add');
+    Route::post('sale/add','SaleController@add')->name('sale.add');
     Route::post('sale/confirm','SaleController@confirm')->name('sale.confirm');
     Route::post('sale/cancel','SaleController@cancel')->name('sale.cancel');
 });
