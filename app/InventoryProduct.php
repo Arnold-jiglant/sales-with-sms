@@ -13,7 +13,7 @@ class InventoryProduct extends Model
         'discountRates' => 'json'
     ];
     protected $appends = [
-        'buyingPrice', 'totalLossQuantity', 'totalLossAmount', 'remainingQty', 'hasDiscount'
+        'buyingPrice', 'totalLossQuantity', 'totalLossAmount', 'remainingQty', 'hasDiscount','stockLevel','stockLevelClass'
     ];
 
     //RELATION
@@ -50,7 +50,7 @@ class InventoryProduct extends Model
 
     public function getNameFormatedAttribute()
     {
-        return substr($this->product->name, 0, 16) . ' (' . $this->inventory->created_at->format('d-M-Y').')';
+        return substr($this->product->name, 0, 16) . ' (' . $this->inventory->created_at->format('d-M-Y') . ')';
     }
 
     public function getHasSizeAttribute()
@@ -91,6 +91,23 @@ class InventoryProduct extends Model
     public function getRemainingQtyAttribute()
     {
         return $this->quantity - ($this->totalSaleQuantity + $this->totalLossQuantity);
+    }
+
+    public function getStockLevelAttribute()
+    {
+        return floor(($this->remainingQty / $this->quantity)*100);
+    }
+
+    public function getStockLevelClassAttribute()
+    {
+        $progress = $this->stockLevel;
+        if ($progress >= 50) {
+            return 'bg-success';
+        } else if ($progress >= 30) {
+            return 'bg-warning';
+        } else {
+            return 'bg-danger';
+        }
     }
 
 }

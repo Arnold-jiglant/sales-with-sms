@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-    Users
+    Inventory Products
 @stop
 @section('inventory')
     active
@@ -110,12 +110,13 @@
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>Remain</th>
+                    <th>Stock Level</th>
                     <th>Cost</th>
                     <th>Buying Price@</th>
                     <th>Selling Price@</th>
                     <th>Time</th>
-                    <th>Loss Qty</th>
-                    <th>Loss Amount</th>
+                    <th title="Loss Quantity">L/Qty</th>
+                    <th title="Loss Amount">L/Amount</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -127,6 +128,14 @@
                         <td class="text-left">{{$invProduct->name}}</td>
                         <td>{{$invProduct->quantity}}</td>
                         <td>{{$invProduct->remainingQty}}</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated {{$invProduct->stockLevelClass}}"
+                                     aria-valuenow="{{$invProduct->stockLevel}}"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: {{$invProduct->stockLevel}}%;">{{$invProduct->stockLevel}}%
+                                </div>
+                            </div>
+                        </td>
                         <td>{{number_format($invProduct->cost)}}</td>
                         <td>{{$invProduct->buyingPrice}}</td>
                         <td>{{number_format($invProduct->sellingPrice)}}</td>
@@ -206,7 +215,7 @@
                                 <label for="quantity">Quantity</label>
                                 <input class="form-control form-control-sm" type="number"
                                        placeholder="Inventory Quantity"
-                                       min="1" step="0.1" id="quantity" name="quantity" required>
+                                       min="1" step="0.25" id="quantity" name="quantity" required>
                             </div>
                             <div class="form-group" data-toggle="popover"
                                  data-content="cost of the whole package eg. 200 pc -> 200,000/="
@@ -328,7 +337,7 @@
                                  data-trigger="focus" data-placement="right">
                                 <label for="newQuantity">New Quantity</label>
                                 <input class="form-control form-control-sm" type="number"
-                                       placeholder="Inventory Quantity" step="0.01"
+                                       placeholder="Inventory Quantity" step="0.25"
                                        min="1" id="newQuantity" name="newQuantity" required>
                             </div>
                             <p class="mt-2"><span>Entered Cost:</span><span id="costLabel"
@@ -448,7 +457,7 @@
                                 <div class="form-row">
                                     <div class="col-4">
                                         <input class="form-control form-control-sm" type="number" name="quantity"
-                                               placeholder="quantity" min="0" step="0.01" id="lossQuantity">
+                                               placeholder="quantity" min="0" step="0.25" id="lossQuantity">
                                     </div>
                                     <div class="col-6">
                                         <input class="form-control form-control-sm" type="number"
@@ -680,7 +689,7 @@
                 return '<div class="form-row discount mb-2">\n' +
                     '       <div class="col-4">\n' +
                     '           <input class="form-control form-control-sm" type="number" name="discountQuantity[]"\n' +
-                    '           placeholder="quantity >" min="0" step="0.01" value="' + qty + '" required>\n' +
+                    '           placeholder="quantity >" min="0" step="0.25" value="' + qty + '" required>\n' +
                     '           </div>\n' +
                     '           <div class="col-6">\n' +
                     '              <input class="form-control form-control-sm" type="number" name="discountAmount[]"\n' +

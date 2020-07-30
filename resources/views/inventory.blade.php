@@ -40,7 +40,7 @@
                     <th>Issued Date</th>
                     <th>Total Cost</th>
                     <th>Expecting Amount</th>
-                    <th>Progress</th>
+                    <th>Sales Progress</th>
                     <th>Issuer</th>
                     <th></th>
                 </tr>

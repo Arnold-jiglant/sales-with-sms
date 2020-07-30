@@ -14,14 +14,17 @@ class PaymentTypesTableSeeder extends Seeder
     {
         DB::table('payment_types')->insert([
             [
+                'code'=>'CSH',
                 'name'=>'Cash',
                 'description'=>'Direct receiving cash',
             ],
             [
+                'code'=>'CRD',
                 'name'=>'Credit',
                 'description'=>'Payment made electronically',
             ],
             [
+                'code'=>'DBT',
                 'name'=>'Debit',
                 'description'=>'Payment will be made later',
             ]

@@ -16,6 +16,28 @@
             </div>
         </div>
         <h4 class="mt-1">Sell Product</h4>
+        @if(Session('success'))
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-6 offset-3">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        {{session('success')}}
+                    </div>
+                </div>
+            </div>
+        @endif
+        @if(Session('error'))
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-6 offset-3">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        {{session('error')}}
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="row mt-1">
             <div class="col-md-10 col-lg-5">
                 <form class="search-form">
@@ -52,19 +74,21 @@
                                     <td>{{number_format($product->sellingPrice)}}</td>
                                     <td>
                                         <div class="options">
-                                            <a href="#" class="option-link" data-toggle="modal"
-                                               data-target="#add-product-modal"
-                                               data-name="{{$product->name}}" data-id="{{$product->id}}"
-                                               data-discounts="{{json_encode($product->discountRates)}}"
-                                               data-sellingprice="{{$product->sellingPrice}}"
-                                               data-buyingprice="{{$product->buyingPrice}}"
-                                               data-hasSize="{{$product->hasSize}}"
-                                               data-discountType="{{$product->discount_type_id}}"
-                                               data-remaining="{{$product->remainingQty}}">
-                                                <i class="icon ion-ios-cart"></i>&nbsp;
-                                                <span
-                                                    class="link-text">Add</span>
-                                            </a>
+                                            @if($product->remainingQty>0)
+                                                <a href="#" class="option-link" data-toggle="modal"
+                                                   data-target="#add-product-modal"
+                                                   data-name="{{$product->name}}" data-id="{{$product->id}}"
+                                                   data-discounts="{{json_encode($product->discountRates)}}"
+                                                   data-sellingprice="{{$product->sellingPrice}}"
+                                                   data-buyingprice="{{$product->buyingPrice}}"
+                                                   data-hasSize="{{$product->hasSize}}"
+                                                   data-discountType="{{$product->discount_type_id}}"
+                                                   data-remaining="{{$product->remainingQty}}">
+                                                    <i class="icon ion-ios-cart"></i>&nbsp;
+                                                    <span
+                                                        class="link-text">Add</span>
+                                                </a>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
@@ -85,10 +109,20 @@
             </div>
             <div class="col-md-11 col-lg-7">
                 @if(Session('sales'))
-                    <form style="border: 1px dashed #1c1c1c;border-radius: 10px;">
-                        <div class="form-group">
-                            <label>Customer:</label>
-                            <input class="form-control form-control-sm" type="text" readonly="">
+                    <form id="sell-form" method="POST" action="{{route('sale.confirm')}}"
+                          style="border: 1px dashed #1c1c1c;border-radius: 10px;">
+                        {{csrf_field()}}
+                        <div class="form-group mt-2">
+                            <label>Selling to customer?</label>
+                            <div class="custom-control custom-switch">
+                                <input class="custom-control-input" type="checkbox" id="hasCustomer" name="hasCustomer">
+                                <label class="custom-control-label" for="hasCustomer"></label>
+                            </div>
+                        </div>
+                        <div id="customer-container" class="form-group" style="display: none">
+                            <label for="customerName">Customer:</label>
+                            <input id="customerName" class="form-control form-control-sm" type="text">
+                            <input type="hidden" name="customer_id">
                         </div>
                         <p>Selected Products</p>
                         <div class="table-responsive table-bordered text-center" id="products-table">
@@ -113,10 +147,11 @@
                                         <td>{{$sale->quantity}}</td>
                                         <td>{{$sale->sellingPrice}}</td>
                                         <td>{{$sale->discount}}</td>
-                                        <td>{{$sale->total}}</td>
+                                        <td>{{number_format($sale->total,2)}}</td>
                                         <td>
-                                        <a class="close" style="cursor: pointer;color: red;" title="remove">
-                                            <i class="icon ion-close-round"></i></a>
+                                            <a href="{{route('sale.delete.item',$sale->inventory_product_id)}}"
+                                               class="close" style="cursor: pointer;color: red;" title="remove">
+                                                <i class="icon ion-close-round"></i></a>
                                         </td>
                                     </tr>
                                     @php($num++)
@@ -125,34 +160,38 @@
                                     <td colspan="3">Payment Type</td>
                                     <td colspan="4">
                                         <div>
-                                            <div class="custom-control custom-control-inline custom-radio"><input
-                                                    class="custom-control-input" type="radio" name="payment" checked=""
-                                                    id="cash"><label class="custom-control-label"
-                                                                     for="cash">Cash</label>
+                                            <div class="custom-control custom-control-inline custom-radio">
+                                                <input class="custom-control-input" type="radio" name="paymentType"
+                                                       checked id="cash" value="CSH">
+                                                <label class="custom-control-label" for="cash">Cash</label>
                                             </div>
-                                            <div class="custom-control custom-control-inline custom-radio"><input
-                                                    class="custom-control-input" type="radio" name="payment"
-                                                    id="credit"><label class="custom-control-label"
-                                                                       for="credit">Credit</label></div>
-                                            <div class="custom-control custom-control-inline custom-radio"><input
-                                                    class="custom-control-input" type="radio" name="payment"
-                                                    id="debit"><label class="custom-control-label"
-                                                                      for="debit">Debit</label>
+                                            <div class="custom-control custom-control-inline custom-radio">
+                                                <input class="custom-control-input" type="radio" name="paymentType"
+                                                       id="credit" value="CRD">
+                                                <label class="custom-control-label" for="credit">Credit</label>
+                                            </div>
+                                            <div class="custom-control custom-control-inline custom-radio">
+                                                <input class="custom-control-input" type="radio" name="paymentType"
+                                                       id="debit" value="DBT">
+                                                <label class="custom-control-label" for="debit">Debit</label>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">TOTAL AMOUNT</td>
-                                    <td colspan="4" class="font-weight-bold value" style="font-size: 13pt;">180,000/=
+                                    <td colspan="4" class="font-weight-bold value"
+                                        style="font-size: 13pt;">{{number_format(Session('sales')->sum('total'),2)}}/=
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="m-3 text-center">
-                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Cancel</button>
-                            <button class="btn btn-primary btn-sm custom-btn" type="button">Confirm</button>
+                            <a href="{{route('cancel.sale')}}" class="btn btn-light btn-sm mr-2" type="button"
+                               data-dismiss="modal">Cancel</a>
+                            <button class="btn btn-primary btn-sm custom-btn" type="button" data-toggle="modal" data-target="#confirm-sell-modal">Confirm
+                            </button>
                         </div>
                     </form>
                 @endif
@@ -247,115 +286,20 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="sell-to-customer-modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form>
-                        <p>Are you selling to a Customer?</p>
-                        <div class="float-right">
-                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">No</button>
-                            <button class="btn btn-primary btn-sm custom-btn" type="button">Yes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="search-customer-modal">
-        <div class="modal-dialog modal-sm" role="document">
+    <div class="modal fade" role="dialog" tabindex="-1" id="confirm-sell-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-search"></i>&nbsp;Search Customer</h5>
+                    <h5 class="modal-title"><i class="icon ion-ios-cart"></i>&nbsp;Confirm sell</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
-                    <form id="add-product-form" class="pt-3 pb-3 mb-3">
-                        <div class="form-group">
-                            <div class="input-group input-group-sm"><input class="form-control" type="text"
-                                                                           placeholder="search customer">
-                                <div class="input-group-append">
-                                    <button class="btn btn-link" type="button"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="loading"><span class="spinner-border" role="status"
-                                                   style="width: 50px;height: 50px;color: #00bacc;"></span><span
-                                class="mt-2">Loading..</span></div>
-                        <div style="max-height: 70vh;overflow-y: auto;">
-                            <div class="table-responsive table-bordered" id="customers-table">
-                                <table class="table table-bordered table-hover table-sm">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr style="cursor: pointer;">
-                                        <td>1</td>
-                                        <td>COMPANY LIMITED</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    <tr style="cursor: pointer;">
-                                        <td>2</td>
-                                        <td>JUMA HASHIMU</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <form>
+                        <p>Do you want to proceed?</p>
+                        <div class="float-right mt-2">
+                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close</button>
+                            <button id="confirm-btn" class="btn btn-primary btn-sm custom-btn" type="button">Yes</button>
                         </div>
                     </form>
                 </div>
@@ -455,6 +399,31 @@
                 $('#totalDiscount').val(totalDiscount);
                 $('#dueAmount').val(total - totalDiscount);
             }
+
+            //cuctomer choosing
+            let customername = $('#customerName');
+            let customerContainer = $('#customer-container');
+            $('#hasCustomer').change(function () {
+                if ($(this).is(':checked')) {
+                    customerContainer.show('fast');
+                    customerContainer.find("input[name='customer_id']").attr('disabled', false);
+
+                } else {
+                    customerContainer.hide('fast');
+                    customerContainer.find("input[name='customer_id']").attr('disabled', true);
+                    customername.val('');
+                }
+            });
+            $('#confirm-btn').click(function () {
+                $('#sell-form').trigger('submit');
+            });
+            //submiting form
+            $('#sell-form').submit(function () {
+                if ($('#hasCustomer').is(':checked') && customerContainer.find("input[name='customer_id']").val().length === 0) {
+                    customername.focus();
+                    return false;
+                }
+            });
         });
     </script>
 @stop

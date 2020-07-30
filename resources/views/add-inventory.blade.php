@@ -163,7 +163,7 @@
                                 <label for="quantity">Quantity</label>
                                 <input class="form-control form-control-sm" type="number"
                                        placeholder="Inventory Quantity"
-                                       min="1" step="0.01" id="quantity" name="quantity" required>
+                                       min="0.25" step="0.25" id="quantity" name="quantity" required>
                             </div>
                             <div class="form-group" data-toggle="popover"
                                  data-content="cost of the whole package eg. 200 pc -> 200,000/="

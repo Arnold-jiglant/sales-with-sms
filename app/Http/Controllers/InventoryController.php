@@ -88,6 +88,7 @@ class InventoryController extends Controller
     //delete product from collection session
     public function deleteProduct($id)
     {
+        Gate::authorize('add-inventory');
         $products = Session::get('products')->reject(function ($product) use ($id) {
             return $product->product_id == $id;
         });
@@ -137,7 +138,7 @@ class InventoryController extends Controller
             return redirect()->back()->with('error', 'Inventory Not Found');
         }
         $invProducts = $inventory->inventoryProducts()->paginate(10);
-        $products = Product::orderBy('name')->get();
+       $products = Product::orderBy('name')->get();
         return view('inventory-products', compact('inventory', 'invProducts', 'products'));
     }
 

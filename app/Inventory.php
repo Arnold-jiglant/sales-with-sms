@@ -41,6 +41,8 @@ class Inventory extends Model
     //ATTRIBUTE
     public function getProgressAttribute()
     {
-        return 20;  //TODO calculate progress from sales
+        return round($this->inventoryProducts()->get()->transform(function (InventoryProduct $inventoryProduct) {
+            return 100 - $inventoryProduct->stockLevel;
+        })->average(), 2);
     }
 }

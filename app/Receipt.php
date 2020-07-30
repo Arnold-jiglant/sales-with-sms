@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Receipt extends Model
 {
     protected $fillable = [
-        'number','payment_type_id','customer_id','issuer',
+        'number', 'payment_type_code', 'customer_id', 'issuer',
     ];
+
+    //RELATION
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }
