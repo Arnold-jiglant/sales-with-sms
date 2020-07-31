@@ -45,4 +45,11 @@ class Inventory extends Model
             return 100 - $inventoryProduct->stockLevel;
         })->average(), 2);
     }
+
+    public function getTotalLossAmountAttribute()
+    {
+        return $this->inventoryProducts()->get()->sum(function (InventoryProduct $invProduct) {
+            return $invProduct->lossAmount;
+        });
+    }
 }

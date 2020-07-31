@@ -21,19 +21,18 @@ class UpdateInventory
     /**
      * Handle the event.
      *
-     * @param  InventoryChanged  $event
+     * @param InventoryChanged $event
      * @return void
      */
     public function handle(InventoryChanged $event)
     {
         $inventory = $event->inventory;
         $invProducts = $inventory->inventoryProducts()->get();
-//        $invSales = $inventory->inventorySales()->get();  TODO include sales
-        $inventory->totalCost = $invProducts->sum(function ($product) {
+        $inventory->Cost = $invProducts->sum(function ($product) {
             return $product->cost;
         });
         $inventory->expectedAmount = $invProducts->sum(function ($product) {
-            return $product->sellingPrice * $product->quantity;
+            return ($product->sellingPrice * $product->remainingQty) + $product->SaleAmount;
         });
         $inventory->save();
     }

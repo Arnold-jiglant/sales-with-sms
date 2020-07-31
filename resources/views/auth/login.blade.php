@@ -25,7 +25,7 @@
                 <div class="input-group input-group-sm">
                     <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-user-o"></i></span>
                     </div>
-                    <input class="form-control" type="email" name="email" placeholder="email"></div>
+                    <input class="form-control" type="email" name="email" placeholder="email" autofocus></div>
             </div>
             <div class="form-group">
                 <div class="input-group input-group-sm">

@@ -35,7 +35,25 @@ class CustomerController extends Controller
         if ($customer == null) {
             return redirect()->back()->with('error', 'Customer Not Found');
         }
-        abort(404);
+        $receipts = $customer->receipts()->orderByDesc('created_at')->get()->paginate(10);
+        return view('view-customer',compact('customer','receipts'));
+    }
+
+    //get customers
+    public function show(Request $request)
+    {
+        $search = $request->get('search');
+        $customers = Customer::where('name', 'like', "%$search%")->get();
+        $start = "<ul class=\"pl-0\">";
+        if($customers->count()>0){
+            foreach ($customers as $customer) {
+                $start .= '<li class="dropdown-item" data-id="' . $customer->id . '">' . $customer->name . '</li>';
+            }
+        }else{
+            $start.='<li class="dropdown-item">No results Found</li>';
+        }
+        $end = "</ul>";
+        return $start . $end;
     }
 
     //update customer

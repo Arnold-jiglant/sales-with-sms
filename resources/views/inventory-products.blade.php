@@ -43,9 +43,11 @@
             <div id="inventoryInfo" class="p-3" style="font-size: 11pt;">
                 <div class="row">
                     <div class="col-sm-6">
-                        <p><span>Total Cost:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->totalCost)}}/=</span>
+                        <p><span>Total Cost:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->totalCost,2)}}/=</span>
                         </p>
-                        <p><span>Expected Amount:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->expectedAmount)}}/=</span>
+                        <p><span>Expected Amount:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->expectedAmount,2)}}/=</span>
+                        </p>
+                        <p><span>Loss Amount:&nbsp;</span><span class="ml-1 text-danger">{{number_format($inventory->totalLossAMount,2)}}/=</span>
                         </p>
                         <p><span>Issuer:&nbsp;</span><span class="ml-1 value">{{$inventory->user->name}}</span></p>
                         <p><span>Issue Date:&nbsp;</span><span
@@ -140,8 +142,8 @@
                         <td>{{$invProduct->buyingPrice}}</td>
                         <td>{{number_format($invProduct->sellingPrice)}}</td>
                         <td>{{$invProduct->created_at->format('d/m/Y')}}</td>
-                        <td>{{$invProduct->totalLossQuantity}}</td>
-                        <td class="text-danger">{{number_format($invProduct->totalLossAmount)}}</td>
+                        <td>{{$invProduct->LossQuantity}}</td>
+                        <td class="text-danger">{{number_format($invProduct->LossAmount)}}</td>
                         <td>
                             <div class="options">
                                 <a href="#" class="option-link edit" data-toggle="modal"

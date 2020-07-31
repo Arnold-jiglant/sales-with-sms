@@ -80,7 +80,7 @@ body {
 #side-menu .menu-item a {
     color: #eeeeee;
     text-decoration: none;
-    font-size: 11pt;
+    font-size: 10pt;
     display: flex;
     padding: 10px 5px;
 }
@@ -244,4 +244,11 @@ form {
     height: 70px;
 }
 
+#customer-container{
+    position: relative;
+}
+
+#customer-list li{
+    cursor: pointer !important;
+}
 

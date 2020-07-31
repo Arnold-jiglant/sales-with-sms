@@ -247,4 +247,6 @@ class InventoryController extends Controller
         event(new InventoryChanged($invProduct->inventory));
         return redirect()->back()->with('success', 'Inventory Product Updated');
     }
+
+    //TODO delete inventory
 }

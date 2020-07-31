@@ -2,23 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Sales.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Sales.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SaleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SaleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Inventory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/InventoryProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/InventoryProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/PaymentType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/PaymentType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/UpdateInventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/UpdateInventory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Receipt.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Receipt.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artisan" beforeDir="false" afterPath="$PROJECT_DIR$/artisan" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_10_205913_create_payment_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_10_205913_create_payment_types_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_10_210514_create_receipts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_10_210514_create_receipts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/PaymentTypesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/PaymentTypesTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Sale.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Sale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document" beforeDir="false" afterPath="$PROJECT_DIR$/document" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/add-inventory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/add-inventory.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customers.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/inventory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/sell.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sell.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/view-customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/view-customer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -168,7 +169,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../POS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.21245831" />
   </component>
   <component name="RecentsManager">
@@ -233,7 +234,9 @@
       <workItem from="1595872334262" duration="5621000" />
       <workItem from="1595894135162" duration="391000" />
       <workItem from="1595950677268" duration="1872000" />
-      <workItem from="1596087494033" duration="11280000" />
+      <workItem from="1596087494033" duration="11721000" />
+      <workItem from="1596166281452" duration="8937000" />
+      <workItem from="1596220622027" duration="7972000" />
     </task>
     <servers />
   </component>
@@ -245,7 +248,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

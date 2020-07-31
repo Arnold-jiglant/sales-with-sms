@@ -121,8 +121,9 @@
                         </div>
                         <div id="customer-container" class="form-group" style="display: none">
                             <label for="customerName">Customer:</label>
-                            <input id="customerName" class="form-control form-control-sm" type="text">
+                            <input id="customerName" class="form-control form-control-sm" type="text" autocomplete="off">
                             <input type="hidden" name="customer_id">
+                            <div id="customer-list" class="p-2"></div>
                         </div>
                         <p>Selected Products</p>
                         <div class="table-responsive table-bordered text-center" id="products-table">
@@ -165,12 +166,18 @@
                                                        checked id="cash" value="CSH">
                                                 <label class="custom-control-label" for="cash">Cash</label>
                                             </div>
-                                            <div class="custom-control custom-control-inline custom-radio">
+                                            <div class="custom-control custom-control-inline custom-radio"
+                                                 data-toggle="popover"
+                                                 data-content="Credit Payments, NB. Customer name is required"
+                                                 data-trigger="hover">
                                                 <input class="custom-control-input" type="radio" name="paymentType"
                                                        id="credit" value="CRD">
                                                 <label class="custom-control-label" for="credit">Credit</label>
                                             </div>
-                                            <div class="custom-control custom-control-inline custom-radio">
+                                            <div class="custom-control custom-control-inline custom-radio"
+                                                 data-toggle="popover"
+                                                 data-content="Debt Payments, NB. Customer name is required"
+                                                 data-trigger="hover">
                                                 <input class="custom-control-input" type="radio" name="paymentType"
                                                        id="debit" value="DBT">
                                                 <label class="custom-control-label" for="debit">Debit</label>
@@ -190,7 +197,8 @@
                         <div class="m-3 text-center">
                             <a href="{{route('cancel.sale')}}" class="btn btn-light btn-sm mr-2" type="button"
                                data-dismiss="modal">Cancel</a>
-                            <button class="btn btn-primary btn-sm custom-btn" type="button" data-toggle="modal" data-target="#confirm-sell-modal">Confirm
+                            <button class="btn btn-primary btn-sm custom-btn" type="button" data-toggle="modal"
+                                    data-target="#confirm-sell-modal">Confirm
                             </button>
                         </div>
                     </form>
@@ -299,7 +307,8 @@
                         <p>Do you want to proceed?</p>
                         <div class="float-right mt-2">
                             <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close</button>
-                            <button id="confirm-btn" class="btn btn-primary btn-sm custom-btn" type="button">Yes</button>
+                            <button id="confirm-btn" class="btn btn-primary btn-sm custom-btn" type="button">Yes
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -400,7 +409,7 @@
                 $('#dueAmount').val(total - totalDiscount);
             }
 
-            //cuctomer choosing
+            //customer choosing
             let customername = $('#customerName');
             let customerContainer = $('#customer-container');
             $('#hasCustomer').change(function () {
@@ -417,12 +426,48 @@
             $('#confirm-btn').click(function () {
                 $('#sell-form').trigger('submit');
             });
-            //submiting form
+            //submitting form
             $('#sell-form').submit(function () {
+                let paymentTypes = $('input[name="paymentType"]');
+                let isCash = true;
+                paymentTypes.each(function (item) {
+                    if ($(this).is(':checked')) {
+                        isCash = $(this).val() === 'CSH';
+                    }
+                });
+                if (!isCash && !$('#hasCustomer').is(':checked')) {
+                    alert('Choose customer first');
+                    return false;
+                }
                 if ($('#hasCustomer').is(':checked') && customerContainer.find("input[name='customer_id']").val().length === 0) {
                     customername.focus();
                     return false;
                 }
+            });
+
+            //auto-complete customer
+            customername.on('keyup', function () {
+                let search = $(this).val();
+                if (search.length < 1) {
+                    $('#customer-list').html('');
+                    return;
+                }
+                $.ajax({
+                    url: "{{ route('customers.get') }}",
+                    type: "GET",
+                    data: {'search': $(this).val()},
+                    success: function (data) {
+                        $('#customer-list').html('');
+                        $('#customer-list').html(data);
+                    }
+                });
+            });
+            $(document).on('click', '#customer-list li', function () {
+                let name = $(this).text();
+                let id = $(this).data('id');
+                customername.val(name);
+                customerContainer.find("input[name='customer_id']").val(id);
+                $('#customer-list').html('');
             });
         });
     </script>

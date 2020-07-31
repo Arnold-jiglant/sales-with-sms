@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-    Customers
+    Customer
 @stop
 @section('customer')
     active
@@ -16,15 +16,15 @@
                 </ol>
             </div>
         </div>
-        <h3 class="mt-1">Purchase History</h3>
+        <h3 class="mt-1">Customer Purchase History</h3>
     </div>
     <div class="col-lg-11 col-xl-10 offset-lg-1 offset-xl-1">
         <form>
-            <p><span>Customer Name:</span><span class="ml-1 value">Text</span></p>
-            <p>Total 200 showing 20-30</p>
+            <p><span>Customer Name:</span><span class="ml-1 value">{{$customer->name}}</span></p>
+            <p>Total {{$receipts->total()}} showing {{$receipts->firstItem()}}-{{$receipts->lastItem()}}</p>
             <div class="table-responsive table-bordered">
                 <table class="table table-bordered table-sm">
-                    <thead class="text-danger">
+                    <thead>
                     <tr>
                         <th>#</th>
                         <th>Receipt No.</th>
@@ -36,44 +36,35 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr title="Some Descriptions">
-                        <td rowspan="3" class="align-middle text-center">1</td>
-                        <td rowspan="3" class="align-middle text-center">KJHK2352</td>
-                        <td>Product 1</td>
-                        <td>3</td>
-                        <td>3,000</td>
-                        <td rowspan="3" class="align-middle text-center font-weight-bold">9,000/=</td>
-                        <td rowspan="3" class="align-middle text-center">10/06/2020</td>
-                    </tr>
-                    <tr title="Some Descriptions">
-                        <td>Product 2</td>
-                        <td>3</td>
-                        <td>3,000</td>
-                    </tr>
-                    <tr title="Some Descriptions">
-                        <td>Product 3</td>
-                        <td>3</td>
-                        <td>3,000</td>
-                    </tr>
-                    <tr title="Some Descriptions">
-                        <td rowspan="3" class="align-middle text-center">2</td>
-                        <td rowspan="3" class="align-middle text-center">JH545789</td>
-                        <td>Cell 4</td>
-                        <td>3</td>
-                        <td>3,000</td>
-                        <td rowspan="3" class="align-middle text-center font-weight-bold">9,000/=</td>
-                        <td rowspan="3" class="align-middle text-center">10/06/2020</td>
-                    </tr>
-                    <tr title="Some Descriptions">
-                        <td>Cell 4</td>
-                        <td>3</td>
-                        <td>3,000</td>
-                    </tr>
-                    <tr title="Some Descriptions">
-                        <td>Cell 4</td>
-                        <td>3</td>
-                        <td>3,000</td>
-                    </tr>
+                    @php($num=$receipts->firstItem())
+                    @foreach($receipts as $receipt)
+                        @foreach($sales=$receipt->sales()->get() as $key=>$sale)
+                            @if($key==0)
+                                <tr title="Some Descriptions">
+                                    <td rowspan="{{$sales->count()}}" class="align-middle text-center">{{$num}}</td>
+                                    <td rowspan="{{$sales->count()}}" class="align-middle text-center">{{$receipt->number}}</td>
+                                    <td>{{$sale->productName}}</td>
+                                    <td>{{$sale->quantity}}</td>
+                                    <td>{{number_format($sale->payedAmount,2)}}</td>
+                                    <td rowspan="{{$sales->count()}}" class="align-middle text-center">
+                                        <p class="font-weight-bold p-0">{{number_format($receipt->totalAmount,2)}}/=</p>
+                                        <p class="m-0">{{strtoupper($receipt->paymentType->name)}}</p>
+                                    </td>
+                                    <td rowspan="{{$sales->count()}}" class="align-middle text-center">{{$receipt->created_at->format('d/m/Y')}}</td>
+                                </tr>
+                                @else
+                                <tr title="Some Descriptions">
+                                    <td>{{$sale->productName}}</td>
+                                    <td>{{$sale->quantity}}</td>
+                                    <td>{{number_format($sale->payedAmount,2)}}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                        <tr>
+                            <td colspan="7"></td>
+                        </tr>
+                        @php($num++)
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -82,17 +73,7 @@
     <div class="row mt-2">
         <div class="col-11 col-md-10 col-lg-7 offset-1 offset-md-1 offset-lg-3">
             <nav>
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span
-                                aria-hidden="true">«</span></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-                                aria-hidden="true">»</span></a></li>
-                </ul>
+                {{$receipts->links()}}
             </nav>
         </div>
     </div>

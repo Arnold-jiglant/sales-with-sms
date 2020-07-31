@@ -81,8 +81,8 @@
                         <tr>
                             <td>{{$num}}</td>
                             <td>{{$customer->name}}</td>
-                            <td>345,600</td>
-                            <td>20</td>
+                            <td>{{number_format($customer->totalSpent,2)}}/=</td>
+                            <td>{{$customer->visitCount}}</td>
                             <td>
                                 <div class="options">
                                     <a href="{{route('customer.view',$customer->id)}}" class="option-link">

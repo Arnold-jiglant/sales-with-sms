@@ -39,12 +39,15 @@ Route::middleware('auth')->group(function (){
     Route::post('product/add','ProductController@add')->name('product.add');
     Route::put('product/update/{id}','ProductController@update')->name('product.update');
     Route::delete('product/delete/{id}','ProductController@delete')->name('product.delete');
+
     //Customer
     Route::get('customers','CustomerController@index')->name('customers');
+    Route::get('get/customers','CustomerController@show')->name('customers.get');
     Route::post('customer/add','CustomerController@add')->name('customer.add');
-    Route::put('customer/view/{id}','CustomerController@view')->name('customer.view');
+    Route::get('customer/view/{id}','CustomerController@view')->name('customer.view');
     Route::put('customer/update/{id}','CustomerController@update')->name('customer.update');
     Route::delete('customer/delete/{id}','CustomerController@delete')->name('customer.delete');
+
     //Expense
     Route::get('expenses','ExpenseController@index')->name('expenses');
     Route::post('expense/add','ExpenseController@add')->name('expense.add');

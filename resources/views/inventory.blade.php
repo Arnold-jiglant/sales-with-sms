@@ -52,8 +52,8 @@
                         <tr>
                             <td>{{$num}}</td>
                             <td>{{$inventory->created_at->format('D d M Y')}}</td>
-                            <td>{{number_format($inventory->totalCost)}}/=</td>
-                            <td>{{number_format($inventory->expectedAmount)}}/=</td>
+                            <td>{{number_format($inventory->totalCost,2)}}/=</td>
+                            <td>{{number_format($inventory->expectedAmount,2)}}/=</td>
                             <td>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated"

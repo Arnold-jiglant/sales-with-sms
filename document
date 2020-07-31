@@ -1,4 +1,4 @@
-SALES MANAGEMENT
+ SALES MANAGEMENT
 
 USERS
 	- Manager
@@ -16,8 +16,7 @@ USER FUNCTIONALITY
 		- view report per specific time period
 		- manage system users (add,edit/delete) .......
         - Manager can choose selling algorithm (FIFO/LIFO)  ........
-        - add,edit.delete role  .......
-        - assign permissions to role    ..........
+        - add,edit,delete,assign permissions to role  .......
 		- sell product
 		- add,edit,update,delete customer   .........
 
@@ -26,7 +25,7 @@ SYSTEM FUNCTIONALITY
 	- update sales product table after each sale///
 	- can generate barcode for particular product
 
-MODELS
+MODELSa
 	1.USER
 		-id
 		-fname

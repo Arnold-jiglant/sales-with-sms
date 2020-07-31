@@ -13,7 +13,7 @@ class InventoryProduct extends Model
         'discountRates' => 'json'
     ];
     protected $appends = [
-        'buyingPrice', 'totalLossQuantity', 'totalLossAmount', 'remainingQty', 'hasDiscount','stockLevel','stockLevelClass'
+        'buyingPrice', 'LossQuantity', 'LossAmount', 'remainingQty', 'hasDiscount', 'stockLevel', 'stockLevelClass'
     ];
 
     //RELATION
@@ -68,34 +68,36 @@ class InventoryProduct extends Model
         return round($this->cost / $this->quantity, 4);
     }
 
-    public function getTotalLossQuantityAttribute()
+    public function getLossQuantityAttribute()
     {
         return $this->losses()->sum('quantity');
     }
 
-    public function getTotalLossAmountAttribute()
+    public function getLossAmountAttribute()
     {
         return $this->losses()->sum('amount');
     }
 
-    public function getTotalSaleQuantityAttribute()
+    public function getSaleQuantityAttribute()
     {
         return $this->sales()->sum('quantity');
     }
 
-    public function getTotalSaleAmountAttribute()
+    public function getSaleAmountAttribute()
     {
-        return 0;  //TODO Calculate sale amount
+        return $this->sales()->get()->sum(function (Sale $sale) {
+            return $sale->quantity * ($sale->sellingPrice - $sale->discount);
+        });
     }
 
     public function getRemainingQtyAttribute()
     {
-        return $this->quantity - ($this->totalSaleQuantity + $this->totalLossQuantity);
+        return $this->quantity - ($this->SaleQuantity + $this->LossQuantity);
     }
 
     public function getStockLevelAttribute()
     {
-        return floor(($this->remainingQty / $this->quantity)*100);
+        return floor(($this->remainingQty / $this->quantity) * 100);
     }
 
     public function getStockLevelClassAttribute()
