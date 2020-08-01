@@ -21,9 +21,8 @@ USER FUNCTIONALITY
 		- add,edit,update,delete customer   .........
 
 SYSTEM FUNCTIONALITY
-	- generate transaction/receipt number for each sale
-	- update sales product table after each sale///
-	- can generate barcode for particular product
+	- generate transaction/receipt number for each sale ..........
+	- can generate barcode for particular product   ****
 
 MODELSa
 	1.USER
@@ -80,7 +79,6 @@ MODELSa
 		-id
 		-name
 		-description
-        -role // required role to issue this type of expense
 
 	9.EXPENSE
 		-id
@@ -122,3 +120,15 @@ MODELSa
         -id
         -role_id
         -permission_id
+
+    16.INCOMETYPE
+        -id
+        -name
+        -description
+
+    17.INCOME
+        -id
+        -type
+        -amount
+        -description //optional
+        -issuer
