@@ -15,4 +15,9 @@ class Income extends Model
     {
         return $this->belongsTo(IncomeType::class,'income_type_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'issuer');
+    }
 }

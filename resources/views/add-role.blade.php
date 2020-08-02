@@ -205,7 +205,45 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="align-middle">5</td>
+                            <td rowspan="4" class="align-middle">5</td>
+                            <td rowspan="4" class="align-middle font-weight-bold">EXTRA INCOME</td>
+                            <td>
+                                <div class="custom-control custom-checkbox"><input class="custom-control-input income"
+                                                                                   type="checkbox" name="permissions[]"
+                                                                                   value="INC1"
+                                                                                   id="viewIncome"><label
+                                        class="custom-control-label" for="viewIncome">View Incomes</label></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="custom-control custom-checkbox"><input class="custom-control-input income"
+                                                                                   type="checkbox" name="permissions[]"
+                                                                                   value="INC2"
+                                                                                   id="addIncome"><label
+                                        class="custom-control-label" for="addIncome">Add Incomes</label></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="custom-control custom-checkbox"><input class="custom-control-input income"
+                                                                                   type="checkbox" name="permissions[]"
+                                                                                   value="INC3"
+                                                                                   id="editIncome"><label
+                                        class="custom-control-label" for="editIncome">Edit Incomes</label></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="custom-control custom-checkbox"><input class="custom-control-input income"
+                                                                                   type="checkbox" name="permissions[]"
+                                                                                   value="INC4"
+                                                                                   id="deleteIncome"><label
+                                        class="custom-control-label" for="deleteIncome">Delete Incomes</label></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">6</td>
                             <td class="align-middle font-weight-bold">SALE</td>
                             <td>
                                 <div class="custom-control custom-checkbox"><input class="custom-control-input sale"
@@ -216,7 +254,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="align-middle">6</td>
+                            <td class="align-middle">7</td>
                             <td class="align-middle font-weight-bold">REPORT</td>
                             <td>
                                 <div class="custom-control custom-checkbox"><input class="custom-control-input report"

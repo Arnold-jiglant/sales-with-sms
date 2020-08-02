@@ -21,11 +21,13 @@
                         class="text">Dashboard</span></a></li>
         @endif
         @can('sell-product')
-            <li class="menu-item @yield('sale')"><a href="{{route('sale')}}"><i class="fa fa-shopping-cart icon mr-3"></i><span
+            <li class="menu-item @yield('sale')"><a href="{{route('sale')}}"><i
+                        class="fa fa-shopping-cart icon mr-3"></i><span
                         class="text">Sale</span></a></li>
         @endcan
         @can('view-customers')
-            <li class="menu-item @yield('customer')"><a href="{{route('customers')}}"><i class="fa fa-users icon mr-3"></i><span
+            <li class="menu-item @yield('customer')"><a href="{{route('customers')}}"><i
+                        class="fa fa-users icon mr-3"></i><span
                         class="text">Customers</span></a>
             </li>
         @endcan
@@ -33,18 +35,26 @@
             <li class="menu-item @yield('product')"><a href="{{route('products')}}"><i class="fa fa-list icon mr-3"></i><span
                         class="text">Products</span></a>
             </li>
-            <li class="menu-item @yield('inventory')"><a href="{{route('inventories')}}"><i class="fa fa-home icon mr-3"></i><span
+            <li class="menu-item @yield('inventory')"><a href="{{route('inventories')}}"><i
+                        class="fa fa-home icon mr-3"></i><span
                         class="text">Inventory</span></a>
             </li>
         @endcan
         @can('view-expenses')
-            <li class="menu-item @yield('expense')"><a href="{{route('expenses')}}"><i class="fa fa-dollar icon mr-3"></i><span
+            <li class="menu-item @yield('expense')"><a href="{{route('expenses')}}"><i
+                        class="fa fa-dollar icon mr-3"></i><span
                         class="text">Expenses</span></a>
             </li>
         @endcan
         @can('view-users')
             <li class="menu-item @yield('user')"><a href="{{route('users')}}"><i class="fa fa-user icon mr-3"></i><span
                         class="text">Users</span></a></li>
+        @endcan
+        @can('view-incomes')
+            <li class="menu-item @yield('income')"><a href="{{route('incomes')}}"><i
+                        class="fa fa-eur icon mr-3"></i><span
+                        class="text">Extra Income</span></a>
+            </li>
         @endcan
         @can('view-report')
             <li class="menu-item @yield('report')"><a href="#"><i class="fa fa-area-chart icon mr-3"></i><span
@@ -73,22 +83,30 @@
                         <li class="nav-item" role="presentation"><a class="nav-link" href="#">Dashboard</a></li>
                     @endif
                     @can('sell-product')
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('sale')}}">Sale</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('sale')}}">Sale</a>
+                        </li>
                     @endcan
                     @can('view-customers')
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('customers')}}">Customers</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('customers')}}">Customers</a>
+                        </li>
                     @endcan
                     @can('view-inventory')
                         <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('products')}}">Products</a>
                         </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('inventories')}}">Inventory</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('inventories')}}">Inventory</a>
+                        </li>
                     @endcan
                     @can('view-expenses')
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('expenses')}}">Expenses</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('expenses')}}">Expenses</a>
+                        </li>
                     @endcan
                     @can('view-users')
                         <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('users')}}">Users</a>
                         </li>
+                    @endcan
+                    @can('view-incomes')
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('incomes')}}">Extra
+                                Income</a></li>
                     @endcan
                     @can('view-report')
                         <li class="nav-item" role="presentation"><a class="nav-link" href="#">Report</a></li>

@@ -22,6 +22,10 @@ class Permission extends Model
     static public $ADD_INVENTORY = "IN2";
     static public $EDIT_INVENTORY = "IN3";
     static public $DELETE_INVENTORY = "IN4";
+    static public $VIEW_INCOMES = "INC1";
+    static public $ADD_INCOME = "INC2";
+    static public $EDIT_INCOME = "INC3";
+    static public $DELETE_INCOME = "INC4";
     static public $SELL_PRODUCT = "SE1";
     static public $VIEW_REPORT = "RE1";
 

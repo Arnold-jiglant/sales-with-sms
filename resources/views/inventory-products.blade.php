@@ -43,11 +43,11 @@
             <div id="inventoryInfo" class="p-3" style="font-size: 11pt;">
                 <div class="row">
                     <div class="col-sm-6">
-                        <p><span>Total Cost:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->totalCost,2)}}/=</span>
+                        <p><span>Total Cost:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->totalCost,2)}}</span>
                         </p>
-                        <p><span>Expected Amount:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->expectedAmount,2)}}/=</span>
+                        <p><span>Expected Amount:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->expectedAmount,2)}}</span>
                         </p>
-                        <p><span>Loss Amount:&nbsp;</span><span class="ml-1 text-danger">{{number_format($inventory->totalLossAMount,2)}}/=</span>
+                        <p><span>Loss Amount:&nbsp;</span><span class="ml-1 text-danger">{{number_format($inventory->totalLossAMount,2)}}</span>
                         </p>
                         <p><span>Issuer:&nbsp;</span><span class="ml-1 value">{{$inventory->user->name}}</span></p>
                         <p><span>Issue Date:&nbsp;</span><span

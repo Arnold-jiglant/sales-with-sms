@@ -96,6 +96,22 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_INVENTORY);
         });
 
+        Gate::define('view-incomes', function ($user) {
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_INCOMES);
+        });
+
+        Gate::define('add-income', function ($user) {
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$ADD_INCOME);
+        });
+
+        Gate::define('edit-income', function ($user) {
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$EDIT_INCOME);
+        });
+
+        Gate::define('delete-income', function ($user) {
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_INCOME);
+        });
+
         Gate::define('sell-product', function ($user) {
             return $user->role->permissions()->pluck('permission_code')->contains(Permission::$SELL_PRODUCT);
         });

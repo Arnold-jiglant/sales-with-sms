@@ -11,4 +11,16 @@ class IncomeType extends Model
     protected $fillable = [
         'name', 'description',
     ];
+
+    //ATTRIBUTE
+    public function getHasIncomes()
+    {
+        return $this->incomes()->count() > 0;
+    }
+
+    //RELATION
+    public function incomes()
+    {
+        return $this->hasMany(Income::class);
+    }
 }

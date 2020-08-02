@@ -26,7 +26,7 @@ class ExpenseController extends Controller
         } else {
             $expenses = Expense::orderByDesc('created_at')->paginate(10);
         }
-        $expenseTypes = ExpenseType::all();
+        $expenseTypes = ExpenseType::orderBy('name')->get();
         return view('expenses', compact('expenses', 'expenseTypes', 'title'));
     }
 

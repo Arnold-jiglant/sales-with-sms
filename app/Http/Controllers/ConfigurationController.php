@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Configuration;
 use App\ExpenseType;
+use App\IncomeType;
 use App\Role;
 use App\RolePermission;
 use App\SellMethod;
@@ -16,7 +17,8 @@ class ConfigurationController extends Controller
         $sellMethods = SellMethod::all();
         $roles = Role::all()->except([1]);
         $expenseCategories = ExpenseType::all();
-        return view('configure', compact('sellMethods', 'roles', 'expenseCategories'));
+        $incomeCategories = IncomeType::all();
+        return view('configure', compact('sellMethods', 'roles', 'expenseCategories','incomeCategories'));
     }
 
     //choose selling Method
@@ -59,7 +61,7 @@ class ConfigurationController extends Controller
         $category->name = $request->get('name');
         $category->description = $request->get('description');
         $category->save();
-        return $this->redirectWithSuccess('Category Updated');
+        return $this->redirectWithSuccess('Expense Category Updated');
     }
 
     //delete Expense Type
@@ -75,6 +77,51 @@ class ConfigurationController extends Controller
             $category->forceDelete();
         }
         return $this->redirectWithSuccess('Category Deleted!');
+    }
+
+    //add Income Type
+    public function addIncomeType(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|unique:income_types',
+        ]);
+        IncomeType::create([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+        ]);
+        return $this->redirectWithSuccess('Income Category Added');
+    }
+
+    //update Income Type
+    public function updateIncomeType(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required|unique:App\IncomeType,name,' . $id,
+        ]);
+        $category = IncomeType::find($id);
+        if ($category == null) {
+            return $this->redirectWithError('Category Not Found');
+        }
+//        return $request->all();
+        $category->name = $request->get('name');
+        $category->description = $request->get('description');
+        $category->save();
+        return $this->redirectWithSuccess('Income Category Updated');
+    }
+
+    //delete Income Type
+    public function deleteIncomeType($id)
+    {
+        $category = IncomeType::find($id);
+        if ($category == null) {
+            return $this->redirectWithError('Category Not Found');
+        }
+        if ($category->hasIncomes) {
+            $category->delete();
+        } else {
+            $category->forceDelete();
+        }
+        return $this->redirectWithSuccess('Income Category Deleted!');
     }
 
     //view add role form
@@ -103,8 +150,8 @@ class ConfigurationController extends Controller
         if ($role == null) {
             return $this->redirectWithError('Role Not Found');
         }
-       $permissions = $role->permissions()->pluck('permission_code');
-        return view('edit-role',compact('role','permissions'));
+        $permissions = $role->permissions()->pluck('permission_code');
+        return view('edit-role', compact('role', 'permissions'));
     }
 
     //update role
@@ -114,14 +161,14 @@ class ConfigurationController extends Controller
         if ($role == null) {
             return $this->redirectWithError('Role Not Found');
         }
-        $this->validate($request, ['name' => 'required|unique:App\Role,name,'.$id]);
+        $this->validate($request, ['name' => 'required|unique:App\Role,name,' . $id]);
         $role->permissions()->delete();
         $permissions = [];
         foreach ($request->get('permissions') as $item) {
             $permissions[] = new RolePermission(['permission_code' => $item]);
         }
         $role->permissions()->saveMany($permissions);
-        return redirect()->route('configure')->with('success','Role Updated');
+        return redirect()->route('configure')->with('success', 'Role Updated');
     }
 
     //delete role

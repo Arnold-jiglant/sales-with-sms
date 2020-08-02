@@ -32,44 +32,54 @@
         </div>
     @endif
     <div class="col-lg-12 col-xl-10 offset-lg-0 offset-xl-1">
-{{--        <div class="row">--}}
-{{--            <div class="col-6 col-lg-4">--}}
-{{--                <form class="text-center p-3" style="border: 1px solid #eee;border-radius: 10px;" method="POST"--}}
-{{--                      action="{{route('sellMethod')}}">--}}
-{{--                    {{csrf_field()}}--}}
-{{--                    <div class="form-group"><label class="font-weight-bold">SELLING METHOD</label>--}}
-{{--                        <div>--}}
-{{--                            @foreach($sellMethods as $method)--}}
-{{--                                <div class="custom-control custom-control-inline custom-radio" data-toggle="popover"--}}
-{{--                                     data-content="{{$method->description}}"--}}
-{{--                                     data-trigger="hover" data-placement="bottom">--}}
-{{--                                    <input class="custom-control-input" type="radio" name="sellMethod"--}}
-{{--                                           {{\App\Configuration::sellMethod()==$method->id?'Checked':''}}--}}
-{{--                                           id="{{$method->method}}" value="{{$method->id}}">--}}
-{{--                                    <label class="custom-control-label"--}}
-{{--                                           for="{{$method->method}}">{{$method->method}}  </label>--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <button class="btn btn-primary btn-sm custom-btn mb-2" type="submit">Change</button>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        {{--        <div class="row">--}}
+        {{--            <div class="col-6 col-lg-4">--}}
+        {{--                <form class="text-center p-3" style="border: 1px solid #eee;border-radius: 10px;" method="POST"--}}
+        {{--                      action="{{route('sellMethod')}}">--}}
+        {{--                    {{csrf_field()}}--}}
+        {{--                    <div class="form-group"><label class="font-weight-bold">SELLING METHOD</label>--}}
+        {{--                        <div>--}}
+        {{--                            @foreach($sellMethods as $method)--}}
+        {{--                                <div class="custom-control custom-control-inline custom-radio" data-toggle="popover"--}}
+        {{--                                     data-content="{{$method->description}}"--}}
+        {{--                                     data-trigger="hover" data-placement="bottom">--}}
+        {{--                                    <input class="custom-control-input" type="radio" name="sellMethod"--}}
+        {{--                                           {{\App\Configuration::sellMethod()==$method->id?'Checked':''}}--}}
+        {{--                                           id="{{$method->method}}" value="{{$method->id}}">--}}
+        {{--                                    <label class="custom-control-label"--}}
+        {{--                                           for="{{$method->method}}">{{$method->method}}  </label>--}}
+        {{--                                </div>--}}
+        {{--                            @endforeach--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                    <button class="btn btn-primary btn-sm custom-btn mb-2" type="submit">Change</button>--}}
+        {{--                </form>--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
     </div>
     <div class="row mt-3">
         <div class="col-6 col-xl-5 offset-xl-1">
             <ul class="nav nav-pills">
-                <li class="mr-1"><a class="btn btn-sm custom-btn" data-toggle="pill" href="#user-roles">User Role</a></li>
-                <li class="mr-1"><button class="btn btn-sm custom-btn" data-toggle="pill" data-target="#expense-categories">Expense Categories</button></li>
-                <li><button class="btn btn-sm custom-btn" data-toggle="pill" data-target="#extra-income-categories">Extra Income Categories</button></li>
+                <li class="mr-1"><a class="btn btn-sm btn-primary" data-toggle="pill" href="#user-roles">User Role</a>
+                </li>
+                <li class="mr-1">
+                    <button class="btn btn-sm btn-info" data-toggle="pill" data-target="#expense-categories">Expense
+                        Categories
+                    </button>
+                </li>
+                <li>
+                    <button class="btn btn-sm btn-success" data-toggle="pill" data-target="#extra-income-categories">
+                        Extra Income Categories
+                    </button>
+                </li>
             </ul>
 
             <div class="tab-content mt-2">
                 <div id="user-roles" class="tab-pane fade in card card-body">
                     <h6>User Roles</h6>
-                    <form  class="p-2">
-                        <a href="{{route('addRole')}}" class="btn btn-primary btn-sm custom-btn mb-2 float-right">Add</a>
+                    <form class="p-2">
+                        <a href="{{route('addRole')}}"
+                           class="btn btn-primary btn-sm custom-btn mb-2 float-right">Add</a>
                         <div class="table-responsive table-bordered text-center" id="products-table">
                             <table class="table table-bordered table-hover table-sm">
                                 <thead>
@@ -146,7 +156,7 @@
                                                             class="link-text">edit</span>
                                                     </a>
                                                     <a href="#" class="option-link delete" data-toggle="modal"
-                                                       data-target="#delete-role-modal" data-id="{{$category->id}}">
+                                                       data-target="#delete-expense-category-modal" data-id="{{$category->id}}">
                                                         <i class="icon ion-android-delete"></i>&nbsp;
                                                         <span class="link-text">delete</span>
                                                     </a>
@@ -172,26 +182,26 @@
                         @error('name')
                         <small class="text-danger">{{$message}}</small>
                         @enderror
-                        @if($expenseCategories->count()>0)
-                            <div class="table-responsive table-bordered text-center"
-                                 id="products-table">
-                                <table class="table table-bordered table-hover table-sm">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Category</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+                        <div class="table-responsive table-bordered text-center"
+                             id="products-table">
+                            <table class="table table-bordered table-hover table-sm">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Category</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @if($incomeCategories->count()>0)
                                     @php($num=1)
-                                    @foreach($expenseCategories as $category)
+                                    @foreach($incomeCategories as $category)
                                         <tr>
                                             <td>{{$num}}</td>
                                             <td>{{$category->name}}</td>
                                             <td>
                                                 <div class="options">
-                                                    <a href="#edit-expense-category-modal" class="option-link edit"
+                                                    <a href="#edit-income-category-modal" class="option-link edit"
                                                        data-toggle="modal" data-id="{{$category->id}}"
                                                        data-name="{{$category->name}}"
                                                        data-description="{{$category->description}}">
@@ -199,7 +209,7 @@
                                                             class="link-text">edit</span>
                                                     </a>
                                                     <a href="#" class="option-link delete" data-toggle="modal"
-                                                       data-target="#delete-role-modal" data-id="{{$category->id}}">
+                                                       data-target="#delete-income-category-modal" data-id="{{$category->id}}">
                                                         <i class="icon ion-android-delete"></i>&nbsp;
                                                         <span class="link-text">delete</span>
                                                     </a>
@@ -208,10 +218,14 @@
                                         </tr>
                                         @php($num++)
                                     @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        @endif
+                                @else
+                                    <tr>
+                                        <td colspan="3">No category</td>
+                                    </tr>
+                                @endif
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -292,7 +306,7 @@
                     <form method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE">
-                        <p>Are you sure you want to delete this category?</p>
+                        <p>Are you sure you want to delete this expense category?</p>
                         <div class="float-right">
                             <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close</button>
                             <button class="btn btn-primary btn-sm custom-btn" type="submit">Delete</button>
@@ -312,15 +326,15 @@
                             aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('addExpenseType')}}" method="POST">
+                    <form action="{{route('add.income.type')}}" method="POST">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label for="name">Category Name:</label>
                             <input id="name" class="form-control form-control-sm" type="text" name="name"
-                                   placeholder="name">
+                                   placeholder="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="description">Category Description (optinal)</label>
+                            <label for="description">Category Description (optional)</label>
                             <textarea class="form-control form-control-sm" rows="4" id="description"
                                       name="description"></textarea>
                         </div>
@@ -337,7 +351,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit Expense Category</h5>
+                    <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit Income Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -348,7 +362,7 @@
                         <div class="form-group">
                             <label for="name">Category Name:</label>
                             <input class="form-control form-control-sm" type="text" placeholder="name" id="name"
-                                   name="name">
+                                   name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="description">Category Description (optional)</label>
@@ -368,7 +382,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Expense Category</h5>
+                    <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Income Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -376,7 +390,7 @@
                     <form method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE">
-                        <p>Are you sure you want to delete this category?</p>
+                        <p>Are you sure you want to delete this income category?</p>
                         <div class="float-right">
                             <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close</button>
                             <button class="btn btn-primary btn-sm custom-btn" type="submit">Delete</button>
@@ -414,7 +428,7 @@
 @section('script')
     <script>
         $(document).ready(function () {
-            //edit category
+            //edit expense category
             $('#edit-expense-category-modal').on('show.bs.modal', function (e) {
                 let id = $(e.relatedTarget).data('id');
                 let name = $(e.relatedTarget).data('name');
@@ -425,11 +439,30 @@
                 form.find("input[name='name']").val(name);
                 form.find("textarea").val(desc);
             });
-            //delete category
+            //delete expense category
             $('#delete-expense-category-modal').on('show.bs.modal', function (e) {
                 let id = $(e.relatedTarget).data('id');
                 let form = $(this).find('form');
                 let action = '{{route('deleteExpenseType','')}}/' + id;
+                form.attr('action', action);
+            });
+
+            //edit icnome category
+            $('#edit-income-category-modal').on('show.bs.modal', function (e) {
+                let id = $(e.relatedTarget).data('id');
+                let name = $(e.relatedTarget).data('name');
+                let desc = $(e.relatedTarget).data('description');
+                let form = $(this).find('form');
+                let action = '{{route('update.income.type','')}}/' + id;
+                form.attr('action', action);
+                form.find("input[name='name']").val(name);
+                form.find("textarea").val(desc);
+            });
+            //delete category
+            $('#delete-income-category-modal').on('show.bs.modal', function (e) {
+                let id = $(e.relatedTarget).data('id');
+                let form = $(this).find('form');
+                let action = '{{route('delete.income.type','')}}/' + id;
                 form.attr('action', action);
             });
             //delete role

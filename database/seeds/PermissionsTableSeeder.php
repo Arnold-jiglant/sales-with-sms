@@ -29,6 +29,10 @@ class PermissionsTableSeeder extends Seeder
             ['code'=>'IN2', 'name'=>'Add Inventory'],
             ['code'=>'IN3', 'name'=>'Edit Inventory'],
             ['code'=>'IN4', 'name'=>'Delete Inventory'],
+            ['code'=>'INC1', 'name'=>'View Incomes'],
+            ['code'=>'INC2', 'name'=>'Add Income'],
+            ['code'=>'INC3', 'name'=>'Edit Income'],
+            ['code'=>'INC4', 'name'=>'Delete Income'],
             ['code'=>'SE1', 'name'=>'Sell Product'],
             ['code'=>'RE1', 'name'=>'View Report'],
         ]);

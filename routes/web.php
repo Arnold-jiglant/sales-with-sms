@@ -20,6 +20,9 @@ Route::middleware('auth')->group(function (){
     Route::post('add/expense/type','ConfigurationController@addExpenseType')->name('addExpenseType');
     Route::put('update/expense/type/{id}','ConfigurationController@updateExpenseType')->name('updateExpenseType');
     Route::delete('delete/expense/type/{id}','ConfigurationController@deleteExpenseType')->name('deleteExpenseType');
+    Route::post('add/income/type','ConfigurationController@addIncomeType')->name('add.income.type');
+    Route::put('update/income/type/{id}','ConfigurationController@updateIncomeType')->name('update.income.type');
+    Route::delete('delete/income/type/{id}','ConfigurationController@deleteIncomeType')->name('delete.income.type');
     Route::get('add/role','ConfigurationController@viewAddRoleForm')->name('addRole');
     Route::post('add/role','ConfigurationController@addRole')->name('addRole');
     Route::get('edit/role/{id}','ConfigurationController@editRole')->name('editRole');
@@ -53,6 +56,13 @@ Route::middleware('auth')->group(function (){
     Route::post('expense/add','ExpenseController@add')->name('expense.add');
     Route::put('expense/update/{id}','ExpenseController@update')->name('expense.update');
     Route::delete('expense/delete/{id}','ExpenseController@delete')->name('expense.delete');
+
+    //Extra Income
+    Route::get('incomes','IncomeController@index')->name('incomes');
+    Route::post('income/add','IncomeController@add')->name('income.add');
+    Route::put('income/update/{id}','IncomeController@update')->name('income.update');
+    Route::delete('income/delete/{id}','IncomeController@delete')->name('income.delete');
+
     //Inventory
     Route::get('inventories','InventoryController@index')->name('inventories');
     Route::get('inventory/add','InventoryController@showAddInventoryForm')->name('inventory.add');
