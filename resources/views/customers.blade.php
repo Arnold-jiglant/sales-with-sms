@@ -45,14 +45,20 @@
                 <p>Total {{$customers->total()}} showing {{$customers->firstItem()}}-{{$customers->lastItem()}}</p>
             </div>
             <div class="col order-sm-1">
-                @can('add-customer')
-                    <div class="text-right">
-                        <button class="btn btn-primary btn-sm custom-btn" type="button" data-toggle="modal"
-                                data-target="#add-customer-modal">
-                            <i class="icon ion-android-add"></i>Add Customer
+                <div class="text-right">
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-sm mr-1" type="button" data-toggle="modal"
+                                data-target="#view-receipt-modal">
+                            <i class="icon ion-ios-eye"></i>&nbsp;&nbsp;View Receipt
                         </button>
+                        @can('add-customer')
+                            <button class="btn btn-primary btn-sm custom-btn" type="button" data-toggle="modal"
+                                    data-target="#add-customer-modal">
+                                <i class="icon ion-android-add"></i>&nbsp;&nbsp;Add Customer
+                            </button>
+                        @endcan
                     </div>
-                @endcan
+                </div>
                 @if ($errors->any())
                     <ul>
                         @foreach($errors->all() as $error)
@@ -81,7 +87,7 @@
                         <tr>
                             <td>{{$num}}</td>
                             <td>{{$customer->name}}</td>
-                            <td>{{number_format($customer->totalSpent,2)}}/=</td>
+                            <td>{{number_format($customer->totalSpent,2)}}</td>
                             <td>{{$customer->visitCount}}</td>
                             <td>
                                 <div class="options">
@@ -123,6 +129,38 @@
     </div>
 @stop
 @section('modal')
+    <div class="modal fade" role="dialog" tabindex="-1" id="view-receipt-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="icon ion-ios-cart-outline"></i>&nbsp;Receipt</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('customer.add')}}">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <label for="number">Receipt No:</label>
+                            <input class="form-control form-control-sm" type="text" placeholder="name"
+                                   id="number">
+                        </div>
+                        <div class="form-group text-right">
+                            <button id="search-receipt-btn" class="btn btn-primary btn-sm custom-btn" type="button">
+                                Search
+                            </button>
+                        </div>
+                        <div id="loading" class="loading" style="display: none">
+                                <span class="spinner-border" role="status"
+                                      style="width: 40px;height: 40px;color: #00bacc;"></span>
+                            <span class="mt-2">Loading..</span>
+                        </div>
+                        <div id="receipt-info"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     @can('add-customer')
         <div class="modal fade" role="dialog" tabindex="-1" id="add-customer-modal">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -230,6 +268,34 @@
                 form.attr('action', action);
             });
             @endcan()
+
+            //search receipt
+            let loading = $('#loading');
+            let receiptInfo = $('#receipt-info');
+            let receiptNumber = $('#number');
+
+            $('#view-receipt-modal').on('show.bs.modal', function () {
+                receiptNumber.val('');
+                receiptInfo.html('');
+            });
+            $('#search-receipt-btn').click(function () {
+                receiptNumber.val(receiptNumber.val().trim());
+                if (receiptNumber.val().length === 0) {
+                    receiptNumber.focus();
+                    return;
+                }
+                loading.toggle();
+                receiptInfo.html('');
+                $.ajax({
+                    type: 'GET',
+                    url: '{{route('customers.get.receipt','')}}/' + receiptNumber.val(),
+                    success: function (data) {
+                        console.log(data);
+                        loading.toggle();
+                        receiptInfo.html(data);
+                    }
+                });
+            });
         });
     </script>
 @stop

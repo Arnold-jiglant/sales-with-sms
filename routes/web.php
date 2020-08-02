@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function (){
     Route::get('customer/view/{id}','CustomerController@view')->name('customer.view');
     Route::put('customer/update/{id}','CustomerController@update')->name('customer.update');
     Route::delete('customer/delete/{id}','CustomerController@delete')->name('customer.delete');
+    Route::get('get/receipt/{number}','CustomerController@getReceipt')->name('customers.get.receipt');
 
     //Expense
     Route::get('expenses','ExpenseController@index')->name('expenses');
