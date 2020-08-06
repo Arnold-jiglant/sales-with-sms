@@ -28,7 +28,7 @@ class UpdateInventory
     {
         $inventory = $event->inventory;
         $invProducts = $inventory->inventoryProducts()->get();
-        $inventory->Cost = $invProducts->sum(function ($product) {
+        $inventory->totalCost = $invProducts->sum(function ($product) {
             return $product->cost;
         });
         $inventory->expectedAmount = $invProducts->sum(function ($product) {

@@ -14,6 +14,7 @@ class Permission extends Model
     static public $ADD_CUSTOMERS = "CU2";
     static public $EDIT_CUSTOMERS = "CU3";
     static public $DELETE_CUSTOMERS = "CU4";
+    static public $RECEIVE_DEBT_PAYMENT = "CU5";
     static public $VIEW_EXPENSES = "EX1";
     static public $ADD_EXPENSES = "EX2";
     static public $EDIT_EXPENSES = "EX3";

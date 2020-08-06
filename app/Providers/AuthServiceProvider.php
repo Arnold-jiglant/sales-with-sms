@@ -64,6 +64,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role->permissions()->pluck('permission_code')->contains(Permission::$DELETE_CUSTOMERS);
         });
 
+        Gate::define('receive-debt-payment', function ($user) {
+            return $user->role->permissions()->pluck('permission_code')->contains(Permission::$RECEIVE_DEBT_PAYMENT);
+        });
+
         Gate::define('view-expenses', function ($user) {
             return $user->role->permissions()->pluck('permission_code')->contains(Permission::$VIEW_EXPENSES);
         });

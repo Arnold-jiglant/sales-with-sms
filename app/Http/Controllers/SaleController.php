@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Inventory;
+use App\PaymentType;
 use App\Product;
 use App\Receipt;
 use App\Sale;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Gate;
 
 class SaleController extends Controller
 {
+
+    //TODO Dashboard (Most selling Product,Stock Level, Today Sales)
     public function index()
     {
         Gate::authorize('sell-product');
@@ -103,6 +106,7 @@ class SaleController extends Controller
             'payment_type_code' => $request->get('paymentType'),
             'customer_id' => $request->get('customer_id'),
             'issuer' => auth()->id(),
+            'payed' => $request->get('paymentType') != PaymentType::$DEBT
         ]);
         $sales = Session::get('sales')->transform(function ($sale) {
             return new Sale([

@@ -21,6 +21,7 @@ class PermissionsTableSeeder extends Seeder
             ['code'=>'CU2', 'name'=>'Add Customers'],
             ['code'=>'CU3', 'name'=>'Edit Customers'],
             ['code'=>'CU4', 'name'=>'Delete Customers'],
+            ['code'=>'CU5', 'name'=>'Receive Debt Payment'],
             ['code'=>'EX1', 'name'=>'View Expenses'],
             ['code'=>'EX2', 'name'=>'Add Expenses'],
             ['code'=>'EX3', 'name'=>'Edit Expenses'],

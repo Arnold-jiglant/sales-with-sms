@@ -43,11 +43,14 @@
             <div id="inventoryInfo" class="p-3" style="font-size: 11pt;">
                 <div class="row">
                     <div class="col-sm-6">
-                        <p><span>Total Cost:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->totalCost,2)}}</span>
+                        <p><span>Total Cost:&nbsp;</span><span
+                                class="ml-1 value">{{number_format($inventory->totalCost,2)}}</span>
                         </p>
-                        <p><span>Expected Amount:&nbsp;</span><span class="ml-1 value">{{number_format($inventory->expectedAmount,2)}}</span>
+                        <p><span>Expected Amount:&nbsp;</span><span
+                                class="ml-1 value">{{number_format($inventory->expectedAmount,2)}}</span>
                         </p>
-                        <p><span>Loss Amount:&nbsp;</span><span class="ml-1 text-danger">{{number_format($inventory->totalLossAMount,2)}}</span>
+                        <p><span>Loss Amount:&nbsp;</span><span
+                                class="ml-1 text-danger">{{number_format($inventory->totalLossAMount,2)}}</span>
                         </p>
                         <p><span>Issuer:&nbsp;</span><span class="ml-1 value">{{$inventory->user->name}}</span></p>
                         <p><span>Issue Date:&nbsp;</span><span
@@ -117,7 +120,6 @@
                     <th>Buying Price@</th>
                     <th>Selling Price@</th>
                     <th>Time</th>
-                    <th title="Loss Quantity">L/Qty</th>
                     <th title="Loss Amount">L/Amount</th>
                     <th></th>
                 </tr>
@@ -125,27 +127,39 @@
                 <tbody>
                 @php($num=$invProducts->firstItem())
                 @foreach($invProducts as $invProduct)
-                    <tr>
+                    <tr class="{{(Session('existingProduct')&&Session('existingProduct')==$invProduct->product_id)?'bg-warning':''}}">
                         <td>{{$num}}.</td>
                         <td class="text-left">{{$invProduct->name}}</td>
                         <td>{{$invProduct->quantity}}</td>
                         <td>{{$invProduct->remainingQty}}</td>
                         <td>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated {{$invProduct->stockLevelClass}}"
-                                     aria-valuenow="{{$invProduct->stockLevel}}"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: {{$invProduct->stockLevel}}%;">{{$invProduct->stockLevel}}%
+                                <div
+                                    class="progress-bar progress-bar-striped progress-bar-animated {{$invProduct->stockLevelClass}}"
+                                    aria-valuenow="{{$invProduct->stockLevel}}"
+                                    aria-valuemin="0" aria-valuemax="100"
+                                    style="width: {{$invProduct->stockLevel}}%;">{{$invProduct->stockLevel}}%
                                 </div>
                             </div>
                         </td>
                         <td>{{number_format($invProduct->cost)}}</td>
-                        <td>{{$invProduct->buyingPrice}}</td>
-                        <td>{{number_format($invProduct->sellingPrice)}}</td>
+                        <td>{{number_format($invProduct->buyingPrice,2)}}</td>
+                        <td>{{number_format($invProduct->sellingPrice,2)}}</td>
                         <td>{{$invProduct->created_at->format('d/m/Y')}}</td>
-                        <td>{{$invProduct->LossQuantity}}</td>
                         <td class="text-danger">{{number_format($invProduct->LossAmount)}}</td>
                         <td>
                             <div class="options">
+                                <a href="#" class="option-link edit" data-toggle="modal"
+                                   data-target="#add-to-stock-modal" data-id="{{$invProduct->id}}"
+                                   data-name="{{$invProduct->name}}" data-remainingQty="{{$invProduct->remainingQty}}"
+                                   data-quantity="{{$invProduct->quantity}}"
+                                   data-cost="{{$invProduct->cost}}"
+                                   data-sellingPrice="{{$invProduct->sellingPrice}}"
+                                   data-hasDiscount="{{$invProduct->hasDiscount}}"
+                                   data-discountType="{{$invProduct->discount_type_id}}">
+                                    <i class="icon ion-plus"></i>&nbsp;
+                                    <span class="link-text">Stock</span>
+                                </a>
                                 <a href="#" class="option-link edit" data-toggle="modal"
                                    data-target="#edit-inventory-modal" data-id="{{$invProduct->id}}"
                                    data-name="{{$invProduct->name}}" data-remainingQty="{{$invProduct->remainingQty}}"
@@ -282,6 +296,67 @@
                                 <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
                                 </button>
                                 <button class="btn btn-primary btn-sm custom-btn" type="submit">Confirm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="add-to-stock-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><i class="icon ion-plus"></i>&nbsp;Add To Stock</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST">
+                            {{csrf_field()}}
+                            <input type="hidden" name="_method" value="PUT">
+                            <input id="totalStockQuantity" type="hidden">
+                            <input id="totalStockCost" type="hidden">
+                            <p><span>Product Name:</span><span id="productStockNameLabel" class="ml-1 value">Text</span>
+                            </p>
+                            <p><span>Remaining Quantity:</span><span id="remainingStockQtyLabel"
+                                                                     class="ml-1 value">Text</span>
+                            </p>
+                            <div class="form-group" data-toggle="popover" data-content="whole quantity eg. 200 pieces"
+                                 data-trigger="focus" data-placement="right">
+                                <label for="newStockQuantity">New Quantity</label>
+                                <input class="form-control form-control-sm" type="number"
+                                       placeholder="New Quantity" step="0.25"
+                                       min="1" id="newStockQuantity" name="newQuantity" required>
+                            </div>
+                            <div class="form-group" data-toggle="popover"
+                                 data-content="cost of the whole package eg. 200 pc -> 200,000/=" data-trigger="focus"
+                                 data-placement="right">
+                                <label for="newStockCost">New Cost</label>
+                                <input class="form-control form-control-sm" type="number"
+                                       placeholder="quantity cost"
+                                       min="0" step="0.01" id="newStockCost" name="newCost" required>
+                            </div>
+                            <div class="form-group" data-toggle="popover"
+                                 data-content="Selling Price for single item eg. 12,000/ NB. This price will affect current selling price"
+                                 data-trigger="focus" data-placement="right">
+                                <label for="newStockSellingPrice">New Selling Price</label>
+                                <div class="form-row">
+                                    <div class="col-7">
+                                        <input class="form-control form-control-sm" type="number"
+                                               placeholder="Selling Price"
+                                               min="0" step="0.01" id="newStockSellingPrice" name="newSellingPrice"
+                                               required>
+                                    </div>
+                                    <div class="col-5 text-center">
+                                        <p class="d">Profit: <span id="newStockProfitLabel"
+                                                                   class="font-weight-bold"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right mt-2">
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                </button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Add Stock</button>
                             </div>
                         </form>
                     </div>
@@ -634,7 +709,9 @@
                             <div class="float-right">
                                 <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
                                 </button>
-                                <button id="delete-loss-btn" class="btn btn-primary btn-sm custom-btn" type="button">Delete</button>
+                                <button id="delete-loss-btn" class="btn btn-primary btn-sm custom-btn" type="button">
+                                    Delete
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -711,17 +788,57 @@
             });
 
             //check profit
-            $('#newSellingPrice').keyup(function () {
+            $('#newSellingPrice').keyup(stockProfit).change(stockProfit);
+
+            function stockProfit() {
                 let price = $(this).val();
                 let qty = $('#newQuantity').val();
                 let cost = $('#newCost').val();
-                let profit = Math.floor(price - (cost / qty));
+                let profit = (price - (cost / qty)).toFixed(2);
                 if (isNaN(qty) || isNaN(cost)) return;
                 if (profit >= 0) {
                     $('#profitLabel').text(profit + '/=').removeClass('text-danger').addClass('value');
                 } else {
                     $('#profitLabel').text(profit + '/=').removeClass('value').addClass('text-danger');
                 }
+            }
+
+            //check new Stock profit
+            $('#newStockSellingPrice').keyup(newStockProfit).change(newStockProfit);
+
+            function newStockProfit() {
+                let price = $(this).val();
+                let qty = parseFloat($('#newStockQuantity').val()) + parseFloat($('#totalStockQuantity').val());
+                let cost = parseFloat($('#newStockCost').val()) + parseFloat($('#totalStockCost').val());
+                let profit = (price - (cost / qty)).toFixed(2);
+
+                console.log('qty: ' + qty)
+                console.log('cost: ' + cost)
+                console.log('profit: ' + profit)
+                if (isNaN(qty) || isNaN(cost)) return;
+                if (profit >= 0) {
+                    $('#newStockProfitLabel').text(profit + '/=').removeClass('text-danger').addClass('value');
+                } else {
+                    $('#newStockProfitLabel').text(profit + '/=').removeClass('value').addClass('text-danger');
+                }
+            }
+
+            //Add to Stock
+            $('#add-to-stock-modal').on('show.bs.modal', function (e) {
+                let id = $(e.relatedTarget).data('id');
+                let name = $(e.relatedTarget).data('name');
+                let remainQty = $(e.relatedTarget).data('remainingqty');
+                let cost = $(e.relatedTarget).data('cost');
+                let quantity = $(e.relatedTarget).data('quantity');
+                let sellingPrice = $(e.relatedTarget).data('sellingprice');
+                let form = $(this).find('form');
+                let action = '{{route('inventory.add.stock','')}}/' + id;
+                form.attr('action', action);
+                $('#totalStockCost').val(cost);
+                $('#totalStockQuantity').val(quantity);
+                $('#productStockNameLabel').text(name);
+                $('#remainingStockQtyLabel').text(remainQty);
+                $('#newStockSellingPrice').val(sellingPrice);
             });
 
             //edit inventory
@@ -986,13 +1103,13 @@
                     url: '{{route('loss.delete','')}}/' + id,
                     data: {
                         _token: token,
-                        id:id,
+                        id: id,
                     },
                     success: function (data) {
                         if (data == 'success') {
                             loadLosses(invProdId);
                             $('#delete-loss-modal').modal('hide');
-                        }else{
+                        } else {
                             alert('Oops...Something went Wrong!');
                         }
                     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\DebtPayment;
 use App\Product;
 use App\Receipt;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class CustomerController extends Controller
     //view customer
     public function view($id)
     {
-        Gate::authorize('edit-inventory');
+        Gate::authorize('view-customers');
         $customer = Customer::find($id);
         if ($customer == null) {
             return redirect()->back()->with('error', 'Customer Not Found');
@@ -78,14 +79,12 @@ class CustomerController extends Controller
     {
         Gate::authorize('delete-customer');
         $customer = Customer::find($id);
-        if ($customer == null) {
-            return redirect()->back()->with('error', 'Customer Not Found');
-        }
+        if ($customer == null) return redirect()->back()->with('error', 'Customer Not Found');
         $customer->delete();
         return redirect()->back()->with('success', 'Customer deleted!');
     }
 
-    //
+    //get Receipt info
     public function getReceipt($number)
     {
         Gate::authorize('view-customers');
@@ -138,5 +137,18 @@ class CustomerController extends Controller
                     </table>
                 </div>';
         return $start . $products . $end;
+    }
+
+    //pay debt
+    public function payDebt(Request $request, $id)
+    {
+        $this->validate($request, [
+            'amount' => 'required'
+        ]);
+
+        $receipt = Receipt::find($id);
+        if ($request == null) return redirect()->back()->with('error', 'Receipt info NOT Found');
+        $receipt->debtPayments()->save(new DebtPayment(['amount' => $request->get('amount'), 'issuer' => auth()->id()]));
+        return redirect()->back()->with('success', 'Payment Received');
     }
 }

@@ -2,10 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/DebtPayment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_06_123633_create_debt_payments_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Customer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SaleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SaleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/UpdateInventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/UpdateInventory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/PaymentType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/PaymentType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Permission.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Permission.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Receipt.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Receipt.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_10_210514_create_receipts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_10_210514_create_receipts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/PermissionsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/PermissionsTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/add-role.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/add-role.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/edit-role.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/edit-role.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/view-customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/view-customer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -153,21 +168,21 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../POSJiji" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.21245831" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Sales\resources\views" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/product" />
       <recent name="$PROJECT_DIR$/resources/views/sale" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -225,7 +240,10 @@
       <workItem from="1596220622027" duration="8807000" />
       <workItem from="1596293762030" duration="3523000" />
       <workItem from="1596350514537" duration="6524000" />
-      <workItem from="1596372444856" duration="4991000" />
+      <workItem from="1596372444856" duration="5607000" />
+      <workItem from="1596545357473" duration="56000" />
+      <workItem from="1596635201099" duration="5745000" />
+      <workItem from="1596712571752" duration="11170000" />
     </task>
     <servers />
   </component>

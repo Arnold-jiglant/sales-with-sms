@@ -77,6 +77,7 @@
                     <th>Name</th>
                     <th>Amount Spent</th>
                     <th>Visit Count</th>
+                    <th>Debt</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -89,23 +90,30 @@
                             <td>{{$customer->name}}</td>
                             <td>{{number_format($customer->totalSpent,2)}}</td>
                             <td>{{$customer->visitCount}}</td>
+                            <td class="text-danger">{{number_format($customer->totalDebt,2)}}</td>
                             <td>
                                 <div class="options">
-                                    <a href="{{route('customer.view',$customer->id)}}" class="option-link">
-                                        <i class="icon ion-eye"></i>&nbsp;
-                                        <span class="link-text">View</span>
-                                    </a>
-                                    <a href="#" class="option-link edit" data-toggle="modal"
-                                       data-target="#edit-customer-modal" data-id="{{$customer->id}}"
-                                       data-name="{{$customer->name}}">
-                                        <i class="icon ion-edit"></i>&nbsp;
-                                        <span class="link-text">edit</span>
-                                    </a>
-                                    <a href="#" class="option-link delete" data-toggle="modal"
-                                       data-target="#delete-customer-modal" data-id="{{$customer->id}}">
-                                        <i class="icon ion-android-delete"></i>&nbsp;
-                                        <span class="link-text">delete</span>
-                                    </a>
+                                    @can('add-customer')
+                                        <a href="{{route('customer.view',$customer->id)}}" class="option-link">
+                                            <i class="icon ion-eye"></i>&nbsp;
+                                            <span class="link-text">View</span>
+                                        </a>
+                                    @endcan
+                                    @can('edit-customer')
+                                        <a href="#" class="option-link edit" data-toggle="modal"
+                                           data-target="#edit-customer-modal" data-id="{{$customer->id}}"
+                                           data-name="{{$customer->name}}">
+                                            <i class="icon ion-edit"></i>&nbsp;
+                                            <span class="link-text">edit</span>
+                                        </a>
+                                    @endcan
+                                    @can('delete-customer')
+                                        <a href="#" class="option-link delete" data-toggle="modal"
+                                           data-target="#delete-customer-modal" data-id="{{$customer->id}}">
+                                            <i class="icon ion-android-delete"></i>&nbsp;
+                                            <span class="link-text">delete</span>
+                                        </a>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>

@@ -86,8 +86,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td rowspan="4" class="align-middle">2</td>
-                            <td rowspan="4" class="align-middle font-weight-bold">CUSTOMER</td>
+                            <td rowspan="5" class="align-middle">2</td>
+                            <td rowspan="5" class="align-middle font-weight-bold">CUSTOMER</td>
                             <td>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input customer" type="checkbox" name="permissions[]"
@@ -124,6 +124,15 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input customer" type="checkbox" name="permissions[]"
+                                           value="CU5" id="payDebt">
+                                    <label class="custom-control-label" for="payDebt">Receive Debt Payment</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td rowspan="4" class="align-middle">3</td>
                             <td rowspan="4" class="align-middle font-weight-bold">EXPENSE</td>
                             <td>
@@ -154,11 +163,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="custom-control custom-checkbox"><input class="custom-control-input expense"
-                                                                                   type="checkbox" name="permissions[]"
-                                                                                   value="EX4"
-                                                                                   id="deleteExpense"><label
-                                        class="custom-control-label" for="deleteExpense">Delete Expenses</label></div>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input expense" type="checkbox" name="permissions[]"
+                                           value="EX4" id="deleteExpense">
+                                    <label class="custom-control-label" for="deleteExpense">Delete Expenses</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>

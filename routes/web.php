@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function (){
     Route::post('customer/add','CustomerController@add')->name('customer.add');
     Route::get('customer/view/{id}','CustomerController@view')->name('customer.view');
     Route::put('customer/update/{id}','CustomerController@update')->name('customer.update');
+    Route::put('customer/pay/debt/{id}','CustomerController@payDebt')->name('customer.pay.debt');
     Route::delete('customer/delete/{id}','CustomerController@delete')->name('customer.delete');
     Route::get('get/receipt/{number}','CustomerController@getReceipt')->name('customers.get.receipt');
 
@@ -76,6 +77,7 @@ Route::middleware('auth')->group(function (){
     Route::put('inventory/update/description/{id}','InventoryController@updateDescription')->name('inventory.update.desc');
     Route::get('inventory/get/discounts/{id}','InventoryController@getDiscounts')->name('inventory.get.discounts');
     Route::put('inventory/update/{id}','InventoryController@update')->name('inventory.update');
+    Route::put('inventory/add/to/stock/{id}','InventoryController@addToStock')->name('inventory.add.stock');
     Route::delete('inventory/delete/{id}','InventoryController@delete')->name('inventory.delete');
 
     //loss
