@@ -133,12 +133,13 @@
                         <td>{{$invProduct->quantity}}</td>
                         <td>{{$invProduct->remainingQty}}</td>
                         <td>
-                            <div class="progress">
+                            {{$invProduct->stockLevel}}%
+                            <div class="progress" style="height: 10px;">
                                 <div
                                     class="progress-bar progress-bar-striped progress-bar-animated {{$invProduct->stockLevelClass}}"
                                     aria-valuenow="{{$invProduct->stockLevel}}"
                                     aria-valuemin="0" aria-valuemax="100"
-                                    style="width: {{$invProduct->stockLevel}}%;">{{$invProduct->stockLevel}}%
+                                    style="width: {{$invProduct->stockLevel}}%;">
                                 </div>
                             </div>
                         </td>

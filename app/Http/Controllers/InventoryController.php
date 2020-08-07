@@ -174,7 +174,7 @@ class InventoryController extends Controller
         if ($product->count() > 0) {
             $name = $product->first()->name;
             $request->session()->flash('existingProduct', $request->get('product'));
-            return redirect()->back()->with('error', "Product ($name) Already Exist in this inventory!, Try Editing");
+            return redirect()->back()->with('error', "Product ($name) Already Exist in this inventory!, Try Add Stock");
         }
         $discounts = null;
         if ($request->has('discount')) {
@@ -218,6 +218,7 @@ class InventoryController extends Controller
 
         //update inventory
         event(new InventoryChanged($invProduct->inventory));
+//        return $request->all();
         return redirect()->back()->with('success', 'Product Stock Updated');
     }
 

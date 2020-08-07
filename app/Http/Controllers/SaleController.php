@@ -18,6 +18,7 @@ class SaleController extends Controller
 {
 
     //TODO Dashboard (Most selling Product,Stock Level, Today Sales)
+    //TODO On sale when add to existing product check if qty exceeded
     public function index()
     {
         Gate::authorize('sell-product');
@@ -63,6 +64,10 @@ class SaleController extends Controller
             });
             if ($existing->count() > 0) {
                 $existing = $existing->first();
+                $remainQty = $sale->inventoryProduct->remainingQty;
+                if (($sale->quantity + $existing->quantity) > $remainQty) {
+                    return redirect()->back()->with('error', 'Not Enough Quantity in Stock only ' . $remainQty . ' remain!');
+                }
                 $sale->quantity += $existing->quantity;
                 $sale->total = $sale->quantity * ($sale->sellingPrice - $sale->discount);
                 $sales = $sales->reject(function ($sale) use ($request) {

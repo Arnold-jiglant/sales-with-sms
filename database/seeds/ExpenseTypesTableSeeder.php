@@ -14,7 +14,8 @@ class ExpenseTypesTableSeeder extends Seeder
     {
         DB::table('expense_types')->insert([
             ['name'=>'Transport'],
-            ['name'=>'Salary'],
+            ['name'=>'Taxes'],
+            ['name'=>'Rent'],
             ['name'=>'Other'],
         ]);
     }

@@ -2,9 +2,8 @@
 
 ###USERS
 - Manager
-- Seller
 
-###USER FUNCTIONALITIES
+###USER FUNCTIONS
 1.MANAGER
 - add,edit,delete product inventory
 - suggest product selling price
@@ -15,11 +14,8 @@
 - view report per specific time period
 - manager system users (add,edit/delete)
 
-2.SELLER
-- sell product
-- add,edit,update,delete customer
 
-###SYSTEM FUNCTIONALITIES
+###SYSTEM FUNCTIONS
 - generate transaction/receipt number for each sale
 - update sales product table after each sale
 - can generate barcode for particular product
@@ -88,7 +84,7 @@
 -quantity
 -sellingPrice	//before discount
 -buyingPrice
--discount	//discount amount/can be manualy typed
+-discount	//discount amount/can be manually typed
 -receipt_id
 
 12.RECEIPT

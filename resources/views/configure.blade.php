@@ -31,32 +31,6 @@
             </div>
         </div>
     @endif
-    <div class="col-lg-12 col-xl-10 offset-lg-0 offset-xl-1">
-        {{--        <div class="row">--}}
-        {{--            <div class="col-6 col-lg-4">--}}
-        {{--                <form class="text-center p-3" style="border: 1px solid #eee;border-radius: 10px;" method="POST"--}}
-        {{--                      action="{{route('sellMethod')}}">--}}
-        {{--                    {{csrf_field()}}--}}
-        {{--                    <div class="form-group"><label class="font-weight-bold">SELLING METHOD</label>--}}
-        {{--                        <div>--}}
-        {{--                            @foreach($sellMethods as $method)--}}
-        {{--                                <div class="custom-control custom-control-inline custom-radio" data-toggle="popover"--}}
-        {{--                                     data-content="{{$method->description}}"--}}
-        {{--                                     data-trigger="hover" data-placement="bottom">--}}
-        {{--                                    <input class="custom-control-input" type="radio" name="sellMethod"--}}
-        {{--                                           {{\App\Configuration::sellMethod()==$method->id?'Checked':''}}--}}
-        {{--                                           id="{{$method->method}}" value="{{$method->id}}">--}}
-        {{--                                    <label class="custom-control-label"--}}
-        {{--                                           for="{{$method->method}}">{{$method->method}}  </label>--}}
-        {{--                                </div>--}}
-        {{--                            @endforeach--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <button class="btn btn-primary btn-sm custom-btn mb-2" type="submit">Change</button>--}}
-        {{--                </form>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
-    </div>
     <div class="row mt-3">
         <div class="col-6 col-xl-5 offset-xl-1">
             <ul class="nav nav-pills">
@@ -69,7 +43,7 @@
                 </li>
                 <li>
                     <button class="btn btn-sm btn-success" data-toggle="pill" data-target="#extra-income-categories">
-                        Extra Income Categories
+                        Extra Income Sources
                     </button>
                 </li>
             </ul>
@@ -172,7 +146,7 @@
                     </form>
                 </div>
                 <div id="extra-income-categories" class="tab-pane fade in card card-body">
-                    <h6>Extra Income Categories</h6>
+                    <h6>Extra Income Sources</h6>
                     <form class="p-2">
                         <div class="text-right">
                             <button class="btn btn-primary btn-sm custom-btn mb-2" type="button" data-toggle="modal"
@@ -188,7 +162,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Category</th>
+                                    <th>Source</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -321,7 +295,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;Add Income Category</h5>
+                    <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;Add Income Source</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -329,12 +303,12 @@
                     <form action="{{route('add.income.type')}}" method="POST">
                         {{csrf_field()}}
                         <div class="form-group">
-                            <label for="name">Category Name:</label>
+                            <label for="name">Source Name:</label>
                             <input id="name" class="form-control form-control-sm" type="text" name="name"
                                    placeholder="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="description">Category Description (optional)</label>
+                            <label for="description">Source Description (optional)</label>
                             <textarea class="form-control form-control-sm" rows="4" id="description"
                                       name="description"></textarea>
                         </div>
@@ -351,7 +325,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit Income Category</h5>
+                    <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit Income Source</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -360,12 +334,12 @@
                         <input type="hidden" name="_method" value="PUT">
                         {{csrf_field()}}
                         <div class="form-group">
-                            <label for="name">Category Name:</label>
+                            <label for="name">Source Name:</label>
                             <input class="form-control form-control-sm" type="text" placeholder="name" id="name"
                                    name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="description">Category Description (optional)</label>
+                            <label for="description">Source Description (optional)</label>
                             <textarea class="form-control form-control-sm" rows="4" id="description"
                                       name="description"></textarea>
                         </div>
@@ -382,7 +356,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Income Category</h5>
+                    <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Income Source</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -390,7 +364,7 @@
                     <form method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE">
-                        <p>Are you sure you want to delete this income category?</p>
+                        <p>Are you sure you want to delete this income source?</p>
                         <div class="float-right">
                             <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close</button>
                             <button class="btn btn-primary btn-sm custom-btn" type="submit">Delete</button>

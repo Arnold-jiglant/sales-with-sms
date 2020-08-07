@@ -55,12 +55,17 @@
                             <td>{{number_format($inventory->totalCost,2)}}  </td>
                             <td>{{number_format($inventory->expectedAmount,2)}}</td>
                             <td>
-                                <div class="progress">
+                                @if($inventory->finished)
+                                    <span class="text-success icon ion-checkmark"></span>
+                                @else
+                                    {{$inventory->progress}}%
+                                @endif
+                                <div class="progress" style="height: 10px">
                                     <div
                                         class="progress-bar progress-bar-striped progress-bar-animated {{$inventory->finished?'bg-success':''}}"
                                         aria-valuenow="{{$inventory->progress}}"
                                         aria-valuemin="0" aria-valuemax="100"
-                                        style="width: {{$inventory->progress}}%;">{{$inventory->progress}}%
+                                        style="width: {{$inventory->progress}}%;">
                                     </div>
                                 </div>
                             </td>

@@ -305,7 +305,7 @@
         </div>
     </div>
     <div class="modal fade" role="dialog" tabindex="-1" id="confirm-sell-modal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="icon ion-ios-cart"></i>&nbsp;Confirm sell</h5>

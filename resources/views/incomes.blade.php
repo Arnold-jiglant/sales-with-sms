@@ -151,7 +151,7 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="incomeType">Income Type:</label>
-                                <select class="custom-select custom-select-sm" id="incomeType" name="incomeType">
+                                <select class="custom-select custom-select-sm" id="incomeType" name="incomeType" required>
                                     @foreach($incomeTypes as $type)
                                         <option value="{{$type->id}}">{{$type->name}}</option>
                                     @endforeach
