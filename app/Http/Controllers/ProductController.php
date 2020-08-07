@@ -11,8 +11,16 @@ class ProductController extends Controller
     public function index()
     {
         Gate::authorize('view-inventory');
-        $products = Product::paginate(10);
-        return view('products', compact('products'));
+        $request = Request::capture();
+        $title = '';
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $title = "Search for '$search'";
+            $products = Product::where('name', 'like', "%$search%")->paginate(10);
+        } else {
+            $products = Product::paginate(10);
+        }
+        return view('products', compact('products', 'title'));
     }
 
     //add product

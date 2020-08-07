@@ -40,9 +40,30 @@
                 </div>
             </div>
         @endif
+            <div class="row mt-1">
+                <div class="col-md-8 col-xl-6 offset-md-2">
+                    <form class="search-form" action="{{route('customers')}}">
+                        <div class="form-group">
+                            <div class="input-group input-group-sm">
+                                <input name="search" class="form-control" type="text" placeholder="search customer" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary custom-btn" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         <div class="row">
             <div class="col-6">
-                <p>Total {{$customers->total()}} showing {{$customers->firstItem()}}-{{$customers->lastItem()}}</p>
+                <p>
+                    @if(strlen($title)>0)
+                        {{$title}}, Found {{$customers->total()}}
+                    @else
+                        Total {{$customers->total()}} showing {{$customers->firstItem()}}
+                        -{{$customers->lastItem()}}
+                    @endif
+                </p>
             </div>
             <div class="col order-sm-1">
                 <div class="text-right">
@@ -131,7 +152,7 @@
     <div class="row mt-2">
         <div class="col-11 col-md-10 col-lg-7 offset-1 offset-md-1 offset-lg-3">
             <nav>
-                {{$customers->links()}}
+                {{$customers->appends(request()->query())->links()}}
             </nav>
         </div>
     </div>

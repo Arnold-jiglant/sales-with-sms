@@ -187,10 +187,10 @@ div.options {
 }
 
 .pagination .page-item .page-link {
-    margin: 2px;
+    margin: 1px;
     border-radius: 50%;
     color: #555;
-    font-size: 11pt;
+    font-size: 9pt;
     border: 1px solid #9a9a9a;
 }
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\InventoryChanged;
 use App\Inventory;
+use App\Listeners\UpdateInventory;
 use App\PaymentType;
 use App\Product;
 use App\Receipt;
@@ -19,14 +21,25 @@ class SaleController extends Controller
     public function index()
     {
         Gate::authorize('sell-product');
-        // Session::forget('sales');
         $products = collect([]);
+        $request = Request::capture();
         $inventories = Inventory::unfinished()->orderBy('created_at')->get();
+        $title = '';
         foreach ($inventories as $inventory) {
-            $products->add($inventory->inventoryProducts()->get());
+            $products->add($inventory->inventoryProducts()->get()->filter(function ($product) {  //Filter product with qty>0
+                return $product->remainingQty > 0;
+            }));
         }
-        $products = $products->collapse()->paginate(10);
-        return view('sell', compact('products'));
+        $products = $products->collapse();
+        if ($request->has('search')) {  //filter search
+            $search = trim($request->get('search'));
+            $title = "Search for '$search'";
+            $products = $products->filter(function ($product) use ($request, $search) {
+                return str_contains(strtolower($product->name), strtolower($search));
+            });
+        }
+        $products = $products->paginate(10);
+        return view('sell', compact('products', 'title'));
     }
 
     //add sale
@@ -119,6 +132,13 @@ class SaleController extends Controller
         });
         Session::forget('sales');
         $receipt->sales()->saveMany($sales);
+        $sales->transform(function ($sale) {
+            return $sale->inventoryProduct->inventory;
+        })->unique(function ($inventory) {
+            return $inventory->id;
+        })->each(function ($inventory) {
+            event(new InventoryChanged($inventory));
+        });
         //TODO Print Receipt
         return redirect()->back()->with('success', 'Sale complete! Receipt No. (' . $receipt->number . ')');
     }

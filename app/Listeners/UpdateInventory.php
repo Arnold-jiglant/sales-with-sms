@@ -34,6 +34,7 @@ class UpdateInventory
         $inventory->expectedAmount = $invProducts->sum(function ($product) {
             return ($product->sellingPrice * $product->remainingQty) + $product->SaleAmount;
         });
+        $inventory->finished = $inventory->progress >= 100;
         $inventory->save();
     }
 }

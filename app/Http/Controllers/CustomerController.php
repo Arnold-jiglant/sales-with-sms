@@ -14,8 +14,16 @@ class CustomerController extends Controller
     public function index()
     {
         Gate::authorize('view-customers');
-        $customers = Customer::paginate(10);
-        return view('customers', compact('customers'));
+        $request = Request::capture();
+        $title ='';
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $title = "Search for '$search'";
+            $customers = Customer::where('name', 'like', "%$search%")->paginate(10);
+        } else {
+            $customers = Customer::paginate(10);
+        }
+        return view('customers', compact('customers','title'));
     }
 
     //add customer
@@ -34,9 +42,7 @@ class CustomerController extends Controller
     {
         Gate::authorize('view-customers');
         $customer = Customer::find($id);
-        if ($customer == null) {
-            return redirect()->back()->with('error', 'Customer Not Found');
-        }
+        if ($customer == null) return redirect()->back()->with('error', 'Customer Not Found');
         $receipts = $customer->receipts()->orderByDesc('created_at')->get()->paginate(10);
         return view('view-customer', compact('customer', 'receipts'));
     }
@@ -63,9 +69,7 @@ class CustomerController extends Controller
     {
         Gate::authorize('edit-customer');
         $customer = Customer::find($id);
-        if ($customer == null) {
-            return redirect()->back()->with('error', 'Customer Not Found');
-        }
+        if ($customer == null) return redirect()->back()->with('error', 'Customer Not Found');
         $this->validate($request, [
             'customer_name' => 'required|unique:customers,name,' . $id
         ]);
@@ -89,9 +93,7 @@ class CustomerController extends Controller
     {
         Gate::authorize('view-customers');
         $receipt = Receipt::whereNumber($number)->first();
-        if ($receipt == null) {
-            return "<h6 class=\"text-center\">Receipt Not Found</h6>";
-        }
+        if ($receipt == null) return "<h6 class=\"text-center\">Receipt Not Found</h6>";
         $start = '<div class="form-row">
                                 <div class="col-sm-6">
                                     <p><span>Receipt No:</span><span class="ml-1 value font-weight-normal">' . $receipt->number . '</span>
@@ -147,7 +149,7 @@ class CustomerController extends Controller
         ]);
 
         $receipt = Receipt::find($id);
-        if ($request == null) return redirect()->back()->with('error', 'Receipt info NOT Found');
+        if ($receipt == null) return redirect()->back()->with('error', 'Receipt info NOT Found');
         $receipt->debtPayments()->save(new DebtPayment(['amount' => $request->get('amount'), 'issuer' => auth()->id()]));
         return redirect()->back()->with('success', 'Payment Received');
     }

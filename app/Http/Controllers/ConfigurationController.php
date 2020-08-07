@@ -18,7 +18,7 @@ class ConfigurationController extends Controller
         $roles = Role::all()->except([1]);
         $expenseCategories = ExpenseType::all();
         $incomeCategories = IncomeType::all();
-        return view('configure', compact('sellMethods', 'roles', 'expenseCategories','incomeCategories'));
+        return view('configure', compact('sellMethods', 'roles', 'expenseCategories', 'incomeCategories'));
     }
 
     //choose selling Method
@@ -68,9 +68,7 @@ class ConfigurationController extends Controller
     public function deleteExpenseType($id)
     {
         $category = ExpenseType::find($id);
-        if ($category == null) {
-            return $this->redirectWithError('Category Not Found');
-        }
+        if ($category == null) return $this->redirectWithError('Category Not Found');
         if ($category->hasExpenses) {
             $category->delete();
         } else {
@@ -99,10 +97,7 @@ class ConfigurationController extends Controller
             'name' => 'required|unique:App\IncomeType,name,' . $id,
         ]);
         $category = IncomeType::find($id);
-        if ($category == null) {
-            return $this->redirectWithError('Category Not Found');
-        }
-//        return $request->all();
+        if ($category == null) return $this->redirectWithError('Category Not Found');
         $category->name = $request->get('name');
         $category->description = $request->get('description');
         $category->save();
@@ -113,9 +108,7 @@ class ConfigurationController extends Controller
     public function deleteIncomeType($id)
     {
         $category = IncomeType::find($id);
-        if ($category == null) {
-            return $this->redirectWithError('Category Not Found');
-        }
+        if ($category == null) return $this->redirectWithError('Category Not Found');
         if ($category->hasIncomes) {
             $category->delete();
         } else {
@@ -147,9 +140,7 @@ class ConfigurationController extends Controller
     public function editRole($id)
     {
         $role = Role::find($id);
-        if ($role == null) {
-            return $this->redirectWithError('Role Not Found');
-        }
+        if ($role == null) return $this->redirectWithError('Role Not Found');
         $permissions = $role->permissions()->pluck('permission_code');
         return view('edit-role', compact('role', 'permissions'));
     }
@@ -158,9 +149,7 @@ class ConfigurationController extends Controller
     public function updateRole(Request $request, $id)
     {
         $role = Role::find($id);
-        if ($role == null) {
-            return $this->redirectWithError('Role Not Found');
-        }
+        if ($role == null) return $this->redirectWithError('Role Not Found');
         $this->validate($request, ['name' => 'required|unique:App\Role,name,' . $id]);
         $role->permissions()->delete();
         $permissions = [];
@@ -175,9 +164,7 @@ class ConfigurationController extends Controller
     public function deleteRole($id)
     {
         $role = Role::find($id);
-        if ($role == null) {
-            return $this->redirectWithError('Role Not Found');
-        }
+        if ($role == null) return $this->redirectWithError('Role Not Found');
         $role->permissions()->delete();
         $role->delete();
         return $this->redirectWithSuccess('Role deleted!');

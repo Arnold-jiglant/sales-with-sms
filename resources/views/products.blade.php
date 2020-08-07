@@ -20,10 +20,10 @@
             <div class="col-md-8 col-xl-6 offset-md-2">
                 <form class="search-form">
                     <div class="form-group">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="search product">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control" type="text" placeholder="search product" name="search" required>
                             <div class="input-group-append">
-                                <button class="btn btn-primary custom-btn" type="button">Search</button>
+                                <button class="btn btn-primary custom-btn" type="submit">Search</button>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,14 @@
         @endif
         <div class="row">
             <div class="col-6">
-                <p>Total {{$products->total()}} showing {{$products->firstItem()}}-{{$products->lastItem()}}</p>
+                <p>
+                    @if(strlen($title)>0)
+                        {{$title}}, Found {{$products->total()}}
+                    @else
+                        Total {{$products->total()}} showing {{$products->firstItem()}}
+                        -{{$products->lastItem()}}
+                    @endif
+                </p>
             </div>
             <div class="col order-sm-1">
                 @can('add-inventory')
