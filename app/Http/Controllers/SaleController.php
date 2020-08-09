@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\InventoryChanged;
 use App\Inventory;
-use App\Listeners\UpdateInventory;
 use App\PaymentType;
-use App\Product;
 use App\Receipt;
 use App\Sale;
 use App\TempSale;
@@ -18,7 +16,6 @@ class SaleController extends Controller
 {
 
     //TODO Dashboard (Most selling Product,Stock Level, Today Sales)
-    //TODO On sale when add to existing product check if qty exceeded
     public function index()
     {
         Gate::authorize('sell-product');

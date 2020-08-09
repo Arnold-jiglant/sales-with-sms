@@ -52,4 +52,11 @@ class Inventory extends Model
             return $invProduct->lossAmount;
         });
     }
+
+    public function getTotalSalesAttribute()
+    {
+        return $this->inventoryProducts()->get()->sum(function (InventoryProduct $invProduct) {
+            return $invProduct->saleAmount;
+        });
+    }
 }

@@ -40,7 +40,7 @@
             </div>
         @endif
         <div class="col-md-11 col-lg-10 col-xl-8 offset-lg-1 offset-xl-1">
-            <div id="inventoryInfo" class="p-3" style="font-size: 11pt;">
+            <div id="inventoryInfo" class="card card-body" style="font-size: 11pt;">
                 <div class="row">
                     <div class="col-sm-6">
                         <p><span>Total Cost:&nbsp;</span><span
@@ -48,6 +48,9 @@
                         </p>
                         <p><span>Expected Amount:&nbsp;</span><span
                                 class="ml-1 value">{{number_format($inventory->expectedAmount,2)}}</span>
+                        </p>
+                        <p><span>Curent Sales:&nbsp;</span><span
+                                class="ml-1 value">{{number_format($inventory->totalSales,2)}}</span>
                         </p>
                         <p><span>Loss Amount:&nbsp;</span><span
                                 class="ml-1 text-danger">{{number_format($inventory->totalLossAMount,2)}}</span>
@@ -176,7 +179,8 @@
                                    data-target="#product-loss-modal" data-id="{{$invProduct->id}}"
                                    data-name="{{$invProduct->name}}" data-remainingQty="{{$invProduct->remainingQty}}"
                                    data-sellingPrice="{{$invProduct->sellingPrice}}"
-                                   data-buyingPrice="{{$invProduct->buyingPrice}}">
+                                   data-buyingPrice="{{$invProduct->buyingPrice}}"
+                                   data-hassize="{{$invProduct->hasSize}}">
                                     <i class="icon ion-arrow-graph-down-right"></i>&nbsp;
                                     <span class="link-text">Loss</span>
                                 </a>
@@ -646,6 +650,7 @@
                         <form>
                             <input id="lossInvProductId" type="hidden">
                             <input id="editLossId" type="hidden">
+                            <input id="editLossRemaining" type="hidden">
                             <div class="form-group">
                                 <label>Loss Quantity</label>
                                 <input class="form-control form-control-sm" type="number"
@@ -907,17 +912,25 @@
             });
 
             //show loss modal
+            let lossQuantity = $('#lossQuantity');
             $('#product-loss-modal').on('show.bs.modal', function (e) {
                 let id = $(e.relatedTarget).data('id');
                 let name = $(e.relatedTarget).data('name');
                 let buyingPrice = $(e.relatedTarget).data('buyingprice');
                 let sellingPrice = $(e.relatedTarget).data('sellingprice');
                 let remaining = $(e.relatedTarget).data('remainingqty');
+                let hasSize = $(e.relatedTarget).data('hassize')===1;
                 $('#invProductId').val(id);
                 $('#productNameLabelLoss').text(name);
                 $('#buyingPriceLabelLoss').text(buyingPrice);
                 $('#sellingPriceLabelLoss').text(sellingPrice);
                 $('#remainingQtyLabelLoss').text(remaining);
+                $('#lossQuantity').attr('max', remaining);
+                if(hasSize){
+                    lossQuantity.attr('step','0.25');
+                }else{
+                    lossQuantity.attr('step','1');
+                }
                 loadLosses(id);
             });
 
@@ -955,8 +968,8 @@
                     '    <td>\n' +
                     '        <div class="options">\n' +
                     '            <a href="#" class="option-link edit" data-toggle="modal"\n' +
-                    '               data-target="#edit-loss-modal" data-id="' + loss.id + '" data-qty="' + loss.qty + '"' +
-                    '               data-amount="' + loss.amount + '" data-description="' + loss.description + '" data-invprodid="' + loss.invProdId + '">\n' +
+                    '               data-target="#edit-loss-modal" data-id="' + loss.id + '" data-remaining="' + loss.remaining + '" data-qty="' + loss.qty + '"' +
+                    '               data-amount="' + loss.amount + '" data-hassize="' + loss.hasSize + '" data-description="' + loss.description + '" data-invprodid="' + loss.invProdId + '">\n' +
                     '                <i class="icon ion-edit"></i>&nbsp;\n' +
                     '                <span class="link-text">edit</span>\n' +
                     '            </a>\n' +
@@ -971,12 +984,12 @@
             }
 
             //calculate loss amount
-            $('#lossQuantity').keyup(calculateLossAmount).change(calculateLossAmount);
+            lossQuantity.keyup(calculateLossAmount).change(calculateLossAmount);
 
             function calculateLossAmount() {
                 let buyingPrice = $('#buyingPriceLabelLoss').text();
                 let qty = $('#lossQuantity').val();
-                let lossAmount = (qty * buyingPrice).toFixed(4);
+                let lossAmount = (qty * buyingPrice).toFixed(2);
                 if (isNaN(lossAmount)) {
                     $('#lossAmount').val('');
                 } else {
@@ -1009,8 +1022,7 @@
                     },
                     success: function (data) {
                         if (data == 'success') {
-                            loadLosses(id);
-                            clearInputs();
+                            window.location.reload();
                         }
                     }
                 });
@@ -1042,15 +1054,26 @@
             });
 
             //edit loss
+            let editLossQty = $('#editLossQuantity');
             $('#edit-loss-modal').on('show.bs.modal', function (e) {
                 let id = $(e.relatedTarget).data('id');
                 let invProdId = $(e.relatedTarget).data('invprodid');
                 let qty = $(e.relatedTarget).data('qty');
+                let remaining = $(e.relatedTarget).data('remaining');
+                let hasSize = $(e.relatedTarget).data('hassize');
                 let amount = $(e.relatedTarget).data('amount');
                 let desc = $(e.relatedTarget).data('description');
                 $('#editLossId').val(id);
                 $('#lossInvProductId').val(invProdId);
-                $('#editLossQuantity').val(qty);
+                editLossQty.val(qty);
+                editLossQty.attr('max',remaining);
+                if(hasSize){
+                    editLossQty.attr('step','0.25')
+                    editLossQty.attr('min','0.25')
+                }else{
+                    editLossQty.attr('step','1')
+                    editLossQty.attr('min','1')
+                }
                 $('#editLossAmount').val(amount);
                 $('#editLossDescription').val(desc);
             });
@@ -1059,7 +1082,7 @@
             $('#update-loss-btn').click(function () {
                 let id = $('#editLossId').val();
                 let invProdId = $('#lossInvProductId').val();
-                let qty = $('#editLossQuantity').val();
+                let qty = editLossQty.val();
                 let amount = $('#editLossAmount').val();
                 let desc = $('#editLossDescription').val();
                 if (qty.length === 0) {

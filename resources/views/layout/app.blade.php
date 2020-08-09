@@ -17,7 +17,8 @@
     <div id="logo-container"></div>
     <ul class="menu">
         @if(auth()->user()->isManager)
-            <li class="menu-item @yield('Dashboard')"><a href="#"><i class="fa fa-dashboard icon mr-3"></i><span
+            <li class="menu-item @yield('dashboard')"><a href="{{route('dashboard')}}"><i
+                        class="fa fa-dashboard icon mr-3"></i><span
                         class="text">Dashboard</span></a></li>
         @endif
         @can('sell-product')
@@ -80,7 +81,8 @@
                  id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
                     @if(auth()->user()->isManager)
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Dashboard</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
+                        </li>
                     @endif
                     @can('sell-product')
                         <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('sale')}}">Sale</a>

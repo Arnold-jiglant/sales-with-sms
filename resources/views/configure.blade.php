@@ -49,88 +49,39 @@
             </ul>
 
             <div class="tab-content mt-2">
-                <div id="user-roles" class="tab-pane fade in card card-body">
-                    <h6>User Roles</h6>
-                    <form class="p-2">
-                        <a href="{{route('addRole')}}"
-                           class="btn btn-primary btn-sm custom-btn mb-2 float-right">Add</a>
-                        <div class="table-responsive table-bordered text-center" id="products-table">
-                            <table class="table table-bordered table-hover table-sm">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Users</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @php($num=1)
-                                @foreach($roles as $role)
-                                    <tr>
-                                        <td>{{$num}}</td>
-                                        <td>{{$role->name}}</td>
-                                        <td>{{$role->users()->count()}}</td>
-                                        <td>
-                                            <div class="options">
-                                                <a href="{{route('editRole',$role->id)}}" class="option-link edit">
-                                                    <i class="icon ion-edit"></i>&nbsp;
-                                                    <span class="link-text">edit</span>
-                                                </a>
-                                                <a href="#" class="option-link delete" data-toggle="modal"
-                                                   data-target="#delete-role-modal" data-id="{{$role->id}}">
-                                                    <i class="icon ion-android-delete"></i>&nbsp;
-                                                    <span class="link-text">delete</span>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @php($num++)
-                                @endforeach
-                                </tbody>
-                            </table>
+                <div id="user-roles" class="tab-pane fade in">
+                    <div class="card shadow mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="text-primary font-weight-bold m-0">User Roles</h6>
+                            <a href="{{route('addRole')}}"
+                               class="btn btn-primary btn-sm custom-btn mb-2">Add</a>
                         </div>
-                    </form>
-                </div>
-                <div id="expense-categories" class="tab-pane fade in card card-body">
-                    <h6>Expense Categories</h6>
-                    <form class="p-2">
-                        <div class="text-right">
-                            <button class="btn btn-primary btn-sm custom-btn mb-2" type="button" data-toggle="modal"
-                                    data-target="#add-expense-category-modal">Add
-                            </button>
-                        </div>
-                        @error('name')
-                        <small class="text-danger">{{$message}}</small>
-                        @enderror
-                        @if($expenseCategories->count()>0)
-                            <div class="table-responsive table-bordered text-center"
-                                 id="products-table">
+                        <div class="card-body">
+                            <div class="table-responsive table-bordered text-center" id="products-table">
                                 <table class="table table-bordered table-hover table-sm">
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Category</th>
+                                        <th>Name</th>
+                                        <th>Users</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @php($num=1)
-                                    @foreach($expenseCategories as $category)
+                                    @foreach($roles as $role)
                                         <tr>
                                             <td>{{$num}}</td>
-                                            <td>{{$category->name}}</td>
+                                            <td>{{$role->name}}</td>
+                                            <td>{{$role->users()->count()}}</td>
                                             <td>
                                                 <div class="options">
-                                                    <a href="#edit-expense-category-modal" class="option-link edit"
-                                                       data-toggle="modal" data-id="{{$category->id}}"
-                                                       data-name="{{$category->name}}"
-                                                       data-description="{{$category->description}}">
-                                                        <i class="icon ion-edit"></i>&nbsp;<span
-                                                            class="link-text">edit</span>
+                                                    <a href="{{route('editRole',$role->id)}}" class="option-link edit">
+                                                        <i class="icon ion-edit"></i>&nbsp;
+                                                        <span class="link-text">edit</span>
                                                     </a>
                                                     <a href="#" class="option-link delete" data-toggle="modal"
-                                                       data-target="#delete-expense-category-modal" data-id="{{$category->id}}">
+                                                       data-target="#delete-role-modal" data-id="{{$role->id}}">
                                                         <i class="icon ion-android-delete"></i>&nbsp;
                                                         <span class="link-text">delete</span>
                                                     </a>
@@ -142,65 +93,114 @@
                                     </tbody>
                                 </table>
                             </div>
-                        @endif
-                    </form>
+                        </div>
+                    </div>
                 </div>
-                <div id="extra-income-categories" class="tab-pane fade in card card-body">
-                    <h6>Extra Income Sources</h6>
-                    <form class="p-2">
-                        <div class="text-right">
+                <div id="expense-categories" class="tab-pane fade in">
+                    <div class="card shadow mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="text-primary font-weight-bold m-0">Expense Categories</h6>
+                            <button class="btn btn-primary btn-sm custom-btn mb-2" type="button" data-toggle="modal"
+                                    data-target="#add-expense-category-modal">Add
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            @if($expenseCategories->count()>0)
+                                <div class="table-responsive table-bordered text-center"
+                                     id="products-table">
+                                    <table class="table table-bordered table-hover table-sm">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Category</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @php($num=1)
+                                        @foreach($expenseCategories as $category)
+                                            <tr>
+                                                <td>{{$num}}</td>
+                                                <td>{{$category->name}}</td>
+                                                <td>
+                                                    <div class="options">
+                                                        <a href="#edit-expense-category-modal" class="option-link edit"
+                                                           data-toggle="modal" data-id="{{$category->id}}"
+                                                           data-name="{{$category->name}}"
+                                                           data-description="{{$category->description}}">
+                                                            <i class="icon ion-edit"></i>&nbsp;<span
+                                                                class="link-text">edit</span>
+                                                        </a>
+                                                        <a href="#" class="option-link delete" data-toggle="modal"
+                                                           data-target="#delete-expense-category-modal"
+                                                           data-id="{{$category->id}}">
+                                                            <i class="icon ion-android-delete"></i>&nbsp;
+                                                            <span class="link-text">delete</span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @php($num++)
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div id="extra-income-categories" class="tab-pane fade in">
+                    <div class="card shadow mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="text-primary font-weight-bold m-0">Extra Income Sources</h6>
                             <button class="btn btn-primary btn-sm custom-btn mb-2" type="button" data-toggle="modal"
                                     data-target="#add-income-category-modal">Add
                             </button>
                         </div>
-                        @error('name')
-                        <small class="text-danger">{{$message}}</small>
-                        @enderror
-                        <div class="table-responsive table-bordered text-center"
-                             id="products-table">
-                            <table class="table table-bordered table-hover table-sm">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Source</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if($incomeCategories->count()>0)
-                                    @php($num=1)
-                                    @foreach($incomeCategories as $category)
+                        <div class="card-body">
+                            @if($incomeCategories->count()>0)
+                                <div class="table-responsive table-bordered text-center"
+                                     id="products-table">
+                                    <table class="table table-bordered table-hover table-sm">
+                                        <thead>
                                         <tr>
-                                            <td>{{$num}}</td>
-                                            <td>{{$category->name}}</td>
-                                            <td>
-                                                <div class="options">
-                                                    <a href="#edit-income-category-modal" class="option-link edit"
-                                                       data-toggle="modal" data-id="{{$category->id}}"
-                                                       data-name="{{$category->name}}"
-                                                       data-description="{{$category->description}}">
-                                                        <i class="icon ion-edit"></i>&nbsp;<span
-                                                            class="link-text">edit</span>
-                                                    </a>
-                                                    <a href="#" class="option-link delete" data-toggle="modal"
-                                                       data-target="#delete-income-category-modal" data-id="{{$category->id}}">
-                                                        <i class="icon ion-android-delete"></i>&nbsp;
-                                                        <span class="link-text">delete</span>
-                                                    </a>
-                                                </div>
-                                            </td>
+                                            <th>#</th>
+                                            <th>Source</th>
+                                            <th></th>
                                         </tr>
-                                        @php($num++)
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <td colspan="3">No category</td>
-                                    </tr>
-                                @endif
-                                </tbody>
-                            </table>
+                                        </thead>
+                                        <tbody>
+                                        @php($num=1)
+                                        @foreach($incomeCategories as $category)
+                                            <tr>
+                                                <td>{{$num}}</td>
+                                                <td>{{$category->name}}</td>
+                                                <td>
+                                                    <div class="options">
+                                                        <a href="#edit-income-category-modal" class="option-link edit"
+                                                           data-toggle="modal" data-id="{{$category->id}}"
+                                                           data-name="{{$category->name}}"
+                                                           data-description="{{$category->description}}">
+                                                            <i class="icon ion-edit"></i>&nbsp;<span
+                                                                class="link-text">edit</span>
+                                                        </a>
+                                                        <a href="#" class="option-link delete" data-toggle="modal"
+                                                           data-target="#delete-income-category-modal"
+                                                           data-id="{{$category->id}}">
+                                                            <i class="icon ion-android-delete"></i>&nbsp;
+                                                            <span class="link-text">delete</span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @php($num++)
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

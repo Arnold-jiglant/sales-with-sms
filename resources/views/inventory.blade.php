@@ -40,6 +40,7 @@
                     <th>Issued Date</th>
                     <th>Total Cost</th>
                     <th>Expecting Amount</th>
+                    <th>Current Sales</th>
                     <th>Sales Progress</th>
                     <th>Issuer</th>
                     <th></th>
@@ -54,9 +55,10 @@
                             <td>{{$inventory->created_at->format('D d M Y')}}</td>
                             <td>{{number_format($inventory->totalCost,2)}}  </td>
                             <td>{{number_format($inventory->expectedAmount,2)}}</td>
+                            <td>{{number_format($inventory->totalSales,2)}}</td>
                             <td>
                                 @if($inventory->finished)
-                                    <span class="text-success icon ion-checkmark"></span>
+                                    <span class="text-success font-weight-bold">complete</span>
                                 @else
                                     {{$inventory->progress}}%
                                 @endif

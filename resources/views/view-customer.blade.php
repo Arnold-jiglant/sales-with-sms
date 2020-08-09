@@ -75,7 +75,7 @@
                                     <td rowspan="{{$sales->count()}}" class="align-middle text-center">{{$num}}</td>
                                     <td rowspan="{{$sales->count()}}" class="align-middle text-center">
                                         <p>{{$receipt->number}}</p>
-                                        <p class="text-muted font-italic">({{$receipt->user->name}})</p>
+                                        <p class="text-muted small font-italic">({{$receipt->user->name}})</p>
                                     </td>
                                     <td>{{$sale->productName}}</td>
                                     <td>{{$sale->quantity}}</td>

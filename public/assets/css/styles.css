@@ -233,22 +233,69 @@ form {
     padding: 30px;
 }
 
-#inventoryInfo {
-    border: 1px dashed #00bacc;
-    border-radius: 10px;
-}
-
 #inventoryInfo .description {
     border: 1px dashed grey;
     border-radius: 10px;
     height: 70px;
 }
 
-#customer-container{
+#customer-container {
     position: relative;
 }
 
-#customer-list li{
+#customer-list li {
     cursor: pointer !important;
 }
 
+.border-left-warning {
+    border-left: .25rem solid #f6c23e !important;
+}
+
+.border-left-info {
+    border-left: .25rem solid #36b9cc !important;
+}
+
+.border-left-danger{
+    border-left: .25rem solid #dc3545!important;
+}
+
+.border-left-success {
+    border-left: .25rem solid #1cc88a !important;
+}
+
+.border-left-primary {
+    border-left: .25rem solid #4e73df !important;
+}
+
+@media (min-width: 768px) {
+    .chart-area {
+        height: 20rem;
+    }
+}
+
+.chart-area {
+    position: relative;
+    height: 20rem;
+    width: 100%;
+}
+
+.chartjs-size-monitor, .chartjs-size-monitor-expand, .chartjs-size-monitor-shrink {
+    position: absolute;
+    direction: ltr;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: -1;
+}
+
+.chartjs-render-monitor {
+    animation: chartjs-render-animation 1ms;
+}
+
+.text-gray-300 {
+    color: #dddfeb!important;
+}

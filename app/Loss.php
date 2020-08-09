@@ -13,6 +13,6 @@ class Loss extends Model
     //RELATION
     public function invProduct()
     {
-        return $this->belongsTo(InventoryProduct::class);
+        return $this->belongsTo(InventoryProduct::class,'inventory_product_id');
     }
 }

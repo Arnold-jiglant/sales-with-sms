@@ -12,8 +12,14 @@ class Receipt extends Model
 
 
     protected $appends = [
-        'requiredPaymentAmount', 'payedAmount', 'debtAmount','incompletePayment'
+        'requiredPaymentAmount', 'payedAmount', 'debtAmount', 'incompletePayment'
     ];
+
+    //SCOPE
+    public function scopeWithDebt($q)
+    {
+        return $q->where('payment_type_code', PaymentType::$DEBT);
+    }
 
     //RELATION
     public function sales()
@@ -72,6 +78,6 @@ class Receipt extends Model
 
     public function getIncompletePaymentAttribute()
     {
-        return $this->debtAmount >0;
+        return $this->debtAmount > 0;
     }
 }

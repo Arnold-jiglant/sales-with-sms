@@ -97,7 +97,7 @@ class InventoryProduct extends Model
 
     public function getStockLevelAttribute()
     {
-        return floor(($this->remainingQty / $this->quantity) * 100);
+        return round(($this->remainingQty / $this->quantity) * 100,1);
     }
 
     public function getStockLevelClassAttribute()

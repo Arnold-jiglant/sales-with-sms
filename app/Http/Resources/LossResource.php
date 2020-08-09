@@ -20,6 +20,8 @@ class LossResource extends JsonResource
             'invProdId' => $this->inventory_product_id,
             'qty' => $this->quantity,
             'amount' => $this->amount,
+            'remaining' => $this->invProduct->remainingQty,
+            'hasSize' => $this->invProduct->hasSize,
             'description' => $this->description ?? '',
             'date' => $this->created_at->format('d/m/Y'),
         ];
