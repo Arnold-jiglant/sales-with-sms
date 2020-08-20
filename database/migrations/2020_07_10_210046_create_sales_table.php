@@ -18,7 +18,6 @@ class CreateSalesTable extends Migration
             $table->integer('inventory_product_id');
             $table->double('quantity');
             $table->double('sellingPrice')->comment('before discount');
-            $table->double('buyingPrice');
             $table->double('discount')->default(0);
             $table->integer('receipt_id');
             $table->timestamps();

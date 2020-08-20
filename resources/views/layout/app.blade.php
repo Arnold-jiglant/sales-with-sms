@@ -22,9 +22,16 @@
                         class="text">Dashboard</span></a></li>
         @endif
         @can('sell-product')
-            <li class="menu-item @yield('sale')"><a href="{{route('sale')}}"><i
-                        class="fa fa-shopping-cart icon mr-3"></i><span
-                        class="text">Sale</span></a></li>
+            <li class="menu-item">
+                <a href="#sales" data-toggle="collapse">
+                    <i class="fa fa-shopping-cart icon mr-3"></i>
+                    <span class="text">Sale</span>
+                </a>
+                <ul id="sales" class="collapse sub-menu">
+                    <li><a href="{{route('sale')}}">New Sale</a></li>
+                    <li><a href="{{route('sale.view')}}">View Sales</a></li>
+                </ul>
+            </li>
         @endcan
         @can('view-customers')
             <li class="menu-item @yield('customer')"><a href="{{route('customers')}}"><i

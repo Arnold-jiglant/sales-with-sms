@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Gate;
 class SaleController extends Controller
 {
 
-    //TODO Dashboard (Most selling Product,Stock Level, Today Sales)
     public function index()
     {
         Gate::authorize('sell-product');
@@ -40,6 +39,22 @@ class SaleController extends Controller
         return view('sell', compact('products', 'title'));
     }
 
+    //view sales
+    public function viewSales()
+    {
+        Gate::authorize('sell-product');
+        $request = Request::capture();
+        $title = '';
+        if ($request->has('from') && $request->has('to')) {
+            if ($request->get('from') > $request->get('to')) return redirect()->back()->with('error', 'From date cant be greater than To date!');
+            $title = "From " . $request->get('from') . ' to ' . $request->get('to');
+            $receipts = Receipt::whereDate('created_at', '>=', $request->get('from'))->whereDate('created_at', '<=', $request->get('to'))->paginate(10);
+        } else {
+            $receipts = Receipt::paginate(10);
+        }
+        return view('view-sales', compact('receipts', 'title'));
+    }
+
     //add sale
     public function add(Request $request)
     {
@@ -49,7 +64,6 @@ class SaleController extends Controller
             'inventory_product_id' => $request->get('inventory_product_id'),
             'quantity' => $request->get('quantity'),
             'sellingPrice' => $request->get('sellingPrice'),
-            'buyingPrice' => $request->get('buyingPrice'),
             'discount' => $request->get('discountAmount') ?? 0,
             'total' => $request->get('total'),
         ]);
@@ -128,7 +142,6 @@ class SaleController extends Controller
                 'inventory_product_id' => $sale->inventory_product_id,
                 'quantity' => $sale->quantity,
                 'sellingPrice' => $sale->sellingPrice,
-                'buyingPrice' => $sale->buyingPrice,
                 'discount' => $sale->discount,
             ]);
         });

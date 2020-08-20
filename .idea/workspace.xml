@@ -3,18 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SaleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SaleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LossResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LossResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Inventory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/InventoryProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/InventoryProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Loss.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Loss.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Receipt.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Receipt.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Sale.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Sale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_10_210046_create_sales_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_10_210046_create_sales_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/configure.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/configure.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/inventory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layout/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/view-customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/view-customer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -169,15 +165,15 @@
     <property name="settings.editor.splitter.proportion" value="0.21245831" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Sales\resources\views" />
       <recent name="C:\xampp\htdocs\Sales\public\assets\js" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/product" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -243,7 +239,11 @@
       <workItem from="1596798688754" duration="7000" />
       <workItem from="1596798872377" duration="13811000" />
       <workItem from="1596847284091" duration="248000" />
-      <workItem from="1596970723985" duration="19511000" />
+      <workItem from="1596970723985" duration="19933000" />
+      <workItem from="1597063969755" duration="12879000" />
+      <workItem from="1597827355785" duration="1179000" />
+      <workItem from="1597908352904" duration="1221000" />
+      <workItem from="1597929982413" duration="4938000" />
     </task>
     <servers />
   </component>

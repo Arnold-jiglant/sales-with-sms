@@ -65,7 +65,7 @@ class InventoryProduct extends Model
 
     public function getBuyingPriceAttribute()
     {
-        return round($this->cost / $this->quantity, 4);
+        return round($this->cost / $this->quantity, 2);
     }
 
     public function getLossQuantityAttribute()
