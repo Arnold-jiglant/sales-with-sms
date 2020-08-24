@@ -31,23 +31,22 @@
             </div>
         </div>
     @endif
-    <div class="row mt-3">
-        <div class="col-6 col-xl-5 offset-xl-1">
-            <ul class="nav nav-pills">
-                <li class="mr-1"><a class="btn btn-sm btn-primary" data-toggle="pill" href="#user-roles">User Role</a>
-                </li>
-                <li class="mr-1">
-                    <button class="btn btn-sm btn-info" data-toggle="pill" data-target="#expense-categories">Expense
-                        Categories
-                    </button>
-                </li>
-                <li>
-                    <button class="btn btn-sm btn-success" data-toggle="pill" data-target="#extra-income-categories">
-                        Extra Income Sources
-                    </button>
-                </li>
-            </ul>
-
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="mr-1"><a class="btn btn-sm btn-primary" data-toggle="pill" href="#user-roles">User Role</a>
+            </li>
+            <li class="mr-1">
+                <button class="btn btn-sm btn-info" data-toggle="pill" data-target="#expense-categories">Expense
+                    Categories
+                </button>
+            </li>
+            <li class="mr-1">
+                <button class="btn btn-sm btn-success" data-toggle="pill" data-target="#extra-income-categories">
+                    Extra Income Sources
+                </button>
+            </li>
+        </ul>
+        <div class="col-lg-6">
             <div class="tab-content mt-2">
                 <div id="user-roles" class="tab-pane fade in">
                     <div class="card shadow mb-4">
@@ -131,12 +130,14 @@
                                                             <i class="icon ion-edit"></i>&nbsp;<span
                                                                 class="link-text">edit</span>
                                                         </a>
-                                                        <a href="#" class="option-link delete" data-toggle="modal"
-                                                           data-target="#delete-expense-category-modal"
-                                                           data-id="{{$category->id}}">
-                                                            <i class="icon ion-android-delete"></i>&nbsp;
-                                                            <span class="link-text">delete</span>
-                                                        </a>
+                                                        @if(!$category->hasExpenses)
+                                                            <a href="#" class="option-link delete" data-toggle="modal"
+                                                               data-target="#delete-expense-category-modal"
+                                                               data-id="{{$category->id}}">
+                                                                <i class="icon ion-android-delete"></i>&nbsp;
+                                                                <span class="link-text">delete</span>
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>
@@ -184,12 +185,14 @@
                                                             <i class="icon ion-edit"></i>&nbsp;<span
                                                                 class="link-text">edit</span>
                                                         </a>
-                                                        <a href="#" class="option-link delete" data-toggle="modal"
-                                                           data-target="#delete-income-category-modal"
-                                                           data-id="{{$category->id}}">
-                                                            <i class="icon ion-android-delete"></i>&nbsp;
-                                                            <span class="link-text">delete</span>
-                                                        </a>
+                                                        @if(!$category->hasIncomes)
+                                                            <a href="#" class="option-link delete" data-toggle="modal"
+                                                               data-target="#delete-income-category-modal"
+                                                               data-id="{{$category->id}}">
+                                                                <i class="icon ion-android-delete"></i>&nbsp;
+                                                                <span class="link-text">delete</span>
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>

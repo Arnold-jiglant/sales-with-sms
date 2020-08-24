@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{env('APP_NAME')}} |@yield('title')</title>
+    <title>{{env('APP_NAME')}} | @yield('title')</title>
     <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/fonts/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/fonts/ionicons.min.css')}}">
@@ -65,7 +65,7 @@
             </li>
         @endcan
         @can('view-report')
-            <li class="menu-item @yield('report')"><a href="#"><i class="fa fa-area-chart icon mr-3"></i><span
+            <li class="menu-item @yield('report')"><a href="{{route('report')}}"><i class="fa fa-area-chart icon mr-3"></i><span
                         class="text">Report</span></a>
             </li>
         @endcan
@@ -92,7 +92,12 @@
                         </li>
                     @endif
                     @can('sell-product')
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('sale')}}">Sale</a>
+                        <li class="nav-item" role="presentation">
+                            <a  href="#sales" data-toggle="collapse" class="nav-link">Sale</a>
+                            <ul id="sales" class="collapse sub-menu">
+                                <li><a href="{{route('sale')}}">New Sale</a></li>
+                                <li><a href="{{route('sale.view')}}">View Sales</a></li>
+                            </ul>
                         </li>
                     @endcan
                     @can('view-customers')
@@ -118,7 +123,7 @@
                                 Income</a></li>
                     @endcan
                     @can('view-report')
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Report</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('report')}}">Report</a></li>
                     @endcan
                     @if(auth()->user()->isManager)
                         <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('configure')}}">Configure</a>

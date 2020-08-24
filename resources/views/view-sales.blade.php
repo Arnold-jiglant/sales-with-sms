@@ -88,6 +88,12 @@
                                         <p class="p-0 m-0">Customer: <span
                                                 class=" text-info p-0">{{$receipt->customerName}}                                                </span>
                                         </p>
+                                    @elseif($receipt->payment_type_code == \App\PaymentType::$CRD)
+                                        <p class="value m-0">{{number_format($receipt->payedAMount,2)}}</p>
+                                        <span class="text-success">PAYED</span>
+                                        <p class="p-0 m-0">Customer: <span
+                                                class=" text-info p-0">{{$receipt->customerName}}                                                </span>
+                                        </p>
                                     @else
                                         <p class="value m-0">{{number_format($receipt->payedAMount,2)}}</p>
                                         <span class="text-success">PAYED</span>

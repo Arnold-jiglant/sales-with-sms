@@ -4,15 +4,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect('login');
+    if (\Illuminate\Support\Facades\DB::table('users')->count() > 0) {
+        return redirect('login');
+    } else {
+        return redirect()->route('startup.wizard');
+    }
+});
+
+//Startup Wizard
+Route::prefix('setup')->group(function () {
+    Route::get('wizard', 'WizardController@index')->name('startup.wizard');
+    Route::post('new/user', 'WizardController@newUser')->name('startup.new.user');
 });
 
 
 Route::middleware('auth')->group(function () {
     Route::get('home', function () {
-        return view('layout.app');
-    });
-    Route::get('dashboard', 'ReportController@dashboard')->name('dashboard');
+        return \auth()->user()->isManager ? redirect()->route('dashboard') : view('layout.app');
+    })->name('home');
 
     //Configuration
     Route::get('configure', 'ConfigurationController@index')->name('configure');
@@ -93,6 +102,11 @@ Route::middleware('auth')->group(function () {
     Route::get('sale/delete/item/{id}', 'SaleController@delete')->name('sale.delete.item');
     Route::post('sale/confirm', 'SaleController@confirm')->name('sale.confirm');
     Route::get('sale/cancel', 'SaleController@cancel')->name('cancel.sale');
+
+    //Reporting
+    Route::get('dashboard', 'ReportController@dashboard')->name('dashboard');
+    Route::get('report', 'ReportController@index')->name('report');
+    Route::get('report/income/statement', 'ReportController@incomeStatement')->name('report.income.statement');
 });
 
 

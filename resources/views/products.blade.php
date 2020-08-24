@@ -99,7 +99,12 @@
                         <tr>
                             <td>{{$num}}.</td>
                             <td>{{$product->name}}</td>
-                            <td class="text-center">{{$product->hasSize?'Yes':'No'}}</td>
+                            <td class="text-center">
+                                <div class="custom-control custom-control-inline custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" {{$product->hasSize?'checked':''}}>
+                                    <label class="custom-control-label" for="formCheck-1">{{$product->hasSize?'Yes':'No'}}</label>
+                                </div>
+                            </td>
                             <td>
                                 <div class="options">
                                     <a href="#" class="option-link edit" data-toggle="modal"
@@ -121,7 +126,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="4" class="text-muted">No product added yet</td>
+                        <td colspan="4" class="text-center">No product added yet</td>
                     </tr>
                 @endif
                 </tbody>

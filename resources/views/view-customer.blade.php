@@ -89,6 +89,7 @@
                                             <p class="p-0 m-0">Debt: <span
                                                     class=" text-danger p-0">{{number_format($receipt->debtAMount,2)}}                                                </span>
                                             </p>
+
                                         @else
                                             <p class="value m-0">{{number_format($receipt->payedAMount,2)}}</p>
                                             <span class="text-success">PAYED</span>

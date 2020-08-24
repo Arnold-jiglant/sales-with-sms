@@ -12,8 +12,12 @@ class IncomeType extends Model
         'name', 'description',
     ];
 
+    protected $appends = [
+        'hasIncomes'
+    ];
+
     //ATTRIBUTE
-    public function getHasIncomes()
+    public function getHasIncomesAttribute()
     {
         return $this->incomes()->count() > 0;
     }

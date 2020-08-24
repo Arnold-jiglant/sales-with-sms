@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Expense;
+use App\ExpenseType;
+use App\Income;
+use App\IncomeType;
 use App\Inventory;
+use App\Loss;
 use App\Receipt;
 use App\Sale;
 use Carbon\Carbon;
@@ -14,6 +19,48 @@ class ReportController extends Controller
     static public $YEARLY = 'yearly';
 
 
+    public function index()
+    {
+        return view('report');
+    }
+
+    //income statement
+    public function incomeStatement()
+    {
+        $request = Request::capture();
+        $title = 'From ' . $request->get('from') . ' to ' . $request->get('to');
+
+        $revenueGains = collect();
+        $expenseLoss = collect();
+        //Sales revenue
+        $receipts = Receipt::whereDate('created_at', '>=', $request->get('from'))->whereDate('created_at', '<=', $request->get('to'))->get();
+        $revenueGains->add(array('Sales Revenue' => $receipts->sum(function ($receipt) {
+            return $receipt->payedAMount;
+        })));
+
+        //Other Gains
+        foreach (IncomeType::all() as $incomeType) {
+            $revenueGains->add(array($incomeType->name => $incomeType->incomes()->whereDate('created_at', '>=', $request->get('from'))->whereDate('created_at', '<=', $request->get('to'))->sum('amount')));
+        }
+
+        //Losses and Expenses
+        $expenseLoss->add(array('Product Cost'=>$productBuyingCost = $receipts->transform(function ($receipt) {
+            return $receipt->sales()->get()->transform(function (Sale $sale) {
+                return $sale->quantity * $sale->inventoryProduct->buyingPrice;
+            });
+        })->collapse()->sum()));
+        $expenseLoss->add(array('Product losses' => Loss::whereDate('created_at', '>=', $request->get('from'))->whereDate('created_at', '<=', $request->get('to'))->sum('amount')));
+        //expenses
+        foreach (ExpenseType::all() as $expenseType) {
+            $expenseLoss->add(array($expenseType->name => $expenseType->expenses()->whereDate('created_at', '>=', $request->get('from'))->whereDate('created_at', '<=', $request->get('to'))->sum('amount')));
+        }
+        $revenueGains = $revenueGains->collapse();
+        $expenseLoss = $expenseLoss->collapse();
+
+        return view('income-statement', compact('title', 'expenseLoss', 'revenueGains'));
+    }
+
+    //dashboard
     public function dashboard()
     {
         //Today Sales
@@ -52,7 +99,9 @@ class ReportController extends Controller
         $latestSales = Sale::orderByDesc('created_at')->limit(5)->get();
 
         //Customer Debts
-        $customerDebts = Receipt::withDebt()->limit(7)->get();
+        $customerDebts = Receipt::withDebt()->get()->filter(function ($receipt) {
+            return $receipt->incompletePayment;
+        })->take(7);
 
         //Sales Chart
         $salesOverview = collect();
@@ -63,7 +112,7 @@ class ReportController extends Controller
             if ($request->get('time') == self::$YEARLY) {
                 for ($i = 0; $i < 7; $i++) {
                     $date = Carbon::now()->subYears($i);
-                    $salesOverview->add(array(' ' . $date->year => Receipt::whereDate('created_at', $date)->get()
+                    $salesOverview->add(array(' ' . $date->year => Receipt::whereYear('created_at', $date)->get()
                         ->sum(function ($receipt) {
                             return $receipt->payedAmount;
                         })));
@@ -73,7 +122,7 @@ class ReportController extends Controller
             } else {
                 for ($i = 0; $i < 7; $i++) {
                     $date = Carbon::now()->subMonths($i);
-                    $salesOverview->add(array(substr($date->monthName, 0, 3) => Receipt::whereDate('created_at', $date)->get()
+                    $salesOverview->add(array(substr($date->monthName, 0, 3) => Receipt::whereMonth('created_at', $date)->get()
                         ->sum(function ($receipt) {
                             return $receipt->payedAmount;
                         })));
@@ -94,6 +143,7 @@ class ReportController extends Controller
 
 
         return view('dashboard',
-            compact('todaySales', 'lastMonthSales', 'salesProgress', 'pendingDebts', 'latestSales', 'productStatus', 'salesOverview', 'title','customerDebts'));
+            compact('todaySales', 'lastMonthSales', 'salesProgress', 'pendingDebts', 'latestSales', 'productStatus', 'salesOverview', 'title', 'customerDebts'));
     }
+
 }

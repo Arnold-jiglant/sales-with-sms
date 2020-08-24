@@ -50,7 +50,7 @@ class SaleController extends Controller
             $title = "From " . $request->get('from') . ' to ' . $request->get('to');
             $receipts = Receipt::whereDate('created_at', '>=', $request->get('from'))->whereDate('created_at', '<=', $request->get('to'))->paginate(10);
         } else {
-            $receipts = Receipt::paginate(10);
+            $receipts = Receipt::orderByDesc('created_at')->paginate(10);
         }
         return view('view-sales', compact('receipts', 'title'));
     }

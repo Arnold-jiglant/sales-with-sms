@@ -12,8 +12,12 @@ class ExpenseType extends Model
         'name', 'description',
     ];
 
+    protected $appends = [
+        'hasExpenses'
+    ];
+
     //ATTRIBUTE
-    public function getHasExpenses()
+    public function getHasExpensesAttribute()
     {
         return $this->expenses()->count() > 0;
     }
