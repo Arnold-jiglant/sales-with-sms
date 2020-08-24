@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Language;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -14,8 +15,9 @@ class UserController extends Controller
     {
         Gate::authorize('view-users');
         $roles = Role::all();
+        $languages = Language::all();
         $users = User::paginate(10);
-        return view('users', compact('users', 'roles'));
+        return view('users', compact('users', 'roles','languages'));
     }
 
     //add user
@@ -27,6 +29,7 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|unique:users',
             'role' => 'required|integer',
+            'language' => 'required|integer',
         ]);
         User::create([
             'fname' => $request->get('first_name'),
@@ -34,6 +37,7 @@ class UserController extends Controller
             'email' => $request->get('email'),
             'password' => Hash::make('12345'),
             'role_id' => $request->get('role'),
+            'language_id' => $request->get('language'),
             'active' => $request->has('active')
         ]);
         return redirect()->back()->with('success', 'New user added');
@@ -52,11 +56,13 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|unique:users,email,' . $id,
             'role' => 'required|integer',
+            'language' => 'required|integer',
         ]);
         $user->fname = $request->get('first_name');
         $user->lname = $request->get('last_name');
         $user->email = $request->get('email');
         $user->role_id = $request->get('role');
+        $user->language_id = $request->get('language');
         $user->active = $request->has('active');
         $user->save();
         return redirect()->back()->with('success', 'User Updated!');

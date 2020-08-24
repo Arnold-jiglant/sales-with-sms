@@ -65,6 +65,15 @@
                                id="email" name="email" required>
                     </div>
                     <div class="form-group">
+                        <label for="language">Language:</label>
+                        <select class="form-control form-control-sm"
+                                id="language" name="language" required>
+                            @foreach($languages as $lang)
+                                <option value="{{$lang->id}}">{{$lang->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="password">Password:</label>
                         <input class="form-control form-control-sm" type="password" placeholder="password"
                                id="password" name="password" required>

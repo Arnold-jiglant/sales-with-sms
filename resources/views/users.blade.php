@@ -69,6 +69,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
+                    <th>Language</th>
                     <th>Status</th>
                     <th></th>
                 </tr>
@@ -81,13 +82,14 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->role->name}}</td>
+                        <td>{{$user->language->name}}</td>
                         <td>{{$user->active?'Active':'Not Active'}}</td>
                         <td>
                             <div class="options">
                                 @can('edit-user')
                                     <a class="option-link edit" data-toggle="modal" href="#edit-user-modal"
                                        data-id="{{$user->id}}" data-fname="{{$user->fname}}"
-                                       data-lname="{{$user->lname}}"
+                                       data-lname="{{$user->lname}}" data-lang="{{$user->language_id}}"
                                        data-email="{{$user->email}}" data-role="{{$user->role_id}}"
                                        data-active="{{$user->active}}">
                                         <i class="icon ion-edit"></i>&nbsp;
@@ -152,6 +154,14 @@
                                        id="email" name="email" required>
                             </div>
                             <div class="form-group">
+                                <label for="language">Preferred Language:</label>
+                                <select class="custom-select custom-select-sm" name="language" id="language">
+                                    @foreach($languages as $lang)
+                                        <option value="{{$lang->id}}">{{$lang->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="role">Role:</label>
                                 <select class="custom-select custom-select-sm" name="role" id="role">
                                     @foreach($roles as $role)
@@ -204,6 +214,14 @@
                                 <label for="editEmail">E-mail:</label>
                                 <input class="form-control form-control-sm" type="email" placeholder="email@email.com"
                                        id="editEmail" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="language">Preferred Language:</label>
+                                <select class="custom-select custom-select-sm" name="language" id="language">
+                                    @foreach($languages as $lang)
+                                        <option value="{{$lang->id}}">{{$lang->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="editRole">Role:</label>
@@ -291,6 +309,7 @@
                 let lname = $(e.relatedTarget).data('lname');
                 let email = $(e.relatedTarget).data('email');
                 let role = $(e.relatedTarget).data('role');
+                let lang = $(e.relatedTarget).data('lang');
                 let active = $(e.relatedTarget).data('active') == 1;
                 let form = $(this).find('form');
                 let action = '{{route('user.update','')}}/' + id;
@@ -299,6 +318,7 @@
                 form.find("input[name='last_name']").val(lname);
                 form.find("input[name='email']").val(email);
                 form.find("select[name='role']").val(role);
+                form.find("select[name='language']").val(lang);
                 form.find("input[name='active']").attr('checked', active);
             });
             //reset user

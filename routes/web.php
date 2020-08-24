@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     if (\Illuminate\Support\Facades\DB::table('users')->count() > 0) {
@@ -20,6 +21,7 @@ Route::prefix('setup')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('home', function () {
+        if (!Session::exists('language')) Session::put('language', \auth()->user()->languageName);
         return \auth()->user()->isManager ? redirect()->route('dashboard') : view('layout.app');
     })->name('home');
 

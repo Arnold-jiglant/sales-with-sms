@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a><span>Dashboard</span></a></li>
-                    <li class="breadcrumb-item"><a><span>Customer</span></a></li>
+                    <li class="breadcrumb-item"><a><span>{{\App\Language::term('Dashboard')}}</span></a></li>
+                    <li class="breadcrumb-item"><a><span>{{\App\Language::term('Customers')}}</span></a></li>
                 </ol>
             </div>
         </div>
-        <h3 class="mt-1">Customers</h3>
+        <h3 class="mt-1">{{\App\Language::term('Customers')}}</h3>
     </div>
     <div class="col-lg-11 col-xl-10 offset-lg-1 offset-xl-1">
         @if(Session('success'))
@@ -45,9 +45,9 @@
                     <form class="search-form" action="{{route('customers')}}">
                         <div class="form-group">
                             <div class="input-group input-group-sm">
-                                <input name="search" class="form-control" type="text" placeholder="search customer" required>
+                                <input name="search" class="form-control" type="text" placeholder="{{\App\Language::term('Search')}} {{\App\Language::term('Customer')}}" required>
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary custom-btn" type="submit">Search</button>
+                                    <button class="btn btn-primary custom-btn" type="submit">{{\App\Language::term('Search')}}</button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                     @if(strlen($title)>0)
                         {{$title}}, Found {{$customers->total()}}
                     @else
-                        Total {{$customers->total()}} showing {{$customers->firstItem()}}
+                        {{\App\Language::term('Total')}} {{$customers->total()}} {{\App\Language::term('showing')}} {{$customers->firstItem()}}
                         -{{$customers->lastItem()}}
                     @endif
                 </p>
@@ -70,12 +70,12 @@
                     <div class="btn-group">
                         <button class="btn btn-primary btn-sm mr-1" type="button" data-toggle="modal"
                                 data-target="#view-receipt-modal">
-                            <i class="icon ion-ios-eye"></i>&nbsp;&nbsp;View Receipt
+                            <i class="icon ion-ios-eye"></i>&nbsp;&nbsp;{{\App\Language::term('View Receipt')}}
                         </button>
                         @can('add-customer')
                             <button class="btn btn-primary btn-sm custom-btn" type="button" data-toggle="modal"
                                     data-target="#add-customer-modal">
-                                <i class="icon ion-android-add"></i>&nbsp;&nbsp;Add Customer
+                                <i class="icon ion-android-add"></i>&nbsp;&nbsp;{{\App\Language::term('Add')}} {{\App\Language::term('Customer')}}
                             </button>
                         @endcan
                     </div>
@@ -95,10 +95,10 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Amount Spent</th>
-                    <th>Visit Count</th>
-                    <th>Debt</th>
+                    <th>{{\App\Language::term('Name')}}</th>
+                    <th>{{\App\Language::term('Amount')}} {{\App\Language::term('Spent')}}</th>
+                    <th>{{\App\Language::term('Visit Count')}}</th>
+                    <th>{{\App\Language::term('Debt')}}</th>
                     <th></th>
                 </tr>
                 </thead>

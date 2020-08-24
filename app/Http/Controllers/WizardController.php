@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Language;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,8 @@ class WizardController extends Controller
 {
     public function index()
     {
-        return view('startup.wizard');
+        $languages = Language::all();
+        return view('startup.wizard', compact('languages'));
     }
 
     //new user
@@ -21,6 +23,7 @@ class WizardController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
+            'language' => 'required',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
         ]);
@@ -30,6 +33,7 @@ class WizardController extends Controller
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
             'role_id' => 1,
+            'language_id' => $request->get('language'),
             'active' => true
         ]);
 

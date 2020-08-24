@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('role_id');
+            $table->integer('language_id')->default(1);
             $table->boolean('active');
             $table->softDeletes();
             $table->timestamps();

@@ -11,13 +11,17 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
     protected $fillable = [
-        'fname', 'lname', 'email', 'password', 'role_id', 'active'
+        'fname', 'lname', 'email', 'password', 'role_id', 'language_id', 'active'
     ];
     protected $hidden = [
         'password'
     ];
     protected $casts = [
         'active' => 'boolean',
+    ];
+
+    protected $appends = [
+        'languageName'
     ];
 
     //ATTRIBUTE
@@ -27,14 +31,24 @@ class User extends Authenticatable
     }
 
     //SCOPE
-    public function getIsManagerAttribute($q)
+    public function getIsManagerAttribute()
     {
         return $this->role->name == 'Manager';
+    }
+
+    //ATTRIBUTE
+    public function getLanguageNameAttribute(){
+        return $this->language->name;
     }
 
     //RELATION
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class);
     }
 }
