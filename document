@@ -23,6 +23,7 @@ USER FUNCTIONALITY
 SYSTEM FUNCTIONALITY
 	- generate transaction/receipt number for each sale ..........
 	- can generate barcode for particular product   ****
+	- Backup database at particular time
 
 MODELSa
 	1.USER

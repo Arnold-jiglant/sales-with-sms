@@ -45,6 +45,11 @@
                     Extra Income Sources
                 </button>
             </li>
+            <li class="mr-1">
+                <button class="btn btn-sm btn-success custom-btn" data-toggle="pill" data-target="#database-backup">
+                    Database Backup
+                </button>
+            </li>
         </ul>
         <div class="col-lg-6">
             <div class="tab-content mt-2">
@@ -202,6 +207,23 @@
                                     </table>
                                 </div>
                             @endif
+                        </div>
+                    </div>
+                </div>
+                <div id="database-backup" class="tab-pane fade in">
+                    <div class="card shadow mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="text-primary font-weight-bold m-0">Database Backup</h6>
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#edit-database-backup-details-modal">
+                                <span class="fa fa-edit"></span> Edit
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <p>Email: <strong>{{$backupEmail->value}}</strong></p>
+                            <p>Time: <strong>Every day at {{$backupTime->value}} </strong></p>
+                            <p>Backup Database: <strong>{{(bool)$backupDatabase->value?'Enabled':'Disabled'}} </strong>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -378,7 +400,6 @@
         </div>
     </div>
 
-
     <div class="modal fade" role="dialog" tabindex="-1" id="delete-role-modal">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -395,6 +416,54 @@
                         <div class="float-right">
                             <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close</button>
                             <button class="btn btn-primary btn-sm custom-btn" type="submit">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="edit-database-backup-details-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Back-up Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('database.backup')}}" method="POST">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <div class="custom-control custom-control-inline custom-switch">
+                                <input class="custom-control-input" type="checkbox" id="backup" name="backup" {{(bool)$backupDatabase->value?'checked':''}}>
+                                <label class="custom-control-label" for="backup">Backup Database</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="backup_email">Email:</label>
+                            <input id="backup_email" class="form-control form-control-sm" type="email" name="email"
+                                   placeholder="backup email" required value="{{$backupEmail->value}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="backup_time">Time:</label>
+                            <div class="d-block">
+                                <select id="backup_time" class="form-control form-control-sm" name="time"
+                                        required>
+                                    @for($i=0;$i<=23;$i++)
+                                        @php($hour = str_pad($i,2,'0',STR_PAD_LEFT))
+                                        @if($backupTime->value==$hour)
+                                            <option selected>{{$hour}}:00</option>
+                                        @else
+                                            <option>{{$hour}}:00</option>
+                                        @endif
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                        <div class="float-right">
+                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close</button>
+                            <button class="btn btn-primary btn-sm custom-btn" type="submit">Submit</button>
                         </div>
                     </form>
                 </div>

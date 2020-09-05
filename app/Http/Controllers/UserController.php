@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -65,6 +66,9 @@ class UserController extends Controller
         $user->language_id = $request->get('language');
         $user->active = $request->has('active');
         $user->save();
+
+        //check language
+        if (auth()->id()==$user->id) Session::put('language', $user->languageName);
         return redirect()->back()->with('success', 'User Updated!');
     }
 

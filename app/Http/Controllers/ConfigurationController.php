@@ -18,7 +18,10 @@ class ConfigurationController extends Controller
         $roles = Role::all()->except([1]);
         $expenseCategories = ExpenseType::all();
         $incomeCategories = IncomeType::all();
-        return view('configure', compact('sellMethods', 'roles', 'expenseCategories', 'incomeCategories'));
+        $backupEmail = Configuration::whereName('backup_email')->first();
+        $backupTime = Configuration::whereName('backup_time')->first();
+        $backupDatabase = Configuration::whereName('backup_database')->first();
+        return view('configure', compact('sellMethods', 'roles', 'expenseCategories', 'incomeCategories', 'backupDatabase','backupEmail', 'backupTime'));
     }
 
     //choose selling Method
@@ -178,5 +181,26 @@ class ConfigurationController extends Controller
     function redirectWithSuccess($message = '')
     {
         return redirect()->back()->with('success', $message);
+    }
+
+    public function databaseBackup(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'time' => 'required'
+        ]);
+
+
+        $backupEmail = Configuration::whereName('backup_email')->first();
+        $backupTime = Configuration::whereName('backup_time')->first();
+        $backupDatabase = Configuration::whereName('backup_database')->first();
+
+        $backupEmail->value = $request->get('email');
+        $backupEmail->save();
+        $backupTime->value = $request->get('time');
+        $backupTime->save();
+        $backupDatabase->value = $request->has('backup');
+        $backupDatabase->save();
+        return $this->redirectWithSuccess('Backup details updated');
     }
 }

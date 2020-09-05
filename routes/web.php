@@ -21,7 +21,7 @@ Route::prefix('setup')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('home', function () {
-        if (!Session::exists('language')) Session::put('language', \auth()->user()->languageName);
+        Session::put('language', \auth()->user()->languageName);
         return \auth()->user()->isManager ? redirect()->route('dashboard') : view('layout.app');
     })->name('home');
 
@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('edit/role/{id}', 'ConfigurationController@editRole')->name('editRole');
     Route::put('edit/role/{id}', 'ConfigurationController@updateRole')->name('editRole');
     Route::delete('delete/role/{id}', 'ConfigurationController@deleteRole')->name('deleteRole');
+    Route::post('edit/database/backup', 'ConfigurationController@databaseBackup')->name('database.backup');
 
     //User
     Route::get('users', 'UserController@index')->name('users');
