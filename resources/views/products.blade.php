@@ -10,20 +10,20 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a><span>Dashboard</span></a></li>
-                    <li class="breadcrumb-item"><a><span>Product</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.dashboard')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.products.title')</span></a></li>
                 </ol>
             </div>
         </div>
-        <h3 class="mt-1">Products</h3>
+        <h3 class="mt-1">@lang('language.products.title')</h3>
         <div class="row mt-1">
             <div class="col-md-8 col-xl-6 offset-md-2">
                 <form class="search-form">
                     <div class="form-group">
                         <div class="input-group input-group-sm">
-                            <input class="form-control" type="text" placeholder="search product" name="search" required>
+                            <input class="form-control" type="text" placeholder="@lang('language.products.search_product')" name="search" required>
                             <div class="input-group-append">
-                                <button class="btn btn-primary custom-btn" type="submit">Search</button>
+                                <button class="btn btn-primary custom-btn" type="submit">@lang('language.search')</button>
                             </div>
                         </div>
                     </div>
@@ -58,9 +58,9 @@
             <div class="col-6">
                 <p>
                     @if(strlen($title)>0)
-                        {{$title}}, Found {{$products->total()}}
+                        {{$title}}, @lang('language.found') {{$products->total()}}
                     @else
-                        Total {{$products->total()}} showing {{$products->firstItem()}}
+                        @lang('language.total') {{$products->total()}} @lang('language.showing') {{$products->firstItem()}}
                         -{{$products->lastItem()}}
                     @endif
                 </p>
@@ -69,7 +69,7 @@
                 @can('add-inventory')
                     <div class="text-right">
                         <button class="btn btn-primary btn-sm custom-btn" type="button" data-toggle="modal"
-                                data-target="#add-product-modal"><i class="icon ion-android-add"></i>Add Product
+                                data-target="#add-product-modal"><i class="icon ion-android-add"></i>@lang('language.products.add')
                         </button>
                     </div>
                 @endcan
@@ -87,8 +87,8 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th class="text-center">Has Small Sizes</th>
+                    <th>@lang('language.name')</th>
+                    <th class="text-center">@lang('language.products.size')</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -112,12 +112,12 @@
                                        data-id="{{$product->id}}" data-name="{{$product->name}}"
                                        data-size="{{$product->hasSize}}">
                                         <i class="icon ion-edit"></i>&nbsp;
-                                        <span class="link-text">edit</span>
+                                        <span class="link-text">@lang('language.btn_edit')</span>
                                     </a>
                                     <a href="#" class="option-link delete" data-toggle="modal"
                                        data-target="#delete-product-modal" data-id="{{$product->id}}">
                                         <i class="icon ion-android-delete"></i>&nbsp;
-                                        <span class="link-text">delete</span>
+                                        <span class="link-text">@lang('language.btn_delete')</span>
                                     </a>
                                 </div>
                             </td>
@@ -126,7 +126,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="4" class="text-center">No product added yet</td>
+                        <td colspan="4" class="text-center">@lang('language.products.no_product')</td>
                     </tr>
                 @endif
                 </tbody>
@@ -147,7 +147,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;Add Product</h5>
+                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;@lang('language.products.add')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -155,22 +155,22 @@
                         <form method="POST" action="{{route('product.add')}}">
                             {{csrf_field()}}
                             <div class="form-group">
-                                <label for="productName">Product Name</label>
+                                <label for="productName">@lang('language.products.product_name')</label>
                                 <input class="form-control form-control-sm" type="text" placeholder="Product name"
                                        id="productName" name="product_name" required>
                             </div>
                             <div class="form-group" data-toggle="popover"
-                                 data-content="if product has small sizes eg. 1/4(0.25), 1/2(0.5) and 3/4(0.75)"
+                                 data-content="@lang('language.products.size_message')"
                                  data-trigger="hover" data-placement="right">
                                 <div class="custom-control custom-control-inline custom-checkbox">
                                     <input class="custom-control-input" type="checkbox" id="formCheck-1" name="hasSize">
-                                    <label class="custom-control-label" for="formCheck-1">Has Small Sizes?</label>
+                                    <label class="custom-control-label" for="formCheck-1">@lang('language.products.size')</label>
                                 </div>
                             </div>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Add</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>
@@ -183,7 +183,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit Product</h5>
+                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;@lang('language.products.edit')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -192,22 +192,22 @@
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group">
-                                <label for="editProductName">Product Name</label>
+                                <label for="editProductName">@lang('language.products.product_name')</label>
                                 <input class="form-control form-control-sm" type="text" placeholder="Product name"
                                        id="editProductName" name="product_name">
                             </div>
                             <div class="form-group" data-toggle="popover"
-                                 data-content="if product has small sizes eg. 1/4(0.25), 1/2(0.5) and 3/4(0.75)"
+                                 data-content="@lang('language.products.size_message')"
                                  data-trigger="hover" data-placement="right">
                                 <div class="custom-control custom-control-inline custom-checkbox"><input
                                         class="custom-control-input" type="checkbox" id="editHasSize"
                                         name="hasSize"><label
-                                        class="custom-control-label" for="editHasSize">Has Small Sizes?</label></div>
+                                        class="custom-control-label" for="editHasSize">@lang('language.products.size')</label></div>
                             </div>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Update</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>
@@ -220,7 +220,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Product</h5>
+                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;@lang('language.products.delete')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -228,11 +228,11 @@
                         <form method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="DELETE">
-                            <p>Are sure you want to delete this product?</p>
+                            <p>@lang('language.products.delete_message')</p>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Delete</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.btn_delete')</button>
                             </div>
                         </form>
                     </div>

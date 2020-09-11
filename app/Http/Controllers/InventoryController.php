@@ -42,7 +42,7 @@ class InventoryController extends Controller
         $discounts = null;
         if ($request->has('discount')) {
             $discounts = collect();
-            for ($i = 0; $i < sizeof($request->get('discountQuantity')); $i++) {
+            for ($i = 0; $i < collect($request->get('discountQuantity'))->count(); $i++) {
                 $discounts->add(['qty' => (float)$request->get('discountQuantity')[$i], 'amount' => (float)$request->get('discountAmount')[$i]]);
             }
             $discounts = $discounts->sortByDesc(function ($discount, $index) {

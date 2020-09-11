@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a><span>Dashboard</span></a></li>
-                    <li class="breadcrumb-item"><a><span>Extra Income</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.dashboard')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.extra_income.title')</span></a></li>
                 </ol>
             </div>
         </div>
-        <h3 class="mt-1">Extra Incomes
+        <h3 class="mt-1">@lang('language.extra_income.title')
             @if(strlen($title)>0)
                 / <small class="text-muted">{{$title}}</small>
             @endif
@@ -46,17 +46,19 @@
         @endif
         <div class="row">
             <div class="col-6">
-                <p>Total {{$incomes->total()}} showing {{$incomes->firstItem()}}-{{$incomes->lastItem()}}</p>
+                <p>@lang('language.total') {{$incomes->total()}} @lang('language.showing') {{$incomes->firstItem()}}
+                    -{{$incomes->lastItem()}}</p>
             </div>
             <div class="col order-sm-1">
                 <div class="text-right">
                     <div class="btn-group" role="group">
                         <div class="dropdown btn-group d-inline-block" role="group">
                             <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false" type="button">Filter
+                                    aria-expanded="false" type="button">@lang('language.sales.btn_filter')
                             </button>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" href="{{route('incomes')}}">All</a>
+                                <a class="dropdown-item" role="presentation"
+                                   href="{{route('incomes')}}">@lang('language.all')</a>
                                 @foreach($incomeTypes as $type)
                                     <a class="dropdown-item" role="presentation"
                                        href="{{route('incomes',['type'=>$type])}}">{{$type->name}}</a>
@@ -65,7 +67,8 @@
                         </div>
                         @can('add-income')
                             <button class="btn btn-primary btn-sm custom-btn ml-1" type="button" data-toggle="modal"
-                                    data-target="#add-income-modal"><i class="icon ion-android-add"></i>Add Income
+                                    data-target="#add-income-modal"><i
+                                    class="icon ion-android-add"></i>@lang('language.extra_income.add')
                             </button>
                         @endcan
                     </div>
@@ -77,11 +80,11 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Type</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Issuer</th>
+                    <th>@lang('language.type')</th>
+                    <th>@lang('language.amount')</th>
+                    <th>@lang('language.description')</th>
+                    <th>@lang('language.date')</th>
+                    <th>@lang('language.issuer')</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -104,14 +107,14 @@
                                            data-type="{{$income->income_type_id}}"
                                            data-amount="{{$income->amount}}" data-desc="{{$income->description}}">
                                             <i class="icon ion-edit"></i>&nbsp;
-                                            <span class="link-text">edit</span>
+                                            <span class="link-text">@lang('language.btn_edit')</span>
                                         </a>
                                     @endcan
                                     @can('delete-income')
                                         <a href="#" class="option-link delete" data-toggle="modal"
                                            data-target="#delete-income-modal" data-id="{{$income->id}}">
                                             <i class="icon ion-android-delete"></i>&nbsp;
-                                            <span class="link-text">delete</span>
+                                            <span class="link-text">@lang('language.btn_delete')</span>
                                         </a>
                                     @endcan
                                 </div>
@@ -121,7 +124,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="7">No Incomes added</td>
+                        <td colspan="7">@lang('language.extra_income.no_income')</td>
                     </tr>
                 @endif
                 </tbody>
@@ -142,7 +145,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;Add Income</h5>
+                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;@lang('language.extra_income.add')
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -150,31 +154,38 @@
                         <form action="{{route('income.add')}}" method="POST">
                             {{csrf_field()}}
                             <div class="form-group">
-                                <label for="incomeType">Income Type:</label>
-                                <select class="custom-select custom-select-sm" id="incomeType" name="incomeType" required>
+                                <label for="incomeType">@lang('language.extra_income.type'):</label>
+                                <select class="custom-select custom-select-sm" id="incomeType" name="incomeType"
+                                        required>
                                     @foreach($incomeTypes as $type)
                                         <option value="{{$type->id}}">{{$type->name}}</option>
                                     @endforeach
                                 </select></div>
                             <div
-                                class="form-group" data-toggle="popover" data-content="Total amount gained"
+                                class="form-group" data-toggle="popover"
+                                data-content="@lang('language.extra_income.amount_message')"
                                 data-trigger="focus" data-placement="right">
-                                <label for="editAmount">Amount</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="Amount gained"
+                                <label for="editAmount">@lang('language.amount')</label>
+                                <input class="form-control form-control-sm" type="number"
+                                       placeholder="@lang('language.amount')"
                                        min="1"
                                        id="editAmount" name="amount" required>
                             </div>
-                            <div class="form-group" data-toggle="popover" data-content="income description"
+                            <div class="form-group" data-toggle="popover"
+                                 data-content="@lang('language.extra_income.description')"
                                  data-trigger="focus"
                                  data-placement="right">
-                                <label for="incomeDesc">Description(optional)</label>
-                                <textarea class="form-control form-control-sm" rows="3" placeholder="Description"
+                                <label for="incomeDesc">@lang('language.description') (@lang('language.optional')
+                                    )</label>
+                                <textarea class="form-control form-control-sm" rows="3" placeholder="@lang('language.description')"
                                           id="incomeDesc" maxlength="170" name="description"></textarea>
                             </div>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button"
+                                        data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Add</button>
+                                <button class="btn btn-primary btn-sm custom-btn"
+                                        type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>
@@ -187,7 +198,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit Income</h5>
+                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;@lang('language.extra_income.edit')
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -196,31 +208,35 @@
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group">
-                                <label for="incomeType">Income Type:</label>
+                                <label for="incomeType">@lang('language.extra_income.type'):</label>
                                 <select class="custom-select custom-select-sm" id="incomeType" name="incomeType">
                                     @foreach($incomeTypes as $type)
                                         <option value="{{$type->id}}">{{$type->name}}</option>
                                     @endforeach
                                 </select></div>
                             <div
-                                class="form-group" data-toggle="popover" data-content="Total amount gained"
+                                class="form-group" data-toggle="popover"
+                                data-content="@lang('language.extra_income.amount_message')"
                                 data-trigger="focus" data-placement="right">
-                                <label for="editAmount">Amount</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="Amount gained"
+                                <label for="editAmount">@lang('language.amount')</label>
+                                <input class="form-control form-control-sm" type="number"
+                                       placeholder="@lang('language.amount')"
                                        min="1"
                                        id="editAmount" name="amount" required>
                             </div>
-                            <div class="form-group" data-toggle="popover" data-content="Income description"
+                            <div class="form-group" data-toggle="popover"
+                                 data-content="@lang('language.extra_income.description')"
                                  data-trigger="focus"
                                  data-placement="right">
-                                <label for="incomeDesc">Description(optional)</label>
-                                <textarea class="form-control form-control-sm" rows="3" placeholder="Description"
+                                <label for="incomeDesc">@lang('language.description') (@lang('language.optional')
+                                    )</label>
+                                <textarea class="form-control form-control-sm" rows="3" placeholder="@lang('language.description')"
                                           id="incomeDesc" maxlength="170" name="description"></textarea>
                             </div>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Update</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>
@@ -233,7 +249,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Income</h5>
+                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;@lang('language.extra_income.delete')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -241,11 +257,11 @@
                         <form method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="DELETE">
-                            <p>Are sure you want to delete this income?</p>
+                            <p>@lang('language.extra_income.delete_message')</p>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Delete</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.btn_delete')</button>
                             </div>
                         </form>
                     </div>

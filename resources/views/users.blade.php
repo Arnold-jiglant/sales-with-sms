@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a><span>Home</span></a></li>
-                    <li class="breadcrumb-item"><a><span>Users</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.dashboard')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.users.title')</span></a></li>
                 </ol>
             </div>
         </div>
-        <h3 class="mt-1">Users</h3>
+        <h3 class="mt-1">@lang('language.users.title')</h3>
     </div>
     <div class="col-lg-11 col-xl-10 offset-lg-1 offset-xl-1">
         @if(Session('success'))
@@ -42,13 +42,13 @@
         @endif
         <div class="row">
             <div class="col-6">
-                <p>Total {{$users->total()}} showing {{$users->firstItem()}}-{{$users->lastItem()}}</p>
+                <p>@lang('language.total') {{$users->total()}} @lang('language.showing') {{$users->firstItem()}}-{{$users->lastItem()}}</p>
             </div>
             <div class="col-6">
                 <div class="text-right d-block">
                     @can('add-user')
                         <button class="btn btn-primary btn-sm custom-btn" type="button" data-toggle="modal"
-                                data-target="#add-user-modal"><i class="icon ion-android-add"></i>Add User
+                                data-target="#add-user-modal"><i class="icon ion-android-add"></i>@lang('language.users.add')
                         </button>
                     @endcan
                 </div>
@@ -66,11 +66,11 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Language</th>
-                    <th>Status</th>
+                    <th>@lang('language.name')</th>
+                    <th>@lang('language.users.email')</th>
+                    <th>@lang('language.users.role')</th>
+                    <th>@lang('language.users.language')</th>
+                    <th>@lang('language.users.status')</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -93,19 +93,19 @@
                                        data-email="{{$user->email}}" data-role="{{$user->role_id}}"
                                        data-active="{{$user->active}}">
                                         <i class="icon ion-edit"></i>&nbsp;
-                                        <span class="link-text">edit</span>
+                                        <span class="link-text">@lang('language.btn_edit')</span>
                                     </a>
                                     <a class="option-link delete" data-toggle="modal"
                                        href="#reset-user-modal" data-id="{{$user->id}}">
                                         <i class="icon ion-ios-refresh-empty"></i>&nbsp;
-                                        <span class="link-text">reset</span>
+                                        <span class="link-text">@lang('language.btn_reset')</span>
                                     </a>
                                 @endcan
                                 @can('delete-user')
                                     <a href="#" class="option-link delete" data-toggle="modal"
                                        data-target="#delete-user-modal" data-id="{{$user->id}}">
                                         <i class="icon ion-android-delete"></i>&nbsp;
-                                        <span class="link-text">delete</span>
+                                        <span class="link-text">@lang('language.btn_delete')</span>
                                     </a>
                                 @endcan
                             </div>
@@ -131,7 +131,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;Add User</h5>
+                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;@lang('language.users.add')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -139,22 +139,22 @@
                         <form method="POST" action="{{route('user.add')}}">
                             {{csrf_field()}}
                             <div class="form-group">
-                                <label for="firstName">First Name:</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="first name"
+                                <label for="firstName">@lang('language.users.first_name'):</label>
+                                <input class="form-control form-control-sm" type="text" placeholder="@lang('language.users.first_name')"
                                        id="firstName" name="first_name" required>
                             </div>
                             <div class="form-group">
-                                <label for="lastName">Last Name:</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="last name"
+                                <label for="lastName">@lang('language.users.last_name'):</label>
+                                <input class="form-control form-control-sm" type="text" placeholder="@lang('language.users.last_name')"
                                        id="lastName" name="last_name" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">E-mail:</label>
-                                <input class="form-control form-control-sm" type="email" placeholder="email@email.com"
+                                <label for="email">@lang('language.users.email'):</label>
+                                <input class="form-control form-control-sm" type="email" placeholder="@lang('language.users.email_holder')"
                                        id="email" name="email" required>
                             </div>
                             <div class="form-group">
-                                <label for="language">Preferred Language:</label>
+                                <label for="language">@lang('language.users.prefer_language'):</label>
                                 <select class="custom-select custom-select-sm" name="language" id="language">
                                     @foreach($languages as $lang)
                                         <option value="{{$lang->id}}">{{$lang->name}}</option>
@@ -162,7 +162,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="role">Role:</label>
+                                <label for="role">@lang('language.users.role'):</label>
                                 <select class="custom-select custom-select-sm" name="role" id="role">
                                     @foreach($roles as $role)
                                         <option value="{{$role->id}}">{{$role->name}}</option>
@@ -170,16 +170,16 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Status:</label>
+                                <label>@lang('language.users.status'):</label>
                                 <div class="custom-control custom-switch">
                                     <input class="custom-control-input" type="checkbox" id="active" name="active">
-                                    <label class="custom-control-label" for="active">Active</label>
+                                    <label class="custom-control-label" for="active">@lang('active')</label>
                                 </div>
                             </div>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Add</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.users.add')</button>
                             </div>
                         </form>
                     </div>
@@ -192,7 +192,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit User</h5>
+                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;@lang('language.users.edit')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -201,22 +201,22 @@
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group">
-                                <label for="editFirstName">First Name:</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="first name"
+                                <label for="editFirstName">@lang('language.users.first_name'):</label>
+                                <input class="form-control form-control-sm" type="text" placeholder="@lang('language.users.first_name')"
                                        id="editFirstName" name="first_name" required>
                             </div>
                             <div class="form-group">
-                                <label for="editLastName">Last Name:</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="last name"
+                                <label for="editLastName">@lang('language.users.last_name'):</label>
+                                <input class="form-control form-control-sm" type="text" placeholder="@lang('language.users.last_name')"
                                        id="editLastName" name="last_name" required>
                             </div>
                             <div class="form-group">
-                                <label for="editEmail">E-mail:</label>
-                                <input class="form-control form-control-sm" type="email" placeholder="email@email.com"
+                                <label for="editEmail">@lang('language.users.email'):</label>
+                                <input class="form-control form-control-sm" type="email" placeholder="@lang('language.users.email_holder')"
                                        id="editEmail" name="email" required>
                             </div>
                             <div class="form-group">
-                                <label for="language">Preferred Language:</label>
+                                <label for="language">@lang('language.users.language'):</label>
                                 <select class="custom-select custom-select-sm" name="language" id="language">
                                     @foreach($languages as $lang)
                                         <option value="{{$lang->id}}">{{$lang->name}}</option>
@@ -224,7 +224,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="editRole">Role:</label>
+                                <label for="editRole">@lang('language.users.role'):</label>
                                 <select class="custom-select custom-select-sm" name="role" id="editRole">
                                     @foreach($roles as $role)
                                         <option value="{{$role->id}}">{{$role->name}}</option>
@@ -232,16 +232,16 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Status:</label>
+                                <label>@lang('language.users.status'):</label>
                                 <div class="custom-control custom-switch">
                                     <input class="custom-control-input" type="checkbox" id="editActive" name="active">
-                                    <label class="custom-control-label" for="editActive">Active</label>
+                                    <label class="custom-control-label" for="editActive">@lang('language.users.active')</label>
                                 </div>
                             </div>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Update</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>
@@ -252,7 +252,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-ios-refresh-empty"></i>&nbsp;Reset User Password</h5>
+                        <h5 class="modal-title"><i class="icon ion-ios-refresh-empty"></i>&nbsp;@lang('language.users.reset_password')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -260,11 +260,11 @@
                         <form method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PUT">
-                            <p>Are you sure you want to reset this user password?</p>
+                            <p>@lang('language.users.reset_password_message')</p>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Reset</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.btn_reset')</button>
                             </div>
                         </form>
                     </div>
@@ -277,7 +277,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete User</h5>
+                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;@lang('language.users.delete')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -285,11 +285,11 @@
                         <form method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="DELETE">
-                            <p>Are you sure you want to delete this user?</p>
+                            <p>@lang('language.users.delete_message')</p>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Delete</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>

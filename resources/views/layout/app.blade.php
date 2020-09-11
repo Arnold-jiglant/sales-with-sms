@@ -19,64 +19,64 @@
         @if(auth()->user()->isManager)
             <li class="menu-item @yield('dashboard')"><a href="{{route('dashboard')}}"><i
                         class="fa fa-dashboard icon mr-3"></i><span
-                        class="text">{{\App\Language::term('Dashboard')}}</span></a></li>
+                        class="text">@lang('language.dashboard')</span></a></li>
         @endif
         @can('sell-product')
             <li class="menu-item">
                 <a href="#sales" data-toggle="collapse">
                     <i class="fa fa-shopping-cart icon mr-3"></i>
-                    <span class="text">{{\App\Language::term('Sale')}}</span>
+                    <span class="text">@lang('language.sales.title')</span>
                 </a>
                 <ul id="sales" class="collapse sub-menu">
-                    <li><a href="{{route('sale')}}">{{\App\Language::term('New Sale')}}</a></li>
-                    <li><a href="{{route('sale.view')}}">{{\App\Language::term('View Sales')}}</a></li>
+                    <li><a href="{{route('sale')}}">@lang('language.sales.new')</a></li>
+                    <li><a href="{{route('sale.view')}}">@lang('language.sales.view')</a></li>
                 </ul>
             </li>
         @endcan
         @can('view-customers')
             <li class="menu-item @yield('customer')"><a href="{{route('customers')}}"><i
                         class="fa fa-users icon mr-3"></i><span
-                        class="text">{{\App\Language::term('Customers')}}</span></a>
+                        class="text">@lang('language.customers.title')</span></a>
             </li>
         @endcan
         @can('view-inventory')
             <li class="menu-item @yield('product')"><a href="{{route('products')}}"><i class="fa fa-list icon mr-3"></i><span
-                        class="text">{{\App\Language::term('Products')}}</span></a>
+                        class="text">@lang('language.products.title')</span></a>
             </li>
             <li class="menu-item @yield('inventory')"><a href="{{route('inventories')}}"><i
                         class="fa fa-home icon mr-3"></i><span
-                        class="text">{{\App\Language::term('Inventory')}}</span></a>
+                        class="text">@lang('language.inventory.inventory')</span></a>
             </li>
         @endcan
         @can('view-expenses')
             <li class="menu-item @yield('expense')"><a href="{{route('expenses')}}"><i
                         class="fa fa-dollar icon mr-3"></i><span
-                        class="text">{{\App\Language::term('Expenses')}}</span></a>
+                        class="text">@lang('language.expenses.title')</span></a>
             </li>
         @endcan
         @can('view-users')
             <li class="menu-item @yield('user')"><a href="{{route('users')}}"><i class="fa fa-user icon mr-3"></i><span
-                        class="text">{{\App\Language::term('Users')}}</span></a></li>
+                        class="text">@lang('language.users.title')</span></a></li>
         @endcan
         @can('view-incomes')
             <li class="menu-item @yield('income')"><a href="{{route('incomes')}}"><i
                         class="fa fa-eur icon mr-3"></i><span
-                        class="text">{{\App\Language::term('Extra Income')}}</span></a>
+                        class="text">@lang('language.extra_income.title')</span></a>
             </li>
         @endcan
         @can('view-report')
             <li class="menu-item @yield('report')"><a href="{{route('report')}}"><i
                         class="fa fa-area-chart icon mr-3"></i><span
-                        class="text">{{\App\Language::term('Report')}}</span></a>
+                        class="text">@lang('language.report.title')</span></a>
             </li>
         @endcan
         @if(auth()->user()->isManager)
             <li class="menu-item @yield('configure')"><a href="{{route('configure')}}"><i
                         class="fa fa-gears icon mr-3"></i><span
-                        class="text">{{\App\Language::term('Configure')}}</span></a>
+                        class="text">@lang('language.configure.title')</span></a>
             </li>
         @endif
-        <li class="menu-item"><a href="{{route('logout')}}"><i class="icon ion-power icon mr-3"></i><span class="text">{{\App\Language::term('Log Out')}}</span></a>
+        <li class="menu-item"><a href="{{route('logout')}}"><i class="icon ion-power icon mr-3"></i><span class="text">@lang('language.log_out')</span></a>
         </li>
     </ul>
 </section>
@@ -89,7 +89,7 @@
                  id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
                     @if(auth()->user()->isManager)
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('dashboard')}}">@lang('language.dashboard')</a>
                         </li>
                     @endif
                     @can('sell-product')

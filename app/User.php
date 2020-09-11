@@ -37,8 +37,8 @@ class User extends Authenticatable
     }
 
     //ATTRIBUTE
-    public function getLanguageNameAttribute(){
-        return $this->language->name;
+    public function getLocaleNameAttribute(){
+        return $this->language->locale;
     }
 
     //RELATION

@@ -13,8 +13,8 @@ class LanguagesTableSeeder extends Seeder
     public function run()
     {
         DB::table('languages')->insert([
-            ['name'=>'English'],
-            ['name'=>'Swahili']
+            ['name'=>'English','locale'=>'en'],
+            ['name'=>'Swahili','locale'=>'sw']
         ]);
     }
 }

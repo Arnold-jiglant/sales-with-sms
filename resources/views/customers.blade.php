@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-    Customers
+    @lang('language.customers.title')
 @stop
 @section('customer')
     active
@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a><span>{{\App\Language::term('Dashboard')}}</span></a></li>
-                    <li class="breadcrumb-item"><a><span>{{\App\Language::term('Customers')}}</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.dashboard')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.customers.title')</span></a></li>
                 </ol>
             </div>
         </div>
-        <h3 class="mt-1">{{\App\Language::term('Customers')}}</h3>
+        <h3 class="mt-1">@lang('language.customers.title')</h3>
     </div>
     <div class="col-lg-11 col-xl-10 offset-lg-1 offset-xl-1">
         @if(Session('success'))
@@ -45,9 +45,9 @@
                     <form class="search-form" action="{{route('customers')}}">
                         <div class="form-group">
                             <div class="input-group input-group-sm">
-                                <input name="search" class="form-control" type="text" placeholder="{{\App\Language::term('Search')}} {{\App\Language::term('Customer')}}" required>
+                                <input name="search" class="form-control" type="text" placeholder="@lang('language.search') @lang('language.customers.customer')" required>
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary custom-btn" type="submit">{{\App\Language::term('Search')}}</button>
+                                    <button class="btn btn-primary custom-btn" type="submit">@lang('language.search')</button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                     @if(strlen($title)>0)
                         {{$title}}, Found {{$customers->total()}}
                     @else
-                        {{\App\Language::term('Total')}} {{$customers->total()}} {{\App\Language::term('showing')}} {{$customers->firstItem()}}
+                        @lang('language.total') {{$customers->total()}} @lang('language.showing') {{$customers->firstItem()}}
                         -{{$customers->lastItem()}}
                     @endif
                 </p>
@@ -70,12 +70,12 @@
                     <div class="btn-group">
                         <button class="btn btn-primary btn-sm mr-1" type="button" data-toggle="modal"
                                 data-target="#view-receipt-modal">
-                            <i class="icon ion-ios-eye"></i>&nbsp;&nbsp;{{\App\Language::term('View Receipt')}}
+                            <i class="icon ion-ios-eye"></i>&nbsp;&nbsp;@lang('language.customers.view_receipt')
                         </button>
                         @can('add-customer')
                             <button class="btn btn-primary btn-sm custom-btn" type="button" data-toggle="modal"
                                     data-target="#add-customer-modal">
-                                <i class="icon ion-android-add"></i>&nbsp;&nbsp;{{\App\Language::term('Add')}} {{\App\Language::term('Customer')}}
+                                <i class="icon ion-android-add"></i>&nbsp;&nbsp;@lang('language.add') @lang('language.customers.customer')
                             </button>
                         @endcan
                     </div>
@@ -95,10 +95,10 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{\App\Language::term('Name')}}</th>
-                    <th>{{\App\Language::term('Amount')}} {{\App\Language::term('Spent')}}</th>
-                    <th>{{\App\Language::term('Visit Count')}}</th>
-                    <th>{{\App\Language::term('Debt')}}</th>
+                    <th>@lang('language.name')</th>
+                    <th>@lang('language.amount') @lang('language.spent')</th>
+                    <th>@lang('language.customers.visit_count')</th>
+                    <th>@lang('language.debt')</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -117,7 +117,7 @@
                                     @can('add-customer')
                                         <a href="{{route('customer.view',$customer->id)}}" class="option-link">
                                             <i class="icon ion-eye"></i>&nbsp;
-                                            <span class="link-text">View</span>
+                                            <span class="link-text">@lang('language.btn_view')</span>
                                         </a>
                                     @endcan
                                     @can('edit-customer')
@@ -125,14 +125,14 @@
                                            data-target="#edit-customer-modal" data-id="{{$customer->id}}"
                                            data-name="{{$customer->name}}">
                                             <i class="icon ion-edit"></i>&nbsp;
-                                            <span class="link-text">edit</span>
+                                            <span class="link-text">@lang('language.btn_edit')</span>
                                         </a>
                                     @endcan
                                     @can('delete-customer')
                                         <a href="#" class="option-link delete" data-toggle="modal"
                                            data-target="#delete-customer-modal" data-id="{{$customer->id}}">
                                             <i class="icon ion-android-delete"></i>&nbsp;
-                                            <span class="link-text">delete</span>
+                                            <span class="link-text">@lang('language.btn_delete')</span>
                                         </a>
                                     @endcan
                                 </div>
@@ -162,7 +162,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-ios-cart-outline"></i>&nbsp;Receipt</h5>
+                    <h5 class="modal-title"><i class="icon ion-ios-cart-outline"></i>&nbsp;@lang('language.receipt')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -170,13 +170,13 @@
                     <form method="POST" action="{{route('customer.add')}}">
                         {{csrf_field()}}
                         <div class="form-group">
-                            <label for="number">Receipt No:</label>
-                            <input class="form-control form-control-sm" type="text" placeholder="name"
+                            <label for="number">@lang('language.receipt_no'):</label>
+                            <input class="form-control form-control-sm" type="text" placeholder="@lang('language.receipt_no')"
                                    id="number">
                         </div>
                         <div class="form-group text-right">
                             <button id="search-receipt-btn" class="btn btn-primary btn-sm custom-btn" type="button">
-                                Search
+                                @lang('language.search')
                             </button>
                         </div>
                         <div id="loading" class="loading" style="display: none">
@@ -195,7 +195,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;Add Customer</h5>
+                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;@lang('language.customers.add_customer')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -203,14 +203,14 @@
                         <form method="POST" action="{{route('customer.add')}}">
                             {{csrf_field()}}
                             <div class="form-group">
-                                <label for="customerName">Customer Name:</label>
+                                <label for="customerName">@lang('language.customers.customer_name'):</label>
                                 <input class="form-control form-control-sm" type="text" placeholder="name"
                                        id="customerName" name="customer_name" required>
                             </div>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Add</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>
@@ -223,7 +223,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit Customer</h5>
+                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;@lang('language.customers.edit_customer')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -232,14 +232,14 @@
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group">
-                                <label for="editCustomerName">Customer Name:</label>
+                                <label for="editCustomerName">@lang('language.customers.customer_name'):</label>
                                 <input class="form-control form-control-sm" type="text" placeholder="name"
                                        id="editCustomerName" name="customer_name" required>
                             </div>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Update</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>
@@ -252,7 +252,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Customer</h5>
+                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;@lang('language.customers.delete_customer')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -260,11 +260,11 @@
                         <form method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="DELETE">
-                            <p>Are sure you want to delete this customer?</p>
+                            <p>@lang('language.customers.delete_customer_message')</p>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Delete</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.btn_delete')</button>
                             </div>
                         </form>
                     </div>

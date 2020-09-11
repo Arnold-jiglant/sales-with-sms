@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a><span>Dashboard</span></a></li>
-                    <li class="breadcrumb-item"><a><span>Customer</span></a></li>
-                    <li class="breadcrumb-item"><a><span>Purchase History</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.dashboard')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.customers.customer')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.customers.view_title')</span></a></li>
                 </ol>
             </div>
         </div>
-        <h3 class="mt-1">Customer Purchase History</h3>
+        <h3 class="mt-1">@lang('language.customers.view_title')</h3>
         @if(Session('success'))
             <div class="row" style="margin-top: 10px;">
                 <div class="col-lg-6 offset-3">
@@ -42,12 +42,12 @@
     </div>
     <div class="col-lg-11 col-xl-10 offset-lg-1 offset-xl-1">
         <form>
-            <p><span>Customer Name:</span><span class="ml-1 value">{{$customer->name}}</span></p>
-            <p><span>Total Debt:</span><span class="ml-1 text-danger">{{number_format($customer->totalDebt,2)}}</span>
+            <p><span>@lang('language.customers.customer_name'):</span><span class="ml-1 value">{{$customer->name}}</span></p>
+            <p><span>@lang('language.customers.total_debt'):</span><span class="ml-1 text-danger">{{number_format($customer->totalDebt,2)}}</span>
             </p>
             <div class="row">
                 <div class="col">
-                    <p>Total {{$receipts->total()}} showing {{$receipts->firstItem()}}-{{$receipts->lastItem()}}</p>
+                    <p>@lang('language.total') {{$receipts->total()}} @lang('language.showing') {{$receipts->firstItem()}}-{{$receipts->lastItem()}}</p>
                 </div>
                 <div class="col order-sm-1">
                 </div>
@@ -57,12 +57,12 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Receipt</th>
-                        <th>Products</th>
-                        <th>Qty</th>
-                        <th>Amount</th>
-                        <th>Total Amount</th>
-                        <th>Date</th>
+                        <th>@lang('language.receipt')</th>
+                        <th>@lang('language.products.title')</th>
+                        <th>@lang('language.short_quantity')</th>
+                        <th>@lang('language.amount')</th>
+                        <th>@lang('total_amount')</th>
+                        <th>@lang('language.date')</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -82,17 +82,17 @@
                                     <td>{{number_format($sale->payedAmount,2)}}</td>
                                     <td rowspan="{{$sales->count()}}" class="align-middle text-center">
                                         @if($receipt->incompletePayment)
-                                            <p class="p-0 m-0">Required: <span class="value">{{number_format($receipt->requiredPaymentAmount,2)}}
+                                            <p class="p-0 m-0">@lang('language.required'): <span class="value">{{number_format($receipt->requiredPaymentAmount,2)}}
                                                 </span></p>
-                                            <p class="p-0 m-0">Payed: <span class=" text-success p-0 m-0">{{number_format($receipt->payedAMount,2)}}
+                                            <p class="p-0 m-0">@lang('language.payed'): <span class=" text-success p-0 m-0">{{number_format($receipt->payedAMount,2)}}
                                                 </span></p>
-                                            <p class="p-0 m-0">Debt: <span
+                                            <p class="p-0 m-0">@lang('language.debt'): <span
                                                     class=" text-danger p-0">{{number_format($receipt->debtAMount,2)}}                                                </span>
                                             </p>
 
                                         @else
                                             <p class="value m-0">{{number_format($receipt->payedAMount,2)}}</p>
-                                            <span class="text-success">PAYED</span>
+                                            <span class="text-success">@lang('language.payed')</span>
                                         @endif
                                         <p class="m-2 text-center">{{strtoupper($receipt->paymentType->name)}}</p>
                                     </td>
@@ -109,7 +109,7 @@
                                                        data-max="{{$receipt->debtAmount}}"
                                                        data-receipt="{{$receipt->id}}">
                                                         <i class="icon ion-cash"></i>&nbsp;
-                                                        <span class="link-text">Pay</span>
+                                                        <span class="link-text">@lang('language.pay')</span>
                                                     </a>
                                                 @endcan
                                             @endif
@@ -148,7 +148,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-cash"></i>&nbsp;Pay Customer Debt</h5>
+                        <h5 class="modal-title"><i class="icon ion-cash"></i>&nbsp;@lang('language.customers.receive_debt')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -156,20 +156,20 @@
                         <form method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PUT">
-                            <p><span>Customer Name:</span><span id="customerName" class="ml-1 value">Text</span></p>
-                            <p><span>Required Amount:</span><span id="requiredAmount" class="ml-1">Text</span></p>
-                            <p><span>Debt Amount:</span><span id="debtAmount" class="ml-1 text-danger">Text</span></p>
+                            <p><span>@lang('language.customers.customer_name'):</span><span id="customerName" class="ml-1 value">Text</span></p>
+                            <p><span>@lang('language.required_amount'):</span><span id="requiredAmount" class="ml-1">Text</span></p>
+                            <p><span>@lang('language.debt_amount'):</span><span id="debtAmount" class="ml-1 text-danger">Text</span></p>
                             <div class="form-group" data-toggle="popover"
                                  data-content="The amount the customer is paying"
                                  data-trigger="focus" data-placement="right">
-                                <label for="amount">Amount</label>
+                                <label for="amount">@lang('language.amount')</label>
                                 <input class="form-control form-control-sm" type="number"
-                                       placeholder="Amount to be payed" id="amount" name="amount" required>
+                                       placeholder="@lang('language.amount')" id="amount" name="amount" required>
                             </div>
                             <div class="text-right mt-2">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Submit</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>

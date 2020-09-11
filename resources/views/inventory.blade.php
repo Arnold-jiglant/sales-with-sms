@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-    Inventories
+    @lang('language.inventory.title')
 @stop
 @section('inventory')
     active
@@ -10,24 +10,24 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a><span>Dashboard</span></a></li>
-                    <li class="breadcrumb-item"><a><span>Inventory</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.dashboard')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.inventory.inventory')</span></a></li>
                 </ol>
             </div>
         </div>
-        <h3 class="mt-1">Inventory</h3>
+        <h3 class="mt-1">@lang('language.inventory.title')</h3>
     </div>
     <div class="col-lg-11 col-xl-10 offset-lg-1 offset-xl-1">
         <div class="row">
             <div class="col-6">
-                <p>Total {{$inventories->total()}} showing {{$inventories->firstItem()}}
+                <p>@lang('language.total') {{$inventories->total()}} @lang('language.showing') {{$inventories->firstItem()}}
                     -{{$inventories->lastItem()}}</p>
             </div>
             <div class="col order-sm-1">
                 @can('ad-inventory')
                     <div class="text-right">
                         <a class="btn btn-primary btn-sm custom-btn" role="button" href="{{route('inventory.add')}}">
-                            <i class="icon ion-android-add"></i>Add Inventory</a>
+                            <i class="icon ion-android-add"></i>@lang('language.add') @lang('language.inventory.inventory')</a>
                     </div>
                 @endcan
             </div>
@@ -37,12 +37,12 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Issued Date</th>
-                    <th>Total Cost</th>
-                    <th>Expecting Amount</th>
-                    <th>Current Sales</th>
-                    <th>Sales Progress</th>
-                    <th>Issuer</th>
+                    <th>@lang('language.inventory.issue_date')</th>
+                    <th>@lang('language.total_cost')</th>
+                    <th>@lang('language.inventory.expecting_amount')</th>
+                    <th>@lang('language.inventory.current_sales')</th>
+                    <th>@lang('language.inventory.sales_progress')</th>
+                    <th>@lang('language.issuer')</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -76,12 +76,12 @@
                                 <div class="options">
                                     <a href="{{route('inventory.view',$inventory->id)}}" class="option-link edit">
                                         <i class="icon ion-eye"></i>&nbsp;
-                                        <span class="link-text">view</span>
+                                        <span class="link-text">@lang('language.btn_view')</span>
                                     </a>
                                     <a href="#" class="option-link delete" data-toggle="modal"
-                                       data-target="#delete-expense-modal">
+                                       data-target="#delete-inventory-modal">
                                         <i class="icon ion-android-delete"></i>&nbsp;
-                                        <span class="link-text">delete</span>
+                                        <span class="link-text">@lang('language.btn_delete')</span>
                                     </a>
                                 </div>
                             </td>
@@ -90,7 +90,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="7">No Inventory added Yet</td>
+                        <td colspan="7">@lang('language.inventory.no_inventory')</td>
                     </tr>
                 @endif
                 </tbody>
@@ -107,7 +107,7 @@
 @stop
 @section('modal')
     @can('delete-inventory')
-        <div class="modal fade" role="dialog" tabindex="-1" id="delete-expense-modal">
+        <div class="modal fade" role="dialog" tabindex="-1" id="delete-inventory-modal">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

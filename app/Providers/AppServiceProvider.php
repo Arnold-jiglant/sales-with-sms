@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        Schema::defaultStringLength(191);  //default database string length
     }
 
     /**

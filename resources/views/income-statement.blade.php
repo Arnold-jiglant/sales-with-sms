@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{env('APP_NAME')}} | Income Statement</title>
+    <title>{{env('APP_NAME')}} | @lang('language.report.income_statement')</title>
     <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/fonts/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/fonts/ionicons.min.css')}}">
@@ -38,24 +38,25 @@
             <div class="text-right">
                 <button id="print-btn" type="button" class="btn btn-primary custom-btn m-3"
                         onclick="window.print()"><span
-                        class="fa fa-print"></span> Print
+                        class="fa fa-print"></span> @lang('language.print')
                 </button>
             </div>
         </div>
     </div>
     <div class="card shadow mt-3 mb-3">
         <div class="card-header py-3">
-            <h5 class="value font-weight-bold m-0">Income Statement <small class="text-dark">{{$title}}</small></h5>
+            <h5 class="value font-weight-bold m-0">@lang('language.report.income_statement') <small
+                    class="text-dark">{{$title}}</small></h5>
         </div>
         <div class="card-body">
             <table class="table table-borderless table-striped">
                 <tbody>
                 <tr>
-                    <td><h5>Category</h5></td>
-                    <td><h5>Amount</h5></td>
+                    <td><h5>@lang('language.report.category')</h5></td>
+                    <td><h5>@lang('language.amount')</h5></td>
                 </tr>
                 <tr>
-                    <td><h6>Revenue & Gains</h6></td>
+                    <td><h6>@lang('language.report.revenue_gains')</h6></td>
                 </tr>
                 @foreach($revenueGains as $name=>$amount)
                     <tr>
@@ -64,11 +65,11 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td>Total Revenue & Gains</td>
+                    <td>@lang('language.report.total_revenue_gains')</td>
                     <td>{{number_format($revenueGains->values()->sum(),2)}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Expenses & Losses</h6></td>
+                    <td><h6>@lang('language.report.expenses_losses')</h6></td>
                     <td></td>
                 </tr>
                 @foreach($expenseLoss as $name=>$amount)
@@ -78,7 +79,7 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td>Total Expenses & Losses</td>
+                    <td>@lang('language.report.total_expenses_losses')</td>
                     <td>{{number_format($expenseLoss->values()->sum(),2)}}</td>
                 </tr>
                 <tr>
@@ -86,7 +87,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td><h6>Net Income</h6></td>
+                    <td><h6>@lang('language.report.net_income')</h6></td>
                     <td><h6>{{number_format($revenueGains->values()->sum()-$expenseLoss->values()->sum(),2)}}</h6></td>
                 </tr>
                 </tbody>

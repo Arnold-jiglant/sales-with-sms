@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-    Inventory Products
+    @lang('language.inventory.inventory') @lang('language.products.title')
 @stop
 @section('inventory')
     active
@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a><span>Dashboard</span></a></li>
-                    <li class="breadcrumb-item"><a><span>Inventory</span></a></li>
-                    <li class="breadcrumb-item"><a><span>Products</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.dashboard')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.inventory.inventory')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.products.title')</span></a></li>
                 </ol>
             </div>
         </div>
-        <h4>Inventory Products</h4>
+        <h4>@lang('language.inventory.inventory') @lang('language.products.title')</h4>
         @if(Session('success'))
             <div class="row" style="margin-top: 10px;">
                 <div class="col-lg-6 offset-3">
@@ -43,30 +43,31 @@
             <div id="inventoryInfo" class="card card-body" style="font-size: 11pt;">
                 <div class="row">
                     <div class="col-sm-6">
-                        <p><span>Total Cost:&nbsp;</span><span
+                        <p><span>@lang('language.total_cost'):&nbsp;</span><span
                                 class="ml-1 value">{{number_format($inventory->totalCost,2)}}</span>
                         </p>
-                        <p><span>Expected Amount:&nbsp;</span><span
+                        <p><span>@lang('language.inventory.expecting_amount'):&nbsp;</span><span
                                 class="ml-1 value">{{number_format($inventory->expectedAmount,2)}}</span>
                         </p>
-                        <p><span>Curent Sales:&nbsp;</span><span
+                        <p><span>@lang('language.inventory.current_sales'):&nbsp;</span><span
                                 class="ml-1 value">{{number_format($inventory->totalSales,2)}}</span>
                         </p>
-                        <p><span>Loss Amount:&nbsp;</span><span
+                        <p><span>@lang('language.inventory.loss_amount'):&nbsp;</span><span
                                 class="ml-1 text-danger">{{number_format($inventory->totalLossAMount,2)}}</span>
                         </p>
-                        <p><span>Issuer:&nbsp;</span><span class="ml-1 value">{{$inventory->user->name}}</span></p>
-                        <p><span>Issue Date:&nbsp;</span><span
+                        <p><span>@lang('language.issuer'):&nbsp;</span><span
+                                class="ml-1 value">{{$inventory->user->name}}</span></p>
+                        <p><span>@lang('language.inventory.issue_date'):&nbsp;</span><span
                                 class="ml-1 value">{{$inventory->created_at->format('D d M Y')}}</span></p>
                     </div>
                     <div class="col">
-                        <span>Description:&nbsp;</span>
+                        <span>@lang('language.description'):&nbsp;</span>
                         <div class="description p-3">
                             <p class="value font-weight-normal">{{$inventory->description}}</p>
                         </div>
                         <div class="text-right">
                             <button class="btn btn-primary btn-sm custom-btn mt-2" data-toggle="modal"
-                                    data-target="#edit-description-modal">Edit
+                                    data-target="#edit-description-modal">@lang('language.btn_edit')
                             </button>
                         </div>
                     </div>
@@ -77,10 +78,10 @@
             <div class="col-md-8 col-xl-6 offset-md-2">
                 <form class="search-form">
                     <div class="form-group">
-                        <div class="input-group input-group-sm"><input class="form-control" type="text"
-                                                                       placeholder="search product">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control" type="text" placeholder="@lang('language.search') @lang('language.products.product')">
                             <div class="input-group-append">
-                                <button class="btn btn-primary custom-btn" type="button">Search</button>
+                                <button class="btn btn-primary custom-btn" type="button">@lang('language.search')</button>
                             </div>
                         </div>
                     </div>
@@ -89,11 +90,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6 order-md-1">
+        <div class="col-5 order-md-0">
+            <p class="pl-3">@lang('language.total') {{$invProducts->total()}} @lang('language.products.title')</p>
+        </div>
+        <div class="col-6">
             @can('add-inventory')
                 <div class="text-right">
                     <button class="btn btn-primary btn-sm custom-btn mb-2" type="button" data-toggle="modal"
-                            data-target="#add-product-modal"><i class="icon ion-android-add"></i>Add Product
+                            data-target="#add-product-modal"><i class="icon ion-android-add"></i>@lang('language.add') @lang('language.products.product')
                     </button>
                 </div>
             @endcan
@@ -105,9 +109,6 @@
                 </ul>
             @endif
         </div>
-        <div class="col-5 order-md-0">
-            <p class="pl-3">Total {{$invProducts->total()}} products</p>
-        </div>
     </div>
     <div class="col offset-lg-0 offset-xl-0">
         <div class="table-responsive table-bordered text-center" id="inventory-products-table">
@@ -115,15 +116,15 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Remain</th>
-                    <th>Stock Level</th>
-                    <th>Cost</th>
-                    <th>Buying Price@</th>
-                    <th>Selling Price@</th>
-                    <th>Time</th>
-                    <th title="Loss Amount">L/Amount</th>
+                    <th>@lang('language.name')</th>
+                    <th>@lang('language.quantity')</th>
+                    <th>@lang('language.remain')</th>
+                    <th>@lang('language.stock_level')</th>
+                    <th>@lang('language.cost')</th>
+                    <th>@lang('language.buying_price')@</th>
+                    <th>@lang('language.selling_price')@</th>
+                    <th>@lang('language.time')</th>
+                    <th title="Loss Amount">L/@lang('language.short_amount')</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -162,7 +163,7 @@
                                    data-hasDiscount="{{$invProduct->hasDiscount}}"
                                    data-discountType="{{$invProduct->discount_type_id}}">
                                     <i class="icon ion-plus"></i>&nbsp;
-                                    <span class="link-text">Stock</span>
+                                    <span class="link-text">@lang('language.btn_stock')</span>
                                 </a>
                                 <a href="#" class="option-link edit" data-toggle="modal"
                                    data-target="#edit-inventory-modal" data-id="{{$invProduct->id}}"
@@ -173,7 +174,7 @@
                                    data-hasDiscount="{{$invProduct->hasDiscount}}"
                                    data-discountType="{{$invProduct->discount_type_id}}">
                                     <i class="icon ion-edit"></i>&nbsp;
-                                    <span class="link-text">edit</span>
+                                    <span class="link-text">@lang('language.btn_edit')</span>
                                 </a>
                                 <a href="#" class="option-link" data-toggle="modal"
                                    data-target="#product-loss-modal" data-id="{{$invProduct->id}}"
@@ -182,12 +183,12 @@
                                    data-buyingPrice="{{$invProduct->buyingPrice}}"
                                    data-hassize="{{$invProduct->hasSize}}">
                                     <i class="icon ion-arrow-graph-down-right"></i>&nbsp;
-                                    <span class="link-text">Loss</span>
+                                    <span class="link-text">@lang('language.btn_loss')</span>
                                 </a>
                                 <a href="#" class="option-link edit" data-toggle="modal"
                                    data-target="#delete-inventory-modal">
                                     <i class="icon ion-android-delete"></i>&nbsp;
-                                    <span class="link-text">Delete</span>
+                                    <span class="link-text">@lang('language.btn_delete')</span>
                                 </a>
                             </div>
                         </td>
@@ -212,7 +213,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;Add Product</h5>
+                        <h5 class="modal-title"><i class="icon ion-plus"></i>&nbsp;@lang('language.add') @lang('language.products.product')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -224,7 +225,7 @@
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group">
-                                <label for="product">Product Name</label>
+                                <label for="product">@lang('language.products.product_name') Name</label>
                                 <select class="custom-select custom-select-sm" name="product" id="product">
                                     @foreach($products as $product)
                                         <option value="{{$product->id}}">{{$product->name}}</option>
@@ -233,7 +234,7 @@
                             </div>
                             <div class="form-group" data-toggle="popover" data-content="whole quantity eg. 200 pieces"
                                  data-trigger="focus" data-placement="right">
-                                <label for="quantity">Quantity</label>
+                                <label for="quantity">@lang('language.quantity')</label>
                                 <input class="form-control form-control-sm" type="number"
                                        placeholder="Inventory Quantity"
                                        min="1" step="0.25" id="quantity" name="quantity" required>
@@ -241,14 +242,14 @@
                             <div class="form-group" data-toggle="popover"
                                  data-content="cost of the whole package eg. 200 pc -> 200,000/="
                                  data-trigger="focus" data-placement="right">
-                                <label for="cost">Cost</label>
+                                <label for="cost">@lang('language.cost')</label>
                                 <input id="cost" class="form-control form-control-sm" type="number"
                                        placeholder="inventory quantity cost" min="0" name="cost" required>
                             </div>
                             <div class="form-group" data-toggle="popover"
                                  data-content="Selling Price for single item eg. 12,000/="
                                  data-trigger="focus" data-placement="right">
-                                <label for="sellingPrice">Selling Price</label>
+                                <label for="sellingPrice">@lang('language.selling_price')</label>
                                 <div class="form-row">
                                     <div class="col-9">
                                         <input class="form-control form-control-sm" type="number"
@@ -256,7 +257,7 @@
                                                required>
                                     </div>
                                     <div class="col-3 text-center">
-                                        <p>Profit: <span id="profit" class="font-weight-bold"></span></p>
+                                        <p>@lang('language.profit'): <span id="profit" class="font-weight-bold"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -266,24 +267,24 @@
                                 <div class="custom-control custom-control-inline custom-checkbox">
                                     <input class="custom-control-input" type="checkbox" id="discount-checkbox"
                                            name="discount">
-                                    <label class="custom-control-label" for="discount-checkbox">Discount rates?</label>
+                                    <label class="custom-control-label" for="discount-checkbox">@lang('language.discount_rates')?</label>
                                 </div>
                             </div>
                             <div id="discounts-container" style="display: none">
                                 <div class="form-row mb-1">
                                     <div class="col">
-                                        <span class="mr-2">Type:</span>
+                                        <span class="mr-2">@lang('language.type'):</span>
                                         <div class="custom-control custom-control-inline custom-radio">
                                             <input class="custom-control-input" type="radio" name="discountType"
                                                    id="amount" value="1" checked>
                                             <label class="custom-control-label"
-                                                   for="amount">Amount ($)</label>
+                                                   for="amount">@lang('language.amount') ($)</label>
                                         </div>
                                         <div class="custom-control custom-control-inline custom-radio">
                                             <input class="custom-control-input" type="radio" name="discountType"
                                                    id="percent" value="2">
                                             <label class="custom-control-label"
-                                                   for="percent">Percent (%)</label>
+                                                   for="percent">@lang('language.percent') (%)</label>
                                         </div>
                                     </div>
                                 </div>
@@ -292,15 +293,15 @@
                                         <button id="addDiscountBtn" class="btn btn-primary btn-sm custom-btn"
                                                 type="button">
                                             <i
-                                                class="icon ion-plus"></i>Add
+                                                class="icon ion-plus"></i>@lang('language.add')
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="float-right m-4">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Confirm</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>
@@ -311,7 +312,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"><i class="icon ion-plus"></i>&nbsp;Add To Stock</h4>
+                        <h4 class="modal-title"><i class="icon ion-plus"></i>&nbsp;@lang('language.add_to_stock')</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -321,30 +322,30 @@
                             <input type="hidden" name="_method" value="PUT">
                             <input id="totalStockQuantity" type="hidden">
                             <input id="totalStockCost" type="hidden">
-                            <p><span>Product Name:</span><span id="productStockNameLabel" class="ml-1 value">Text</span>
+                            <p><span>@lang('language.products.product_name'):</span><span id="productStockNameLabel" class="ml-1 value">Text</span>
                             </p>
-                            <p><span>Remaining Quantity:</span><span id="remainingStockQtyLabel"
+                            <p><span>@lang('language.remaining_quantity'):</span><span id="remainingStockQtyLabel"
                                                                      class="ml-1 value">Text</span>
                             </p>
-                            <div class="form-group" data-toggle="popover" data-content="whole quantity eg. 200 pieces"
+                            <div class="form-group" data-toggle="popover" data-content="@lang('language.quantity_message')"
                                  data-trigger="focus" data-placement="right">
-                                <label for="newStockQuantity">New Quantity</label>
+                                <label for="newStockQuantity">@lang('language.new_quantity')</label>
                                 <input class="form-control form-control-sm" type="number"
                                        placeholder="New Quantity" step="0.25"
                                        min="1" id="newStockQuantity" name="newQuantity" required>
                             </div>
                             <div class="form-group" data-toggle="popover"
-                                 data-content="cost of the whole package eg. 200 pc -> 200,000/=" data-trigger="focus"
+                                 data-content="@lang('language.cost_message')" data-trigger="focus"
                                  data-placement="right">
-                                <label for="newStockCost">New Cost</label>
+                                <label for="newStockCost">@lang('language.new_cost')</label>
                                 <input class="form-control form-control-sm" type="number"
                                        placeholder="quantity cost"
                                        min="0" step="0.01" id="newStockCost" name="newCost" required>
                             </div>
                             <div class="form-group" data-toggle="popover"
-                                 data-content="Selling Price for single item eg. 12,000/ NB. This price will affect current selling price"
+                                 data-content="@lang('language.selling_price_message')"
                                  data-trigger="focus" data-placement="right">
-                                <label for="newStockSellingPrice">New Selling Price</label>
+                                <label for="newStockSellingPrice">@lang('language.new_selling_price')</label>
                                 <div class="form-row">
                                     <div class="col-7">
                                         <input class="form-control form-control-sm" type="number"
@@ -353,15 +354,15 @@
                                                required>
                                     </div>
                                     <div class="col-5 text-center">
-                                        <p class="d">Profit: <span id="newStockProfitLabel"
+                                        <p class="d">@lang('language.profit'): <span id="newStockProfitLabel"
                                                                    class="font-weight-bold"></span></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-right mt-2">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Add Stock</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.add_to_stock')</button>
                             </div>
                         </form>
                     </div>
@@ -374,7 +375,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Description</h5>
+                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;@lang('language.description')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -388,9 +389,9 @@
                                           name="description">{{$inventory->description}}</textarea>
                             </div>
                             <div class="float-right m-4">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Update
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')
                                 </button>
                             </div>
                         </form>
@@ -402,7 +403,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit Inventory</h4>
+                        <h4 class="modal-title"><i class="icon ion-edit"></i>&nbsp;@lang('language.edit_inventory')</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -410,34 +411,34 @@
                         <form method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PUT">
-                            <p><span>Product Name:</span><span id="productNameLabel" class="ml-1 value">Text</span></p>
-                            <p><span>Remaining Quantity:</span><span id="remainingQtyLabel"
+                            <p><span>@lang('language.products.product_name'):</span><span id="productNameLabel" class="ml-1 value">Text</span></p>
+                            <p><span>@lang('language.remaining_quantity'):</span><span id="remainingQtyLabel"
                                                                      class="ml-1 value">Text</span>
                             </p>
-                            <p><span>Entered Quantity:</span><span id="quantityLabel" class="ml-1 value">Text</span></p>
-                            <div class="form-group" data-toggle="popover" data-content="whole quantity eg. 200 pieces"
+                            <p><span>@lang('language.entered_quantity'):</span><span id="quantityLabel" class="ml-1 value">Text</span></p>
+                            <div class="form-group" data-toggle="popover" data-content="@lang('language.quantity_message')"
                                  data-trigger="focus" data-placement="right">
-                                <label for="newQuantity">New Quantity</label>
+                                <label for="newQuantity">@lang('language.new_quantity')</label>
                                 <input class="form-control form-control-sm" type="number"
                                        placeholder="Inventory Quantity" step="0.25"
                                        min="1" id="newQuantity" name="newQuantity" required>
                             </div>
-                            <p class="mt-2"><span>Entered Cost:</span><span id="costLabel"
+                            <p class="mt-2"><span>@lang('language.entered_cost')</span>:</span><span id="costLabel"
                                                                             class="ml-1 value">Text</span></p>
                             <div class="form-group" data-toggle="popover"
-                                 data-content="cost of the whole package eg. 200 pc -> 200,000/=" data-trigger="focus"
+                                 data-content="@lang('language.cost_message')" data-trigger="focus"
                                  data-placement="right">
-                                <label for="newCost">New Cost</label>
+                                <label for="newCost">@lang('language.new_cost')</label>
                                 <input class="form-control form-control-sm" type="number"
                                        placeholder="inventory quantity cost"
                                        min="0" step="0.01" id="newCost" name="newCost" required>
                             </div>
-                            <p class="mt-2"><span>Entered Selling Price:</span><span id="sellingPriceLabel"
+                            <p class="mt-2"><span>@lang('language.entered_selling_price'):</span><span id="sellingPriceLabel"
                                                                                      class="ml-1 value">Text</span></p>
                             <div class="form-group" data-toggle="popover"
-                                 data-content="Selling Price for single item eg. 12,000/ NB. This price will affect current selling price"
+                                 data-content="@lang('language.selling_price_message')"
                                  data-trigger="focus" data-placement="right">
-                                <label for="newSellingPrice">New Selling Price</label>
+                                <label for="newSellingPrice">@lang('language.new_selling_price')</label>
                                 <div class="form-row">
                                     <div class="col-7">
                                         <input class="form-control form-control-sm" type="number"
@@ -445,32 +446,31 @@
                                                min="0" step="0.01" id="newSellingPrice" name="newSellingPrice" required>
                                     </div>
                                     <div class="col-5 text-center">
-                                        <p class="d">Profit: <span id="profitLabel" class="font-weight-bold"></span></p>
+                                        <p class="d">@lang('language.profit'): <span id="profitLabel" class="font-weight-bold"></span></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group" data-toggle="popover"
-                                 data-content="product discount depending on quantity. eg. if qty >5 discount 1000, for 6,000/= shoes will be sold for 5,000/="
+                                 data-content="@lang('language.discount_message')"
                                  data-trigger="hover" data-placement="right">
                                 <div class="custom-control custom-control-inline custom-checkbox">
                                     <input class="custom-control-input" type="checkbox"
                                            id="edit-discount-checkbox" name="hasDiscount">
-                                    <label class="custom-control-label" for="edit-discount-checkbox">Discount
-                                        rates?</label>
+                                    <label class="custom-control-label" for="edit-discount-checkbox">@lang('language.discount_rates')?</label>
                                 </div>
                             </div>
                             <div id="edit-discounts-container" class="discounts-container" style="display: none">
                                 <div class="form-row mb-1">
-                                    <div class="col"><span class="mr-2">Type:</span>
+                                    <div class="col"><span class="mr-2">@lang('language.type'):</span>
                                         <div class="custom-control custom-control-inline custom-radio">
                                             <input class="custom-control-input" type="radio" name="discountType"
                                                    checked="" id="edit-amount" value="1">
-                                            <label class="custom-control-label" for="edit-amount">Amount($)</label>
+                                            <label class="custom-control-label" for="edit-amount">@lang('language.amount')$)</label>
                                         </div>
                                         <div class="custom-control custom-control-inline custom-radio">
                                             <input class="custom-control-input" type="radio" name="discountType"
                                                    id="edit-percent" value="2">
-                                            <label class="custom-control-label" for="edit-percent">Percent (%)</label>
+                                            <label class="custom-control-label" for="edit-percent">@lang('language.percent') (%)</label>
                                         </div>
                                     </div>
                                 </div>
@@ -478,7 +478,7 @@
                                     <div class="col">
                                         <button id="add-discount-btn"
                                                 class="btn btn-primary btn-sm custom-btn float-right" type="button">
-                                            <i class="icon ion-plus"></i>Add
+                                            <i class="icon ion-plus"></i>@lang('language.add')
                                         </button>
                                     </div>
                                 </div>
@@ -486,12 +486,12 @@
                             <div id="loading" class="loading" style="display: none">
                                 <span class="spinner-border" role="status"
                                       style="width: 40px;height: 40px; color:#00bacc;"></span>
-                                <span class="mt-2">Loading Discount Rates...</span>
+                                <span class="mt-2">Loading ...</span>
                             </div>
                             <div class="text-right mt-2">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="submit">Update</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
                             </div>
                         </form>
                     </div>
@@ -502,7 +502,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-arrow-graph-down-right"></i>&nbsp;Product Loss</h5>
+                        <h5 class="modal-title"><i class="icon ion-arrow-graph-down-right"></i>&nbsp;@lang('language.inventory.product_loss')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -511,26 +511,26 @@
                             <input id="invProductId" type="hidden">
                             <div class="form-row mb-2">
                                 <div class="col-sm-6">
-                                    <p><span>Product Name:</span><span id="productNameLabelLoss"
+                                    <p><span>@lang('language.products.product_name'):</span><span id="productNameLabelLoss"
                                                                        class="ml-1 value">Text</span></p>
-                                    <p><span>Remaining Quantity:</span><span id="remainingQtyLabelLoss"
+                                    <p><span>@lang('language.remaining_quantity'):</span><span id="remainingQtyLabelLoss"
                                                                              class="ml-1 value">Text</span></p>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><span>Buying Price:</span><span id="buyingPriceLabelLoss"
+                                    <p><span>@lang('language.buying_price'):</span><span id="buyingPriceLabelLoss"
                                                                        class="ml-1 value">Text</span></p>
-                                    <p><span>SellingPrice:</span><span id="sellingPriceLabelLoss" class="ml-1 value">Text</span>
+                                    <p><span>@lang('language.selling_price'):</span><span id="sellingPriceLabelLoss" class="ml-1 value">Text</span>
                                     </p>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-6">
-                                    <h6 class="mb-0 mt-3">Last Losses</h6>
+                                    <h6 class="mb-0 mt-3">@lang('language.inventory.last_loss')</h6>
                                 </div>
                                 <div class="col-6">
                                     <button id="show-add-loss-btn" class="btn btn-primary btn-sm custom-btn float-right"
                                             type="button"><i
-                                            class="icon ion-android-add"></i>Add
+                                            class="icon ion-android-add"></i>@lang('language.add')
                                     </button>
                                 </div>
                             </div>
@@ -560,7 +560,7 @@
                                         <button id="add-loss-btn"
                                                 class="btn btn-primary btn-sm custom-btn float-right mr-2"
                                                 type="button">
-                                            Confirm
+                                            @lang('language.confirm')
                                         </button>
                                     </div>
                                 </div>
@@ -570,9 +570,9 @@
                                     <thead class="text-danger">
                                     <tr>
                                         <th>#</th>
-                                        <th>Qty</th>
-                                        <th>Loss</th>
-                                        <th>Date</th>
+                                        <th>@lang('language.short_quantity')</th>
+                                        <th>@lang('language.loss')</th>
+                                        <th>@lang('language.date')</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -587,12 +587,12 @@
                                                 <a href="#" class="option-link edit" data-toggle="modal"
                                                    data-target="#edit-loss-modal">
                                                     <i class="icon ion-edit"></i>&nbsp;
-                                                    <span class="link-text">edit</span>
+                                                    <span class="link-text">@lang('language.btn_edit')</span>
                                                 </a>
                                                 <a href="#" class="option-link delete" data-toggle="modal"
                                                    data-target="#delete-loss-modal">
                                                     <i class="icon ion-android-delete"></i>&nbsp;
-                                                    <span class="link-text">delete</span>
+                                                    <span class="link-text">@lang('language.btn_delete')</span>
                                                 </a>
                                             </div>
                                         </td>
@@ -642,7 +642,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;Edit Loss</h5>
+                        <h5 class="modal-title"><i class="icon ion-edit"></i>&nbsp;@lang('language.inventory.edit_loss')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -652,17 +652,17 @@
                             <input id="editLossId" type="hidden">
                             <input id="editLossRemaining" type="hidden">
                             <div class="form-group">
-                                <label>Loss Quantity</label>
+                                <label>@lang('language.inventory.loss_quantity')</label>
                                 <input class="form-control form-control-sm" type="number"
                                        placeholder="quantity" min="0" step="0.01" id="editLossQuantity">
                             </div>
                             <div class="form-group">
-                                <label>Loss Amount</label>
+                                <label>@lang('language.inventory.loss_amount')</label>
                                 <input class="form-control form-control-sm" type="number"
                                        placeholder="Total loss amount" min="0" step="0.01" id="editLossAmount">
                             </div>
                             <div class="form-group">
-                                <label>Description(optional)</label>
+                                <label>@lang('language.description')(@lang('language.optional'))</label>
                                 <textarea class="form-control form-control-sm"
                                           placeholder="description" rows="4" id="editLossDescription"></textarea>
                             </div>
@@ -670,7 +670,7 @@
                                 <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
                                 </button>
                                 <button id="update-loss-btn" class="btn btn-primary btn-sm custom-btn" type="button">
-                                    Update
+                                    @lang('language.confirm')
                                 </button>
                             </div>
                         </form>
@@ -682,17 +682,17 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Inventory</h5>
+                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;@lang('language.inventory.delete_inventory')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
                         <form>
-                            <p>Are you sure you want to delete this inventory product?</p>
+                            <p>@lang('language.inventory.delete_inv_prod_message')?</p>
                             <div class="float-right">
-                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                                <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
-                                <button class="btn btn-primary btn-sm custom-btn" type="button">Delete</button>
+                                <button class="btn btn-primary btn-sm custom-btn" type="button">@lang('language.btn_delete')</button>
                             </div>
                         </form>
                     </div>
@@ -703,7 +703,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;Delete Loss</h5>
+                        <h5 class="modal-title"><i class="icon ion-android-delete"></i>&nbsp;@lang('language.inventory.delete_loss')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
@@ -711,12 +711,12 @@
                         <form>
                             <input id="deleteLossID" type="hidden">
                             <input id="deleteLossInvProdID" type="hidden">
-                            <p>Are you sure you want to delete this loss?</p>
+                            <p>@lang('language.inventory.delete_loss_message')</p>
                             <div class="float-right">
                                 <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
                                 </button>
                                 <button id="delete-loss-btn" class="btn btn-primary btn-sm custom-btn" type="button">
-                                    Delete
+                                    @lang('language.btn_delete')
                                 </button>
                             </div>
                         </form>
@@ -919,17 +919,17 @@
                 let buyingPrice = $(e.relatedTarget).data('buyingprice');
                 let sellingPrice = $(e.relatedTarget).data('sellingprice');
                 let remaining = $(e.relatedTarget).data('remainingqty');
-                let hasSize = $(e.relatedTarget).data('hassize')===1;
+                let hasSize = $(e.relatedTarget).data('hassize') === 1;
                 $('#invProductId').val(id);
                 $('#productNameLabelLoss').text(name);
                 $('#buyingPriceLabelLoss').text(buyingPrice);
                 $('#sellingPriceLabelLoss').text(sellingPrice);
                 $('#remainingQtyLabelLoss').text(remaining);
                 $('#lossQuantity').attr('max', remaining);
-                if(hasSize){
-                    lossQuantity.attr('step','0.25');
-                }else{
-                    lossQuantity.attr('step','1');
+                if (hasSize) {
+                    lossQuantity.attr('step', '0.25');
+                } else {
+                    lossQuantity.attr('step', '1');
                 }
                 loadLosses(id);
             });
@@ -1066,13 +1066,13 @@
                 $('#editLossId').val(id);
                 $('#lossInvProductId').val(invProdId);
                 editLossQty.val(qty);
-                editLossQty.attr('max',remaining);
-                if(hasSize){
-                    editLossQty.attr('step','0.25')
-                    editLossQty.attr('min','0.25')
-                }else{
-                    editLossQty.attr('step','1')
-                    editLossQty.attr('min','1')
+                editLossQty.attr('max', remaining);
+                if (hasSize) {
+                    editLossQty.attr('step', '0.25')
+                    editLossQty.attr('min', '0.25')
+                } else {
+                    editLossQty.attr('step', '1')
+                    editLossQty.attr('min', '1')
                 }
                 $('#editLossAmount').val(amount);
                 $('#editLossDescription').val(desc);

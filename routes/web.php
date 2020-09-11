@@ -21,7 +21,7 @@ Route::prefix('setup')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('home', function () {
-        Session::put('language', \auth()->user()->languageName);
+        \Illuminate\Support\Facades\Lang::setLocale(\auth()->user()->locale);
         return \auth()->user()->isManager ? redirect()->route('dashboard') : view('layout.app');
     })->name('home');
 

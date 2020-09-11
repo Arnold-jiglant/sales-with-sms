@@ -7,12 +7,12 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a><span>Dashboard</span></a></li>
-                    <li class="breadcrumb-item"><a><span>View Sales</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.dashboard')</span></a></li>
+                    <li class="breadcrumb-item"><a><span>@lang('language.sales.view')</span></a></li>
                 </ol>
             </div>
         </div>
-        <h3 class="mt-1">Sales <small>{{$title}}</small></h3>
+        <h3 class="mt-1">@lang('language.sales.title') <small>{{$title}}</small></h3>
         @if(Session('success'))
             <div class="row" style="margin-top: 10px;">
                 <div class="col-lg-6 offset-3">
@@ -39,12 +39,12 @@
     <div class="col-lg-11 col-xl-10 offset-lg-1 offset-xl-1">
         <div class="row">
             <div class="col">
-                <p>Total {{$receipts->total()}} showing {{$receipts->firstItem()}}-{{$receipts->lastItem()}}</p>
+                <p>@lang('language.total') {{$receipts->total()}} @lang('language.showing') {{$receipts->firstItem()}}-{{$receipts->lastItem()}}</p>
             </div>
             <div class="col order-sm-1">
                 <div class="text-right">
                     <button type="button" class="custom-btn btn-sm btn" data-toggle="modal" data-target="#filter-modal">
-                        <span class="fa fa-filter"></span> Filter
+                        <span class="fa fa-filter"></span> @lang('language.sales.btn_filter')
                     </button>
                 </div>
             </div>
@@ -54,12 +54,12 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Receipt</th>
-                    <th>Products</th>
-                    <th>Qty</th>
-                    <th>Amount</th>
-                    <th>Total Amount</th>
-                    <th>Date</th>
+                    <th>@lang('language.receipt')</th>
+                    <th>@lang('language.products.title')</th>
+                    <th>@lang('language.short_quantity')</th>
+                    <th>@lang('language.amount')</th>
+                    <th>@lang('language.total_amount')</th>
+                    <th>@lang('language.date')</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -78,25 +78,25 @@
                                 <td>{{number_format($sale->payedAmount,2)}}</td>
                                 <td rowspan="{{$sales->count()}}" class="align-middle text-center">
                                     @if($receipt->incompletePayment)
-                                        <p class="p-0 m-0">Required: <span class="value">{{number_format($receipt->requiredPaymentAmount,2)}}
+                                        <p class="p-0 m-0">@lang('language.required'): <span class="value">{{number_format($receipt->requiredPaymentAmount,2)}}
                                                 </span></p>
-                                        <p class="p-0 m-0">Payed: <span class=" text-success p-0 m-0">{{number_format($receipt->payedAMount,2)}}
+                                        <p class="p-0 m-0">@lang('language.payed'): <span class=" text-success p-0 m-0">{{number_format($receipt->payedAMount,2)}}
                                                 </span></p>
-                                        <p class="p-0 m-0">Debt: <span
+                                        <p class="p-0 m-0">@lang('language.debt'): <span
                                                 class=" text-danger p-0">{{number_format($receipt->debtAMount,2)}}                                                </span>
                                         </p>
-                                        <p class="p-0 m-0">Customer: <span
+                                        <p class="p-0 m-0">@lang('language.customers.customer'): <span
                                                 class=" text-info p-0">{{$receipt->customerName}}                                                </span>
                                         </p>
                                     @elseif($receipt->payment_type_code == \App\PaymentType::$CRD)
                                         <p class="value m-0">{{number_format($receipt->payedAMount,2)}}</p>
-                                        <span class="text-success">PAYED</span>
-                                        <p class="p-0 m-0">Customer: <span
+                                        <span class="text-success">@lang('language.payed')</span>
+                                        <p class="p-0 m-0">@lang('language.customers.customer'): <span
                                                 class=" text-info p-0">{{$receipt->customerName}}                                                </span>
                                         </p>
                                     @else
                                         <p class="value m-0">{{number_format($receipt->payedAMount,2)}}</p>
-                                        <span class="text-success">PAYED</span>
+                                        <span class="text-success">@lang('language.payed')</span>
                                     @endif
                                     <p class="m-2 text-center">{{strtoupper($receipt->paymentType->name)}}</p>
                                 </td>
@@ -133,7 +133,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="fa fa-filter"></i>&nbsp;Filter Sales</h5>
+                    <h5 class="modal-title"><i class="fa fa-filter"></i>&nbsp;@lang('language.sales.btn_filter')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -141,17 +141,17 @@
                     <form method="GET" action="{{route('sale.view')}}">
                         @csrf
                         <div class="form-group">
-                            <label for="from">From</label>
+                            <label for="from">@lang('language.from')</label>
                             <input id="from" class="form-control form-control-sm" type="date" name="from" required>
                         </div>
                         <div class="form-group">
-                            <label for="to">To</label>
+                            <label for="to">@lang('language.to')</label>
                             <input id="to" class="form-control form-control-sm" type="date" name="to" required>
                         </div>
                         <div class="text-right mt-2">
-                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">Close
+                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                             </button>
-                            <button class="btn btn-primary btn-sm custom-btn" type="submit">Submit</button>
+                            <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('submit')</button>
                         </div>
                     </form>
                 </div>
