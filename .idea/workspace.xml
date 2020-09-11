@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Language.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Language.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_24_170834_create_languages_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_24_170834_create_languages_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/LanguagesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/LanguagesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/language.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/language.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/configure.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/configure.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/expenses.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/expenses.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/income-statement.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/income-statement.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/incomes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/incomes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/inventory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/sell.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sell.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/view-customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/view-customer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/view-sales.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/view-sales.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -269,6 +245,7 @@
       <workItem from="1599037463974" duration="1571000" />
       <workItem from="1599122309204" duration="9915000" />
       <workItem from="1599383511954" duration="19979000" />
+      <workItem from="1599822564247" duration="729000" />
     </task>
     <servers />
   </component>

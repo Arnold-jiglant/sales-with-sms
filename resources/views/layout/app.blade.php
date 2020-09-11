@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{env('APP_NAME')}} | @yield('title')</title>
+    <title>{{env('APP_NAME')}}  @yield('title')</title>
     <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/fonts/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/fonts/ionicons.min.css')}}">
