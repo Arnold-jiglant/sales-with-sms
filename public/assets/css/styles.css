@@ -2,6 +2,7 @@ body {
     position: relative;
     height: 100vh;
 }
+
 .startup-wizard {
     height: inherit;
     display: flex;
@@ -10,7 +11,7 @@ body {
     background: #00353a;
 }
 
-.shaking-btn{
+.shaking-btn {
     animation-name: shaking;
     animation-duration: 1s;
     animation-iteration-count: infinite;
@@ -18,25 +19,35 @@ body {
     animation-direction: alternate;
 }
 
-.fade-right{
+.fade-right {
     animation-name: fade-right;
     animation-duration: 1.25s;
 }
 
-@media (max-width: 768px){
-    .fade-right img{
-        width: 300px!important;
+@media (max-width: 768px) {
+    .fade-right img {
+        width: 300px !important;
     }
 }
 
 @keyframes shaking {
-    from{transform: scaleX(1)}
-    to{transform: scaleX(1.05)}
+    from {
+        transform: scaleX(1)
+    }
+    to {
+        transform: scaleX(1.05)
+    }
 }
 
 @keyframes fade-right {
-    from{transform: translateX(-500px);opacity: 0}
-    to{transform: translateX(0px);opacity: 1}
+    from {
+        transform: translateX(-500px);
+        opacity: 0
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1
+    }
 
 }
 
@@ -115,7 +126,7 @@ body {
 }
 
 ul.sub-menu {
-    padding-left:2em;
+    padding-left: 2em;
     list-style: none;
 }
 
@@ -173,10 +184,18 @@ ul.sub-menu {
     font-size: 10pt;
 }
 
+
 @media (max-width: 767px) {
     #main {
-        margin-left: 0px;
+        margin-left: 0;
         transition: 0.5s;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .d-md-min-none {
+        display: none !important;
     }
 }
 

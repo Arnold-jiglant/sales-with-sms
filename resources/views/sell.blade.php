@@ -17,8 +17,8 @@
         </div>
         <h4 class="mt-1">@lang('language.sales.sell')</h4>
         @if(Session('success'))
-            <div class="row" style="margin-top: 10px;">
-                <div class="col-lg-6 offset-3">
+            <div class="row mt-2">
+                <div class="col-lg-6 offset-lg-3">
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
@@ -43,9 +43,11 @@
                 <form class="search-form" action="{{route('sale')}}">
                     <div class="form-group">
                         <div class="input-group input-group-sm">
-                            <input class="form-control" type="text" placeholder="@lang('language.products.search_product')" name="search" required>
+                            <input class="form-control" type="text"
+                                   placeholder="@lang('language.products.search_product')" name="search" required>
                             <div class="input-group-append">
-                                <button class="btn btn-primary custom-btn" type="submit">@lang('language.search')</button>
+                                <button class="btn btn-primary custom-btn"
+                                        type="submit">@lang('language.search')</button>
                             </div>
                         </div>
                     </div>
@@ -116,8 +118,8 @@
                     </nav>
                 </div>
             </div>
-            <div class="col-md-11 col-lg-7">
-                @if(Session('sales'))
+            @if(Session('sales'))
+                <div class="col-md-11 col-lg-7 mt-2 mb-3">
                     <form id="sell-form" method="POST" action="{{route('sale.confirm')}}"
                           style="border: 1px dashed #1c1c1c;border-radius: 10px;">
                         {{csrf_field()}}
@@ -174,23 +176,26 @@
                                             <div class="custom-control custom-control-inline custom-radio">
                                                 <input class="custom-control-input" type="radio" name="paymentType"
                                                        checked id="cash" value="CSH">
-                                                <label class="custom-control-label" for="cash">@lang('language.sales.payment_type_cash')</label>
+                                                <label class="custom-control-label"
+                                                       for="cash">@lang('language.sales.payment_type_cash')</label>
                                             </div>
                                             <div class="custom-control custom-control-inline custom-radio"
                                                  data-toggle="popover"
                                                  data-content="Credit Payments, NB. Customer name is required"
-                                                 data-trigger="hover">
+                                                 data-trigger="focus">
                                                 <input class="custom-control-input" type="radio" name="paymentType"
                                                        id="credit" value="CRD">
-                                                <label class="custom-control-label" for="credit">@lang('language.sales.payment_type_credit')</label>
+                                                <label class="custom-control-label"
+                                                       for="credit">@lang('language.sales.payment_type_credit')</label>
                                             </div>
                                             <div class="custom-control custom-control-inline custom-radio"
                                                  data-toggle="popover"
                                                  data-content="Debt Payments, NB. Customer name is required"
-                                                 data-trigger="hover">
+                                                 data-trigger="focus">
                                                 <input class="custom-control-input" type="radio" name="paymentType"
                                                        id="debit" value="DBT">
-                                                <label class="custom-control-label" for="debit">@lang('language.sales.payment_type_debit')</label>
+                                                <label class="custom-control-label"
+                                                       for="debit">@lang('language.sales.payment_type_debit')</label>
                                             </div>
                                         </div>
                                     </td>
@@ -212,8 +217,8 @@
                             </button>
                         </div>
                     </form>
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
     </div>
 @stop
@@ -235,8 +240,11 @@
                         <input id="invProdId" type="hidden" name="inventory_product_id">
                         <div class="form-row">
                             <div class="col-sm-6">
-                                <p><span>@lang('language.products.product_name'):</span><span id="productName" class="ml-1 value">Text</span></p>
-                                <p><span>@lang('language.selling_price'):</span><span id="sellingPrice" class="ml-1 value">Text</span></p>
+                                <p><span>@lang('language.products.product_name'):</span><span id="productName"
+                                                                                              class="ml-1 value">Text</span>
+                                </p>
+                                <p><span>@lang('language.selling_price'):</span><span id="sellingPrice"
+                                                                                      class="ml-1 value">Text</span></p>
                             </div>
                             <div class="col-sm-6">
                                 <p><span>@lang('language.remaining_quantity'):</span>
@@ -274,7 +282,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="discountAmount">@lang('language.sales.item_discount')</label>
-                                    <input class="form-control form-control-sm" type="number" placeholder="@lang('language.discount')"
+                                    <input class="form-control form-control-sm" type="number"
+                                           placeholder="@lang('language.discount')"
                                            min="0" id="discountAmount" name="discountAmount">
                                 </div>
                             </div>
@@ -296,8 +305,10 @@
                             </div>
                         </div>
                         <div class="float-right mt-2">
-                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')</button>
-                            <button class="btn btn-primary btn-sm custom-btn" type="submit">@lang('language.confirm')</button>
+                            <button class="btn btn-light btn-sm mr-2" type="button"
+                                    data-dismiss="modal">@lang('language.close')</button>
+                            <button class="btn btn-primary btn-sm custom-btn"
+                                    type="submit">@lang('language.confirm')</button>
                         </div>
                     </form>
                 </div>
@@ -308,7 +319,8 @@
         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="icon ion-ios-cart"></i>&nbsp;@lang('language.sales.confirm_sale')</h5>
+                    <h5 class="modal-title"><i class="icon ion-ios-cart"></i>&nbsp;@lang('language.sales.confirm_sale')
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -316,8 +328,10 @@
                     <form>
                         <p>@lang('language.sales.confirm_sale_message')</p>
                         <div class="float-right mt-2">
-                            <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')</button>
-                            <button id="confirm-btn" class="btn btn-primary btn-sm custom-btn" type="button">@lang('language.confirm')
+                            <button class="btn btn-light btn-sm mr-2" type="button"
+                                    data-dismiss="modal">@lang('language.close')</button>
+                            <button id="confirm-btn" class="btn btn-primary btn-sm custom-btn"
+                                    type="button">@lang('language.confirm')
                             </button>
                         </div>
                     </form>
