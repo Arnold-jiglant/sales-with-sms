@@ -131,11 +131,10 @@ class SaleController extends Controller
             'paymentType' => 'required'
         ]);
         $receipt = Receipt::create([
-            'number' => $this->generateReceiptNo(),
+            'number' => SaleController::generateReceiptNo(),
             'payment_type_code' => $request->get('paymentType'),
             'customer_id' => $request->get('customer_id'),
             'issuer' => auth()->id(),
-            'payed' => $request->get('paymentType') != PaymentType::$DEBT
         ]);
         $sales = Session::get('sales')->transform(function ($sale) {
             return new Sale([
@@ -147,19 +146,13 @@ class SaleController extends Controller
         });
         Session::forget('sales');
         $receipt->sales()->saveMany($sales);
-        $sales->transform(function ($sale) {
-            return $sale->inventoryProduct->inventory;
-        })->unique(function ($inventory) {
-            return $inventory->id;
-        })->each(function ($inventory) {
-            event(new InventoryChanged($inventory));
-        });
         //TODO Print Receipt
+        //TODO GET Inventory attributes by calculation
         return redirect()->back()->with('success', 'Sale complete! Receipt No. (' . $receipt->number . ')');
     }
 
     //generate receipt number
-    function generateReceiptNo()
+    static function generateReceiptNo()
     {
         $characters = 'ABCDEFGHIJKLMONPQRSTUVWXYZ1234567890';
         do {

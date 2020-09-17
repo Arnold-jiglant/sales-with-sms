@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Milon\Barcode\Facades\DNS1DFacade;
+use Milon\Barcode\Facades\DNS2DFacade;
 
 Route::get('/', function () {
     if (\Illuminate\Support\Facades\DB::table('users')->count() > 0) {
@@ -10,6 +12,10 @@ Route::get('/', function () {
     } else {
         return redirect()->route('startup.wizard');
     }
+});
+
+Route::get('/barcode/{n}', function ($n) {
+    echo DNS2DFacade::getBarcodeSVG($n, 'QRCODE',5,5);
 });
 
 //Startup Wizard

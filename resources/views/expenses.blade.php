@@ -52,7 +52,7 @@
             <div class="col order-sm-1">
                 <div class="text-right">
                     <div class="btn-group" role="group">
-                        <div class="dropdown btn-group d-inline-block" role="group">
+                        <div class="dropdown d-inline-block" role="group">
                             <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
                                     aria-expanded="false" type="button">@lang('language.sales.btn_filter')
                             </button>

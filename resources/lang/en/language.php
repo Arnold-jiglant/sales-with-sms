@@ -163,6 +163,7 @@ return [
     'btn_edit' => 'edit',
     'btn_reset' => 'reset',
     'btn_delete' => 'delete',
+    'btn_barcode' => 'barcode',
     'btn_stock' => 'stock',
     'btn_loss' => 'loss',
     'receipt' => 'Receipt',
