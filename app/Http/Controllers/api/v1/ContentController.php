@@ -37,27 +37,23 @@ class ContentController extends Controller
      * Get receipts*/
     public function receipts()
     {
-        return response()->json([
-            'success' => 'Founded',
-            'data' => Receipt::whereDate('created_at', Carbon::today())->get()->transform(function ($receipt) {
-                return new ReceiptResource($receipt);
-            }),
-        ]);
-    }
+        $request = Request::capture();
 
-    /*
-    * Get receipt by number*/
-    public function receipt($number)
-    {
-        $receipt = Receipt::whereNumber($number)->first();
-        if ($receipt == null) {
+        if ($request->has('number')) {
+            $number = $request->get('number');
+            $receipts = Receipt::where('number', 'like', "%$number%")->get()->transform(function ($receipt) {
+                return new ReceiptResource($receipt);
+            });
             return response()->json([
-                'error' => 'Receipt Not Found',
+                'success' => 'Founded',
+                'data' => $receipts,
             ]);
         }
         return response()->json([
             'success' => 'Founded',
-            'data' => new ReceiptResource($receipt),
+            'data' => Receipt::whereDate('created_at', Carbon::today())->orderBy('created_at', 'desc')->get()->transform(function ($receipt) {
+                return new ReceiptResource($receipt);
+            }),
         ]);
     }
 
@@ -102,7 +98,7 @@ class ContentController extends Controller
     public function customers($name)
     {
         return response()->json([
-            'success' => 'Customer Found',
+            'success' => 'Found',
             'customers' => Customer::where('name', 'like', "%$name%")->get()->transform(function ($customer) {
                 return new CustomerResource($customer);
             }),
