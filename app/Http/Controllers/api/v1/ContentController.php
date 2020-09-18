@@ -49,6 +49,25 @@ class ContentController extends Controller
                 'data' => $receipts,
             ]);
         }
+
+        if ($request->has('customer')) {
+            $name = $request->get('customer');
+            $customers = Customer::where('name', 'like', "%$name%")->get();
+            $receipts = collect();
+            foreach ($customers as $customer) {
+                $receipts->add($customer->receipts()->get()->filter(function (Receipt $receipt) {
+                    return $receipt->incompletePayment;
+                }));
+            }
+
+            return response()->json([
+                'success' => 'Founded',
+                'data' => $receipts->collapse()->transform(function ($receipt) {
+                    return new ReceiptResource($receipt);
+                }),
+            ]);
+        }
+
         return response()->json([
             'success' => 'Founded',
             'data' => Receipt::whereDate('created_at', Carbon::today())->orderBy('created_at', 'desc')->get()->transform(function ($receipt) {
@@ -97,6 +116,7 @@ class ContentController extends Controller
 
     public function customers($name)
     {
+
         return response()->json([
             'success' => 'Found',
             'customers' => Customer::where('name', 'like', "%$name%")->get()->transform(function ($customer) {
