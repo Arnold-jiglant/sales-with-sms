@@ -10,6 +10,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
+use Milon\Barcode\Facades\DNS1DFacade;
 
 class InventoryController extends Controller
 {
@@ -270,6 +271,17 @@ class InventoryController extends Controller
         $invProduct->save();
         event(new InventoryChanged($invProduct->inventory));
         return redirect()->back()->with('success', 'Inventory Product Updated');
+    }
+
+    public function generateBarcode($id){
+        $request = Request::capture();
+
+        $product = InventoryProduct::find($id);
+        if($product==null) return redirect()->back()->with('error','Product Not Found');
+        $count = $request->get('count');
+        $name = $product->name;
+        $barcode = DNS1DFacade::getBarcodeSVG($id, 'C39',2,40,'black',false);
+        return view('barcode',compact('barcode','count','name'));
     }
 
     //TODO delete inventory

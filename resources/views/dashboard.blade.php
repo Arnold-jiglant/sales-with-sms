@@ -241,7 +241,11 @@
                                     "borderDash": ["2"],
                                     "zeroLineBorderDash": ["2"],
                                     "drawOnChartArea": false
-                                }, "ticks": {"fontColor": "#858796", "padding": 20}
+                                },
+                                "ticks": {
+                                    "fontColor": "#858796",
+                                    "padding": 20,
+                                }
                             }],
                             "yAxes": [{
                                 "gridLines": {

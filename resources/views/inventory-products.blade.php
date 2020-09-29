@@ -193,8 +193,8 @@
                                     <i class="icon ion-android-delete"></i>&nbsp;
                                     <span class="link-text">@lang('language.btn_delete')</span>
                                 </a>
-                                <a href="#" class="option-link edit" data-toggle="modal"
-                                   data-target="#delete-inventory-modal">
+                                <a href="#" class="option-link edit" data-toggle="modal" data-id="{{$invProduct->id}}"
+                                   data-name="{{$invProduct->name}}" data-target="#barcode-modal">
                                     <i class="icon ion-code"></i>&nbsp;
                                     <span class="link-text">@lang('language.btn_barcode')</span>
                                 </a>
@@ -770,6 +770,39 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="barcode-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><i
+                                class="icon ion-ios-barcode"></i>&nbsp;@lang('language.generate_barcode')</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="GET" target="_blank">
+                            @csrf
+                            <p><span>@lang('language.products.product_name'):</span>
+                                <span class="ml-1 value productName ">Text</span>
+                            </p>
+                            <div class="form-group">
+                                <label for="barcode_count">@lang('language.barcode_quantity')</label>
+                                <input class="form-control form-control-sm" type="number"
+                                       placeholder="@lang('language.barcode_quantity')"
+                                       min="1" id="barcode_count" name="count" value="1" required>
+                            </div>
+                            <div class="text-right mt-2">
+                                <button class="btn btn-light btn-sm mr-2" type="button"
+                                        data-dismiss="modal">@lang('language.close')
+                                </button>
+                                <button class="btn btn-primary btn-sm custom-btn"
+                                        type="submit">@lang('language.btn_generate')</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endcan
 @stop
 @section('script')
@@ -1184,6 +1217,18 @@
                         }
                     }
                 });
+            });
+
+
+            //Generate Barcode
+            $('#barcode-modal').on('show.bs.modal',function (e) {
+                let id = $(e.relatedTarget).data('id');
+                let name = $(e.relatedTarget).data('name');
+                let modal = $(this);
+                modal.find('.productName').text(name);
+                let form = modal.find('form');
+                let url = '{{route('inventory.generate.barcode','')}}/'+id;
+                form.attr('action',url);
             });
 
         });

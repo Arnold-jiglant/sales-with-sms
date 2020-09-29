@@ -15,7 +15,7 @@ Route::get('/', function () {
 });
 
 Route::get('/barcode/{n}', function ($n) {
-    echo DNS2DFacade::getBarcodeSVG($n, 'QRCODE',5,5);
+    echo DNS1DFacade::getBarcodeSVG($n, 'C39',1.5,40,'black',false);
 });
 
 //Startup Wizard
@@ -97,6 +97,7 @@ Route::middleware('auth')->group(function () {
     Route::put('inventory/update/{id}', 'InventoryController@update')->name('inventory.update');
     Route::put('inventory/add/to/stock/{id}', 'InventoryController@addToStock')->name('inventory.add.stock');
     Route::delete('inventory/delete/{id}', 'InventoryController@delete')->name('inventory.delete');
+    Route::get('inventory/generate/barcode/{id}', 'InventoryController@generateBarcode')->name('inventory.generate.barcode');
 
     //loss
     Route::get('loss/{id}', 'LossController@getLosses')->name('loss.get');
