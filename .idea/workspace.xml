@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Sales.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Sales.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/language.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/language.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventory-products.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +164,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/vendor/milon/barcode" />
+      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
     </include_path>
   </component>
   <component name="ProjectId" id="1eVfzukl6McRvppDfLjDeLO0lHF" />
@@ -176,7 +182,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BongoQuiz" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet" />
     <property name="settings.editor.splitter.proportion" value="0.21245831" />
@@ -288,6 +294,10 @@
       <workItem from="1600684796176" duration="4064000" />
       <workItem from="1600728076982" duration="1205000" />
       <workItem from="1601325834937" duration="7292000" />
+      <workItem from="1601634060416" duration="1211000" />
+      <workItem from="1601657436995" duration="657000" />
+      <workItem from="1603308268127" duration="2125000" />
+      <workItem from="1603351620355" duration="1151000" />
     </task>
     <servers />
   </component>
@@ -324,10 +334,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="416" y="122" width="524" height="481" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1600501860843" />
-    <state x="466" y="122" width="424" height="481" key="FileChooserDialogImpl" timestamp="1601329951863">
+    <state x="466" y="122" width="424" height="481" key="FileChooserDialogImpl" timestamp="1601658097291">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="466" y="122" width="424" height="481" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1601329951863" />
+    <state x="466" y="122" width="424" height="481" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1601658097291" />
     <state x="501" y="285" width="354" height="155" key="NewPhpFileDialog" timestamp="1599135672016">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -349,10 +359,10 @@
     </state>
     <state x="347" y="156" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1600262135455" />
     <state x="347" y="159" key="run.anything.popup/0.0.1366.741@0.0.1366.741" timestamp="1594906575493" />
-    <state x="4" y="49" width="672" height="160" key="search.everywhere.popup" timestamp="1601332424387">
+    <state x="4" y="49" width="672" height="160" key="search.everywhere.popup" timestamp="1601634064078">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="4" y="49" width="672" height="160" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1601332424387" />
+    <state x="4" y="49" width="672" height="160" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1601634064078" />
     <state x="4" y="50" width="672" height="691" key="search.everywhere.popup/0.0.1366.741@0.0.1366.741" timestamp="1594906571046" />
   </component>
 </project>
