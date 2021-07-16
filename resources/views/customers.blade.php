@@ -108,7 +108,10 @@
                     @foreach($customers as $customer)
                         <tr>
                             <td>{{$num}}</td>
-                            <td>{{$customer->name}}</td>
+                            <td>
+                                {{$customer->name}}
+                                <div><small><a  class="text-muted font-italic" href="tel:{{$customer->phone_number}}">{{$customer->phone_number}}</a></small></div>
+                            </td>
                             <td>{{number_format($customer->totalSpent,2)}}</td>
                             <td>{{$customer->visitCount}}</td>
                             <td class="text-danger">{{number_format($customer->totalDebt,2)}}</td>
@@ -123,7 +126,7 @@
                                     @can('edit-customer')
                                         <a href="#" class="option-link edit" data-toggle="modal"
                                            data-target="#edit-customer-modal" data-id="{{$customer->id}}"
-                                           data-name="{{$customer->name}}">
+                                           data-name="{{$customer->name}}" data-phone-number="{{$customer->phone_number}}">
                                             <i class="icon ion-edit"></i>&nbsp;
                                             <span class="link-text">@lang('language.btn_edit')</span>
                                         </a>
@@ -207,6 +210,11 @@
                                 <input class="form-control form-control-sm" type="text" placeholder="name"
                                        id="customerName" name="customer_name" required>
                             </div>
+                            <div class="form-group">
+                                <label for="phone_number">Phone No:</label>
+                                <input class="form-control form-control-sm" type="tel" placeholder="eg +25585..."
+                                       id="phone_number" name="phone_number" required>
+                            </div>
                             <div class="float-right">
                                 <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('language.close')
                                 </button>
@@ -235,6 +243,11 @@
                                 <label for="editCustomerName">@lang('language.customers.customer_name'):</label>
                                 <input class="form-control form-control-sm" type="text" placeholder="name"
                                        id="editCustomerName" name="customer_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editCustomerPhoneNumber">Phone No:</label>
+                                <input class="form-control form-control-sm" type="tel" placeholder="eg +25585...."
+                                       id="editCustomerPhoneNumber" name="phone_number" required>
                             </div>
                             <div class="float-right">
                                 <button class="btn btn-light btn-sm mr-2" type="button" data-dismiss="modal">@lang('close')
@@ -282,10 +295,12 @@
             $('#edit-customer-modal').on('show.bs.modal', function (e) {
                 let id = $(e.relatedTarget).data('id');
                 let name = $(e.relatedTarget).data('name');
+                let phone = $(e.relatedTarget).data('phone-number');
                 let form = $(this).find('form');
                 let action = '{{route('customer.update','')}}/' + id;
                 form.attr('action', action);
                 form.find("input[name='customer_name']").val(name);
+                form.find("input[name='phone_number']").val(phone);
             });
             @endcan()
             @can('delete-customer')

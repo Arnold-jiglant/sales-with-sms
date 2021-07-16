@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Sales.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Sales.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_10_204206_create_customers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_10_204206_create_customers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/view-customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/view-customer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +38,9 @@
     </option>
     <expand />
     <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Sales" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -182,21 +185,21 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BongoQuiz" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
     <property name="settings.editor.splitter.proportion" value="0.21245831" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/lang/en" />
       <recent name="C:\xampp\htdocs\Sales\public\assets\img" />
       <recent name="C:\xampp\htdocs\Sales\resources\views\startup" />
       <recent name="C:\xampp\htdocs\Sales\resources\views" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -298,6 +301,8 @@
       <workItem from="1601657436995" duration="657000" />
       <workItem from="1603308268127" duration="2125000" />
       <workItem from="1603351620355" duration="1151000" />
+      <workItem from="1614068726180" duration="48000" />
+      <workItem from="1626359695849" duration="30714000" />
     </task>
     <servers />
   </component>
@@ -318,51 +323,32 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="278" y="25" width="800" height="674" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595251637250">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="491" y="84" width="374" height="557" key="#com.intellij.ide.util.MemberChooser" timestamp="1626421382748">
+      <screen x="0" y="0" width="1366" height="733" />
     </state>
-    <state x="278" y="25" width="800" height="674" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1595251637250" />
-    <state x="315" y="136" width="726" height="454" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1594813901254">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="491" y="84" width="374" height="557" key="#com.intellij.ide.util.MemberChooser/0.0.1366.733@0.0.1366.733" timestamp="1626421382748" />
+    <state x="416" y="123" width="524" height="479" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1626427337048">
+      <screen x="0" y="0" width="1366" height="733" />
     </state>
-    <state x="315" y="136" width="726" height="454" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.0.1366.728@0.0.1366.728" timestamp="1594813901254" />
-    <state x="480" y="34" width="395" height="652" key="#com.intellij.ide.util.MemberChooser" timestamp="1600014797457">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="416" y="123" width="524" height="479" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.733@0.0.1366.733" timestamp="1626427337048" />
+    <state x="187" y="0" key="SettingsEditor" timestamp="1626433650403">
+      <screen x="0" y="0" width="1366" height="733" />
     </state>
-    <state x="480" y="34" width="395" height="652" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1600014797457" />
-    <state x="416" y="122" width="524" height="481" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600501860843">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="187" y="0" key="SettingsEditor/0.0.1366.733@0.0.1366.733" timestamp="1626433650403" />
+    <state x="346" y="54" width="672" height="678" key="search.everywhere.popup" timestamp="1626440281774">
+      <screen x="0" y="0" width="1366" height="733" />
     </state>
-    <state x="416" y="122" width="524" height="481" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1600501860843" />
-    <state x="466" y="122" width="424" height="481" key="FileChooserDialogImpl" timestamp="1601658097291">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="466" y="122" width="424" height="481" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1601658097291" />
-    <state x="501" y="285" width="354" height="155" key="NewPhpFileDialog" timestamp="1599135672016">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="501" y="285" width="354" height="155" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1599135672016" />
-    <state x="260" y="0" width="900" height="728" key="SettingsEditor" timestamp="1599391914988">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="260" y="0" width="900" height="728" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1599391914988" />
-    <state x="366" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1598956840372">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="366" y="190" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1598956840372" />
-    <state width="602" height="360" key="javadoc.popup" timestamp="1598957447509">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="602" height="360" key="javadoc.popup/0.0.1366.728@0.0.1366.728" timestamp="1598957447509" />
-    <state x="347" y="156" key="run.anything.popup" timestamp="1600262135455">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="347" y="156" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1600262135455" />
-    <state x="347" y="159" key="run.anything.popup/0.0.1366.741@0.0.1366.741" timestamp="1594906575493" />
-    <state x="4" y="49" width="672" height="160" key="search.everywhere.popup" timestamp="1601634064078">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="4" y="49" width="672" height="160" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1601634064078" />
-    <state x="4" y="50" width="672" height="691" key="search.everywhere.popup/0.0.1366.741@0.0.1366.741" timestamp="1594906571046" />
+    <state x="346" y="54" width="672" height="678" key="search.everywhere.popup/0.0.1366.733@0.0.1366.733" timestamp="1626440281774" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/database/migrations/2020_08_06_123633_create_debt_payments_table.php</url>
+          <line>6</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

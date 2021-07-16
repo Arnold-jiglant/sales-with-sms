@@ -14,8 +14,10 @@ Route::get('/', function () {
     }
 });
 
-Route::get('/barcode/{n}', function ($n) {
-    echo DNS1DFacade::getBarcodeSVG($n, 'C39',1.5,40,'black',false);
+Route::get('/test', function () {
+    $customer = \App\Customer::find(1);
+
+    return $customer->lastDebtNotificationTime;
 });
 
 //Startup Wizard
@@ -68,6 +70,7 @@ Route::middleware('auth')->group(function () {
     Route::get('customer/view/{id}', 'CustomerController@view')->name('customer.view');
     Route::put('customer/update/{id}', 'CustomerController@update')->name('customer.update');
     Route::put('customer/pay/debt/{id}', 'CustomerController@payDebt')->name('customer.pay.debt');
+    Route::post('customer/notify/debt/{customer}', 'CustomerController@notify')->name('customer.notify.debt');
     Route::delete('customer/delete/{id}', 'CustomerController@delete')->name('customer.delete');
     Route::get('get/receipt/{number}', 'CustomerController@getReceipt')->name('customers.get.receipt');
 

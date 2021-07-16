@@ -6,12 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    protected $fillable = ['name'];
+    protected $guarded = [];
+
 
     //RELATION
     public function receipts()
     {
         return $this->hasMany(Receipt::class);
+    }
+
+    public function debtNotifications()
+    {
+        return $this->hasMany(DebtNotification::class);
     }
 
     //ATTRIBUTE
@@ -33,5 +39,42 @@ class Customer extends Model
             return $receipt->debtAmount;
         });
         return $debt <= 0 ? 0 : $debt;
+    }
+
+    public function getReceiptsWithDebtAttribute()
+    {
+        return $this->receipts()->get()->filter(function (Receipt $receipt) {
+            return $receipt->incompletePayment;
+        });
+    }
+
+    public function getFormattedPhoneNumberAttribute()
+    {
+        return str_replace('+', '', $this->phone_number);
+    }
+
+    public function getDebtMessageAttribute()
+    {
+
+        $receipts = "";
+        $this->receiptsWithDebt->each(function ($receipt) use (&$receipts) {
+            $receipts = $receipts . $receipt->number . " kiasi " . number_format($receipt->debtAmount) . ",\r\n";
+        });
+        return "Dear " . $this->name . ",\r\n" .
+            "You are being reminded to pay your debt of receipt(s) as follows:-\r\n" .
+            "$receipts \r\n" .
+
+            "Total " . number_format($this->totalDebt) . "/= \r\n" .
+            "Some Retail Shop";
+    }
+
+    public function getLastDebtNotificationTimeAttribute()
+    {
+        $debtNotfications = $this->debtNotifications()->orderBy('created_at');
+        if ($this->debtNotifications()->count() > 0) {
+            return $this->debtNotifications()->first()->created_at->diffForHumans();
+        } else {
+            return "";
+        }
     }
 }

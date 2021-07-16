@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\DebtNotification;
 use App\DebtPayment;
+use App\Jobs\SendSMSJob;
 use App\Product;
 use App\Receipt;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,7 +19,7 @@ class CustomerController extends Controller
     {
         Gate::authorize('view-customers');
         $request = Request::capture();
-        $title ='';
+        $title = '';
         if ($request->has('search')) {
             $search = $request->get('search');
             $title = "Search for '$search'";
@@ -23,7 +27,7 @@ class CustomerController extends Controller
         } else {
             $customers = Customer::paginate(10);
         }
-        return view('customers', compact('customers','title'));
+        return view('customers', compact('customers', 'title'));
     }
 
     //add customer
@@ -31,9 +35,10 @@ class CustomerController extends Controller
     {
         Gate::authorize('add-customer');
         $this->validate($request, [
-            'customer_name' => 'required|unique:customers,name'
+            'customer_name' => 'required|unique:customers,name',
+            'phone_number' => 'required'
         ]);
-        Customer::create(['name' => $request->get('customer_name')]);
+        Customer::create(['name' => $request->get('customer_name'), 'phone_number' => $request->get('phone_number')]);
         return redirect()->back()->with('success', 'New Customer Added');
     }
 
@@ -71,9 +76,11 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         if ($customer == null) return redirect()->back()->with('error', 'Customer Not Found');
         $this->validate($request, [
-            'customer_name' => 'required|unique:customers,name,' . $id
+            'customer_name' => 'required|unique:customers,name,' . $id,
+            'phone_number' => 'required',
         ]);
         $customer->name = $request->get('customer_name');
+        $customer->phone_number = $request->get('phone_number');
         $customer->save();
         return redirect()->back()->with('success', 'Customer Updated!');
     }
@@ -152,5 +159,68 @@ class CustomerController extends Controller
         if ($receipt == null) return redirect()->back()->with('error', 'Receipt info NOT Found');
         $receipt->debtPayments()->save(new DebtPayment(['amount' => $request->get('amount'), 'issuer' => auth()->id()]));
         return redirect()->back()->with('success', 'Payment Received');
+    }
+
+    public function notify(Request $request, Customer $customer)
+    {
+        $this->validate($request, [
+            'message' => 'required',
+        ]);
+
+
+        $debtNotification = $customer->debtNotifications()->save(new DebtNotification([
+            'message' => $request->get('message'),
+        ]));
+
+        $recipients = [
+            array("recipient_id" => $customer->id, "dest_addr" => $customer->formattedPhoneNumber)
+        ];
+
+        try {
+            $http = new \GuzzleHttp\Client();
+            $response = $http->request('POST', "https://apisms.beem.africa/v1/send", [
+                "headers" => [
+                    'Authorization' => "Basic " . base64_encode(env("BEEM_API_KEY") . ":" . env("BEEM_SECRET"))
+                ],
+                "json" => [
+                    "source_addr" => "INFO",
+                    "schedule_time" => "",
+                    "encoding" => "0",
+                    "message" => $request->get('message'),
+                    "recipients" => $recipients
+                ]
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+            if ($data['code'] == 100) {
+
+                //update saved notification
+                $debtNotification->status = DebtNotification::$SENT;
+                $debtNotification->save();
+
+
+                return response()->json([
+                    "success" => "Notification sent successfully"
+                ]);
+            } else {
+                return response()->json([
+                    "error" => "Something went wrong"
+                ]);
+            }
+        } catch (ClientException $exception) {
+            return response()->json([
+                "error" => $exception->getMessage()
+            ]);
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                "error" => $exception->getMessage()
+            ]);
+        } catch (GuzzleException $e) {
+
+            return response()->json([
+                "error" => "Internal error"
+            ]);
+        }
     }
 }
