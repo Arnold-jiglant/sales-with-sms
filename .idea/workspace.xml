@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_10_204206_create_customers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_10_204206_create_customers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/view-customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/view-customer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,7 +292,7 @@
       <workItem from="1603308268127" duration="2125000" />
       <workItem from="1603351620355" duration="1151000" />
       <workItem from="1614068726180" duration="48000" />
-      <workItem from="1626359695849" duration="30714000" />
+      <workItem from="1626359695849" duration="31744000" />
     </task>
     <servers />
   </component>
