@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="" />
+    <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -179,15 +182,15 @@
     <property name="settings.editor.splitter.proportion" value="0.21245831" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/lang/en" />
       <recent name="C:\xampp\htdocs\Sales\public\assets\img" />
       <recent name="C:\xampp\htdocs\Sales\resources\views\startup" />
-      <recent name="C:\xampp\htdocs\Sales\resources\views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -291,7 +294,7 @@
       <workItem from="1603351620355" duration="1151000" />
       <workItem from="1614068726180" duration="48000" />
       <workItem from="1626359695849" duration="41506000" />
-      <workItem from="1626495210761" duration="2502000" />
+      <workItem from="1626495210761" duration="4033000" />
     </task>
     <servers />
   </component>
