@@ -59,6 +59,7 @@
                        class="option-link"
                        data-id="{{$customer->id}}"
                        data-name="{{$customer->name}}"
+                       data-phone-number="{{$customer->phone_number}}"
                        data-debt-message="{{$customer->debtMessage}}"
                     >
                         <i class="icon ion-android-notifications"></i>&nbsp;
@@ -218,6 +219,12 @@
                     </div>
                     <div class="modal-body">
                         <form onsubmit="event.preventDefault()">
+                            <div class="form-group">
+                                <p><span>@lang('language.customers.customer_name'):</span><span
+                                        class="ml-1 value">{{$customer->name}}</span></p>
+                                <p><span>Phone No:</span><a href="tel:{{$customer->phone_number}}"
+                                                            class="ml-1 value">{{$customer->phone_number}}</a></p>
+                            </div>
                             <div class="form-group">
                                 <label for="message">Message:</label>
                                 <textarea class="form-control form-control-sm" type="number" rows="10"
