@@ -53,7 +53,7 @@ Live demo at https://secret-chamber-55018.herokuapp.com/
 
 ###Using the SMS APi Steps
 1. After logging in go to customers area
-2. You will see all customers, if you wish you can add one. Import info "Customer name" and phone number with this pattern "+xxx xxx xxx"
+2. You will see all customers, if you wish you can add one. Important info "Customer name" and phone number with this pattern "+xxx xxx xxx"
 3. In order to notify the customer he or she must have sales debt, so open sales-> new sales and choose the products you want to sell.
 4. On the right side a small panel will appear showing the selected products, choose payment type to debt.
 5. At the top of the panel choose the customer you are selling to click confirm.
