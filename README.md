@@ -1,11 +1,16 @@
 #SALES MANAGEMENT
 
+###TEAM PARTICIPANTS
+1. Arnold Jifike
+2. Hans Nzali
+3. Kalla Giga
+
+###Description
 Is a point of sale management system that will help retail shops or businesses manage daily
 sales process including recording sales record, generating receipt, manage loss, managing and 
 tracking inventory or stock etc.
 
 The system is made with PHP laravel framework version 6.2
-
 
 
 ###USER FUNCTIONS
@@ -36,6 +41,27 @@ Also the manager can add other user roles and assign different access such as:-
     - when you open the project for the first time you will be asked for the manager info
     
     Thats it!
+    
+###API Used
+    - Beem SMS API
+    
+###Other info
+
+Live demo at https://secret-chamber-55018.herokuapp.com/
+- email: mamanger@manager.com
+- Password: manager
+
+###Using the SMS APi Steps
+1. After logging in go to customers area
+2. You will see all customers, if you wish you can add one. Import info "Customer name" and phone number with this pattern "+xxx xxx xxx"
+3. In order to notify the customer he or she must have sales debt, so open sales-> new sales and choose the products you want to sell.
+4. On the right side a small panel will appear showing the selected products, choose payment type to debt.
+5. At the top of the panel choose the customer you are selling to click confirm.
+6. Back again to customers area you will see that the previously sold to customer is having a debt amount.
+7. Click view customer you will see the notify button. NOTE this button appears if the customer has debt
+8. Clicking the button will show a modal containing the name, phone number and message showing list of receipts with debts and a total amount of debt.
+9. Click send button and message will be sent to the customer phone number specified earlier.
+Thats it!
 
 
             
