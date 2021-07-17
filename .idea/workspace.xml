@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Customer.php" afterDir="false" />
-    </list>
+    <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -175,7 +173,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
     <property name="settings.editor.splitter.proportion" value="0.21245831" />
@@ -293,7 +291,7 @@
       <workItem from="1603351620355" duration="1151000" />
       <workItem from="1614068726180" duration="48000" />
       <workItem from="1626359695849" duration="41506000" />
-      <workItem from="1626495210761" duration="2118000" />
+      <workItem from="1626495210761" duration="2502000" />
     </task>
     <servers />
   </component>
