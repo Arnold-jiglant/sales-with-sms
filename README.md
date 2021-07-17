@@ -1,9 +1,9 @@
 #SALES MANAGEMENT
 
 ###TEAM PARTICIPANTS
-1. Arnold Jifike
-2. Hans Nzali
-3. Kalla Giga
+1. Arnold Jifike  arnoldjifike@gmail.com
+2. Hans Nzali   hansnzali@gmail.com
+3. Kalla Giga   kallagiga@gmai.com
 
 ###Description
 Is a point of sale management system that will help retail shops or businesses manage daily
