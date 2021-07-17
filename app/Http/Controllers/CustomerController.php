@@ -167,7 +167,6 @@ class CustomerController extends Controller
             'message' => 'required',
         ]);
 
-
         $debtNotification = $customer->debtNotifications()->save(new DebtNotification([
             'message' => $request->get('message'),
         ]));
