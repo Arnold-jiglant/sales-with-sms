@@ -311,7 +311,7 @@
                         console.log(data);
                         if (data['success']) {
                             alert(data["success"]);
-                            $("#debt-reminder-modal").modal('hide');
+                            window.location.reload();
 
                         } else {
                             let notifyLabel = $("#notify-error");
