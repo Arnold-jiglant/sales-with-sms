@@ -56,7 +56,7 @@ Live demo at https://secret-chamber-55018.herokuapp.com/
 2. You will see all customers, if you wish you can add one. Important info "Customer name" and phone number with this pattern "+xxx xxx xxx"
 3. In order to notify the customer he or she must have sales debt, so open sales-> new sales and choose the products you want to sell.
 4. On the right side a small panel will appear showing the selected products, choose payment type to debt.
-5. At the top of the panel choose the customer you are selling to click confirm.
+5. At the top of the panel choose the customer you are selling to then click confirm.
 6. Back again to customers area you will see that the previously sold to customer is having a debt amount.
 7. Click view customer you will see the notify button. NOTE this button appears if the customer has debt
 8. Clicking the button will show a modal containing the name, phone number and message showing list of receipts with debts and a total amount of debt.
