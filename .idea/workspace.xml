@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11c8a231-4bf4-47ec-80f9-0a0ed7bad371" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/view-customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/view-customer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Customer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +293,7 @@
       <workItem from="1603351620355" duration="1151000" />
       <workItem from="1614068726180" duration="48000" />
       <workItem from="1626359695849" duration="41506000" />
-      <workItem from="1626495210761" duration="1669000" />
+      <workItem from="1626495210761" duration="1865000" />
     </task>
     <servers />
   </component>
@@ -327,10 +326,10 @@
       <screen x="0" y="0" width="1366" height="733" />
     </state>
     <state x="187" y="0" key="SettingsEditor/0.0.1366.733@0.0.1366.733" timestamp="1626452343006" />
-    <state x="346" y="54" width="672" height="678" key="search.everywhere.popup" timestamp="1626453846283">
+    <state x="346" y="54" width="672" height="678" key="search.everywhere.popup" timestamp="1626497249424">
       <screen x="0" y="0" width="1366" height="733" />
     </state>
-    <state x="346" y="54" width="672" height="678" key="search.everywhere.popup/0.0.1366.733@0.0.1366.733" timestamp="1626453846283" />
+    <state x="346" y="54" width="672" height="678" key="search.everywhere.popup/0.0.1366.733@0.0.1366.733" timestamp="1626497249424" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

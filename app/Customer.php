@@ -70,9 +70,8 @@ class Customer extends Model
 
     public function getLastDebtNotificationTimeAttribute()
     {
-        $debtNotfications = $this->debtNotifications()->orderBy('created_at');
         if ($this->debtNotifications()->count() > 0) {
-            return $this->debtNotifications()->first()->created_at->diffForHumans();
+            return $this->debtNotifications()->orderBy('created_at')->first()->created_at->diffForHumans();
         } else {
             return "";
         }
